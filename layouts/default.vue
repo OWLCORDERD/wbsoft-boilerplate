@@ -1,5 +1,4 @@
 <template>
-    <layout-Header/>
     <div id="wrapper">
         <main id="contents">
             <slot />

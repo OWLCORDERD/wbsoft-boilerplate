@@ -7,11 +7,11 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@use "assets/styles/common/_variables.scss" as *;',
+          additionalData: '@use "assets/common/styles/_variables.scss" as *;',
         },
       },
     },
   },
   // 2024.09.08: 전역에 공통으로 적용할 css 설정
-  css: ["assets/styles/common/layout.scss"],
+  css: ["assets/common/styles/layout.scss"],
 });

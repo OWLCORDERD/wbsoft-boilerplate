@@ -1,7 +1,7 @@
 <template>
     <div id="wrapper-inner">
         <div id="aside">
-            <layout-Todaytodo/>
+            <layout/>
         </div>
 
         <section>
