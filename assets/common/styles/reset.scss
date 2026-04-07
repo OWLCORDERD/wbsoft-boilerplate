@@ -19,6 +19,22 @@ time, mark, audio, video {
 	vertical-align: baseline;
 	transition: all ease .2s;
 }
+
+html,
+body {
+	height: 100%;
+	// font-family: 'EliceDigitalBaeum', 'Nanum Gothic', 'dotum', sans-serif;
+
+	// font-weight: normal;
+	// color: #333;
+	// letter-spacing: -0.025em;
+	// line-height: 1;
+}
+
+#__nuxt {
+	height: 100%;
+}
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {

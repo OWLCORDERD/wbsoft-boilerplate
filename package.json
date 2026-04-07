@@ -8,12 +8,13 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "local": "nuxt dev"
+    "local": "nuxt dev --port 3001"
   },
   "dependencies": {
     "@nuxtjs/dotenv": "^1.4.2",
     "@toast-ui/editor": "^3.2.2",
     "@toast-ui/vue-editor": "^3.2.3",
+    "ag-grid-vue3": "^35.2.0",
     "firebase": "^10.13.2",
     "json-server": "^1.0.0-beta.2",
     "module-alias": "^2.2.3",

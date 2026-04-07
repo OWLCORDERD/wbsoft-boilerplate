@@ -3231,6 +3231,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ag-charts-types@npm:13.2.0":
+  version: 13.2.0
+  resolution: "ag-charts-types@npm:13.2.0"
+  checksum: 10c0/a9bb60a42081211a7205b5a6bbcbbbeb9432b502918b5b2f85284a31a5198b121b0179120ad9d15e5e10390800f8671a68896716f89b8d0f26c0339d86173685
+  languageName: node
+  linkType: hard
+
+"ag-grid-community@npm:35.2.0":
+  version: 35.2.0
+  resolution: "ag-grid-community@npm:35.2.0"
+  dependencies:
+    ag-charts-types: "npm:13.2.0"
+  checksum: 10c0/902518d4e15c87ed9cca67ee8c8221179768f675c2545b58915589836406cbe0ae4e03ad2acbef7ba18f9c9815cbc51fd0bfd83e8f63c3ac2f39f38df0222472
+  languageName: node
+  linkType: hard
+
+"ag-grid-vue3@npm:^35.2.0":
+  version: 35.2.0
+  resolution: "ag-grid-vue3@npm:35.2.0"
+  dependencies:
+    ag-grid-community: "npm:35.2.0"
+  peerDependencies:
+    vue: ^3.5.0
+  checksum: 10c0/14d985a1833d8871d2461d522800bdfbb82cc402542649e4c6b3a1025261e00ae7f02f8f1e2eef08c1f3bbf1e09b1a7c65b3ee860662aca15b845c1bab441a19
+  languageName: node
+  linkType: hard
+
 "agent-base@npm:^7.1.0, agent-base@npm:^7.1.2":
   version: 7.1.4
   resolution: "agent-base@npm:7.1.4"
@@ -6070,6 +6097,7 @@ __metadata:
     "@nuxtjs/dotenv": "npm:^1.4.2"
     "@toast-ui/editor": "npm:^3.2.2"
     "@toast-ui/vue-editor": "npm:^3.2.3"
+    ag-grid-vue3: "npm:^35.2.0"
     firebase: "npm:^10.13.2"
     json-server: "npm:^1.0.0-beta.2"
     module-alias: "npm:^2.2.3"
