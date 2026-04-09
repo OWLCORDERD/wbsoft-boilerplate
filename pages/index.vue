@@ -1,23 +1,14 @@
 <template>
     <div id="wrapper-inner">
         <section>
-            <ClientOnly>
-            <Suspense>
-                <template #default>
-                    <component :is="gridComponent" :options="gridOptions" @getGrid="getGrid" />
-                </template>
-
-                <template #fallback>
-                    <div>Loading...</div>
-                </template>
-            </Suspense>
-        </ClientOnly>
+            <features-lxp-components-v1-ag-grid
+                :options="gridOptions"
+                @getGrid="getGrid"
+            />
         </section>
     </div>
 </template>
 <script setup lang="ts">
-const gridComponent = defineAsyncComponent(() => import('~/features/lxp/components/v1/agGrid/agGridEditor.vue'));
-
 const grid = ref();
 
 const gridOptions = reactive({
