@@ -3,7 +3,7 @@
     <ClientOnly>
         <Suspense>
             <template #default>
-                <component :is="gridComponent" :options="gridOptions" @getGrid="emit('getGrid', $event)" />
+                <component :is="AgGridCtor" :gridId="gridId" :options="gridOptions" @getGrid="emit('getGrid', $event)" />
             </template>
 
             <template #fallback>
@@ -13,9 +13,7 @@
     </ClientOnly>
 </template>
 <script setup lang="ts">
-import type { createAgGridOptionType } from 'ag-grid';
-
-const gridComponent = defineAsyncComponent(() => import('~/features/lxp/components/v1/agGrid/agGridCtor.vue'));
+import type { createAgGridOptionType } from 'agGrid';
 
 const props = defineProps({
     // * 고유 그리드 식별 아이디 (필수 값)
@@ -32,6 +30,8 @@ const props = defineProps({
         default: () => ({})
     }
 })
+
+const AgGridCtor = defineAsyncComponent(() => import('./Ctor.vue'));
 
 const emit = defineEmits(['getGrid']);
 

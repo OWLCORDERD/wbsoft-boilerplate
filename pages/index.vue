@@ -1,7 +1,8 @@
 <template>
     <div id="wrapper-inner">
         <section>
-            <features-lxp-components-v1-ag-grid
+            <AgGrid
+                :gridId="'example-grid'"
                 :options="gridOptions"
                 @getGrid="getGrid"
             />
@@ -9,6 +10,7 @@
     </div>
 </template>
 <script setup lang="ts">
+import { AgGrid } from '~/features/agGrid/components/v1/index';
 const grid = ref();
 
 const gridOptions = reactive({

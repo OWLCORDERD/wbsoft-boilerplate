@@ -1,4 +1,4 @@
-import type { createAgGridOptionType } from "ag-grid";
+import type { createAgGridOptionType } from "agGrid";
 import { AllCommunityModule, ModuleRegistry, createGrid, type GridApi } from "ag-grid-community";
 
 export const agGridEditorInstance = (
