@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import { agGridEditorInstance } from '~/features/agGrid/model/composables/useAgGrid'; // * agGrid 인스턴스 생성 함수
+import { agGridEditorInstance } from '@/features/agGrid/composables/useGridApi'; // * agGrid 인스턴스 생성 함수
 import type { createAgGridOptionType } from 'agGrid'; // * agGrid 타입 선언
 
 const props = defineProps({

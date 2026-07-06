@@ -1,7 +1,7 @@
 <template>
     <div id="wrapper-inner">
         <section>
-            <AgGrid
+            <AgGridV1
                 :gridId="'example-grid'"
                 :options="gridOptions"
                 @getGrid="getGrid"
@@ -10,27 +10,28 @@
     </div>
 </template>
 <script setup lang="ts">
-import { AgGrid } from '~/features/agGrid/components/v1/index';
+import { AgGridV1 } from '@/features/agGrid';
 const grid = ref();
 
 const gridOptions = reactive({
     rowData: [
+        { name: '2026', company: '네이버', course: '네이버 웍스', version: '1.0.0' },
         { name: '2026', company: '네이버', course: '네이버 웍스', version: '1.0.0' }
     ],
     columnDefs: [
-        { field: 'year' },
-        { field: 'company' },
-        { field: 'course' },
-        { field: 'version' },
+        { headerName: '년도', field: 'year' },
+        { headerName: '회사', field: 'company' },
+        { headerName: '과정', field: 'course' },
+        { headerName: '버전', field: 'version' },
+
     ],
-    pagination: true,
+    pagination: false,
+    rowHeaders: true,
     getRowHeight: () => 25,
 })
 
 const getGrid = (_grid: any) => {
     grid.value = _grid;
-
-    console.log(grid.value);
 }
 </script>
 <style lang="scss">

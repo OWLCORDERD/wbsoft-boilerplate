@@ -31,7 +31,7 @@ const props = defineProps({
     }
 })
 
-const AgGridCtor = defineAsyncComponent(() => import('./Ctor.vue'));
+const AgGridCtor = defineAsyncComponent(() => import('@/features/agGrid/ui/v1/AgGrid.vue'));
 
 const emit = defineEmits(['getGrid']);
 
@@ -47,8 +47,5 @@ const gridOptions: ComputedRef<createAgGridOptionType> = computed(() => {
 })
 </script>
 <style lang="scss">
-    .grid-container {
-        width: 650px;
-        height: 400px;
-    }
+@use '~/assets/lxp/styles/agGrid.scss' as *;
 </style>
