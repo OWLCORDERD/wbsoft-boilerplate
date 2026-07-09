@@ -1,0 +1,1 @@
+export { default as TuiGridV1 } from '@/features/tuiGrid/ui/v1/TuiGrid.vue';

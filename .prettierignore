@@ -1,0 +1,6 @@
+# prettier 미적용 대상 파일 설정(필요 시 추가)
+
+#예시)
+# epos-2.22.0.js
+
+# /pages/education/education-plan/ttm/index.vue

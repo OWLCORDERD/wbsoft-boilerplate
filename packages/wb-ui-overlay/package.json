@@ -1,0 +1,6 @@
+{
+    "name": "@wbsoft/ui-overlay",
+    "version": "1.0.0",
+    "description": "오버레이 런타임 모듈 컴포넌트 패키지",
+    "main": "./src/module.ts"
+}

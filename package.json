@@ -1,35 +1,65 @@
 {
-  "name": "nuxt-app",
-  "private": true,
-  "type": "module",
+  "name": "wbsoft-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
     "local": "nuxt dev --port 3001"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.10.0",
+      "onFail": "download"
+    }
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "@nuxtjs/style-resources": "^1.2.1",
+    "@types/d3": "^7",
+    "@types/node": "^18.16.19",
+    "@types/node-fetch": "^3.0.3",
+    "@typescript-eslint/eslint-plugin": "5.59.0",
+    "@typescript-eslint/parser": "5.59.0",
+    "eslint": "^10.6.0",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-ban": "^2.0.0",
+    "eslint-plugin-prettier": "^5.2.6",
+    "eslint-plugin-vue": "9.18.1",
+    "nuxt": "^4.4.8",
+    "nuxt-gtag": "^2.0.5",
+    "prettier": "^3.9.4",
+    "sass": "^1.77.8",
+    "sass-loader": "^16.0.1",
+    "vue-eslint-parser": "9.3.1"
+  },
   "dependencies": {
+    "@nuxt/kit": "^4.4.8",
+    "@wbsoft/ui-overlay": "workspace:*",
     "@nuxtjs/dotenv": "^1.4.2",
     "@toast-ui/editor": "^3.2.2",
     "@toast-ui/vue-editor": "^3.2.3",
+    "@vuepic/vue-datepicker": "^14.0.0",
+    "ag-grid-community": "^36.0.0",
     "ag-grid-enterprise": "^35.2.1",
     "ag-grid-vue3": "^35.2.0",
     "firebase": "^10.13.2",
     "json-server": "^1.0.0-beta.2",
     "module-alias": "^2.2.3",
-    "nuxt": "^4.4.8",
     "pinia": "^3.0.4",
-    "sass": "^1.77.8",
-    "sass-loader": "^16.0.1",
-    "vue": "latest"
+    "vue": "latest",
+    "vue-imask": "^7.6.1"
   },
   "_moduleAliases": {
     "@": "~/"
   },
-  "resolutions": {
-    "simple-git": "3.33.0"
-  },
-  "packageManager": "yarn@4.13.0"
+  "type": "module"
 }

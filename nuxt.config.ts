@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: "2024-07-06",
+  compatibilityDate: '2024-07-06',
   devtools: { enabled: true },
   /// 빌드 시점 생성되는 .output 산출물은 node로 실행되어 서버 소스맵 사용 x -> 빌드 시간 단축
   sourcemap: {
@@ -33,26 +33,25 @@ export default defineNuxtConfig({
   // 2026.07.06: 전역적으로 사용되는 컴포져블 모듈 디렉토리 autoImport 셋팅
   imports: {
     // index.d.ts 파일 제외 실제 컴포져블 파일만 지정
-    dirs: [
-      'shared/lib/composables/*.ts'
-    ]
+    dirs: ['shared/lib/composables/*.ts'],
   },
   // 2024.09.08: SCSS 스타일 변수 속성 import 없이 전역 사용
   vite: {
     css: {
       preprocessorOptions: {
-        scss: {
-          additionalData: '@use "assets/common/styles/_variables.scss" as *;',
+      scss: {
+          additionalData: '@use "@/assets/common/styles/_variables.scss" as *;',
         },
       },
     },
   },
   // 2024.09.08: 전역 공통 css 설정
-  css: ["assets/common/styles/layout.scss"],
+  css: ['@/assets/common/styles/layout.scss'],
   // 2026.07.06: Nuxt 4 레이어 구조 활성화 처리
   future: {
     compatibilityVersion: 4,
   },
+  modules: ['./modules/overlay-bridge'],
   runtimeConfig: {
     public: {
       apiBaseUrl: process.env.API_BASE_URL,
@@ -64,6 +63,6 @@ export default defineNuxtConfig({
       firebaseAppId: process.env.FIREBASE_APP_ID,
       firebaseMeasurementId: process.env.FIREBASE_MEASUREMENT_ID,
       agGridLicenseKey: process.env.AG_GRID_LICENSE_KEY,
-    }
+    },
   },
 });
