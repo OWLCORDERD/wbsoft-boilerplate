@@ -1,13 +1,7 @@
 export default defineNuxtPlugin(async (NuxtApp) => {
-  // 2026.03.13 [mhlim]: 현재 프로젝트 하위 플랫폼 경로 추출
-  const currentPlatform = computed(() => {
-    return NuxtApp._route.fullPath.includes('/education') ? '/education' : NuxtApp._route.fullPath.includes('/evaluation') ? '/evaluation' : NuxtApp._route.fullPath.includes('/material') ? '/material' : '/';
-  });
-  
   // 플랫폼별 최종 테마 색상 코드
   const colorCode = useCookie('colorCode', {
     default: () => '147c6c',
-    path: currentPlatform.value,
     maxAge: 60 * 60 * 24 * 365 * 2,
     decode(value) {
       return decodeURIComponent(value).toString();
@@ -17,7 +11,6 @@ export default defineNuxtPlugin(async (NuxtApp) => {
   // 사용자가 다른 테마 선택한 경우 저장되는 테마 색상 코드
   const userSelectColorCode = useCookie('userColorCode', {
     default: () => null,
-    path: currentPlatform.value,
     maxAge: 60 * 60 * 24 * 365 * 2,
     decode(value) {
       return decodeURIComponent(value).toString();
@@ -26,7 +19,6 @@ export default defineNuxtPlugin(async (NuxtApp) => {
 
   const colorType = useCookie('colorType', {
     default: () => 'theme',
-    path: currentPlatform.value,
     maxAge: 60 * 60 * 24 * 365 * 2,
   })
 
@@ -68,16 +60,6 @@ export default defineNuxtPlugin(async (NuxtApp) => {
     // 사용자가 선택한 색상 테마 코드 적용
     if (userSelectColorCode.value !== null) {
       colorCode.value = userSelectColorCode.value;
-    } else {
-      // 사용자가 선택한 색상 테마가 없는 경우, 기본 플랫폼별 색상 부여
-      // 2025.12.02[mhlim]: 페이지 라우트 시작 경로에 따라 테마 색상 코드 변경 
-      if (NuxtApp._route.path.startsWith('/education')) {
-        colorCode.value = '147c6c';
-      } else if (NuxtApp._route.path.startsWith('/evaluation')) {
-        colorCode.value = '345abf';
-      } else if (NuxtApp._route.path.startsWith('/material')) {
-        colorCode.value = '4a509f';
-      }
     }
   }
   

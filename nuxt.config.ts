@@ -33,28 +33,61 @@ export default defineNuxtConfig({
   // 2026.07.06: 전역적으로 사용되는 컴포져블 모듈 디렉토리 autoImport 셋팅
   imports: {
     // index.d.ts 파일 제외 실제 컴포져블 파일만 지정
-    dirs: ['shared/lib/composables/*.ts'],
+    dirs: ['~/shared/lib/composables/*.ts'],
   },
-  // 2024.09.08: SCSS 스타일 변수 속성 import 없이 전역 사용
+  // 2024.09.08: SCSS 스타일 전역 변수 속성 최상단 주입
   vite: {
     css: {
       preprocessorOptions: {
       scss: {
-          additionalData: '@use "@/assets/common/styles/_variables.scss" as *;',
+          additionalData: '@use "@/assets/common/styles/base/variables.scss" as *;',
+          quietDeps: true,
+          silenceDeprecations: ['import', 'legacy-js-api'],
         },
       },
     },
   },
   // 2024.09.08: 전역 공통 css 설정
-  css: ['@/assets/common/styles/layout.scss'],
+  css: [
+    '@/assets/common/styles/base/layout.scss',
+    '@/assets/common/styles/base/reset.scss',
+  ],
   // 2026.07.06: Nuxt 4 레이어 구조 활성화 처리
   future: {
     compatibilityVersion: 4,
   },
-  modules: ['./modules/overlay-bridge'],
+  extends: [
+    'wb-ui-layout'
+  ],
+  modules: ['./modules/overlay-bridge', 'nuxt-font-loader'],
+  fontLoader: {
+    local: [
+      {
+        src: '@/assets/common/fonts/Paperlogy-4Regular.ttf',
+        family: 'Paperlogy_R',
+        weight: 400,
+        style: 'normal',
+        display: 'swap'
+      },
+      {
+        src: '@/assets/common/fonts/Paperlogy-5Medium.ttf',
+        family: 'Paperlogy_M',
+        weight: 500,
+        style: 'normal',
+        display: 'swap'
+      },
+      {
+        src: '@/assets/common/fonts/Paperlogy-7Bold.ttf',
+        family: 'Paperlogy_B',
+        weight: 700,
+        style: 'normal',
+        display: 'swap'
+      },
+    ],
+  },
   runtimeConfig: {
     public: {
-      apiBaseUrl: process.env.API_BASE_URL,
+      apiBaseUrl: process.env.NITRO_API_BASE_URL,
       filebaseApiKey: process.env.FILEBASE_API_KEY,
       filebaseProjectId: process.env.FILEBASE_PROJECT_ID,
       firebaseAuthDomain: process.env.FIREBASE_AUTH_DOMAIN,

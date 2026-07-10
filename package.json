@@ -43,11 +43,11 @@
   },
   "dependencies": {
     "@nuxt/kit": "^4.4.8",
-    "@wbsoft/ui-overlay": "workspace:*",
     "@nuxtjs/dotenv": "^1.4.2",
     "@toast-ui/editor": "^3.2.2",
     "@toast-ui/vue-editor": "^3.2.3",
     "@vuepic/vue-datepicker": "^14.0.0",
+    "@wbsoft/ui-overlay": "workspace:*",
     "ag-grid-community": "^36.0.0",
     "ag-grid-enterprise": "^35.2.1",
     "ag-grid-vue3": "^35.2.0",
@@ -55,8 +55,10 @@
     "json-server": "^1.0.0-beta.2",
     "module-alias": "^2.2.3",
     "pinia": "^3.0.4",
+    "sass-embedded": "^1.100.0",
     "vue": "latest",
-    "vue-imask": "^7.6.1"
+    "vue-imask": "^7.6.1",
+    "nuxt-font-loader": "^2.3.5"
   },
   "_moduleAliases": {
     "@": "~/"

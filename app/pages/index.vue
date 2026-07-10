@@ -35,6 +35,10 @@ const getGrid = (_grid: any) => {
 
     console.log(grid.value);
 }
+
+definePageMeta({
+    layout: 'default'
+});
 </script>
 <style lang="scss">
     #wrapper-inner {
