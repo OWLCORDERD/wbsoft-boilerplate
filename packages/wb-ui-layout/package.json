@@ -2,5 +2,9 @@
     "name": "@wbsoft/ui-layout",
     "version": "1.0.0",
     "description": "WBSoft UI Layout",
-    "main": "index.js"
+    "main": "index.js",
+    "exports": {
+        ".": "./index.ts",
+        "./package.json": "./package.json"
+    }
 }

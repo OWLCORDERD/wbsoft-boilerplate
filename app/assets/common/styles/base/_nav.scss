@@ -1,0 +1,61 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Sidebar Navigation — groups, items, active states
+// ─────────────────────────────────────────────────────────────────────────────
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.nav-group {
+  margin-bottom: t.$space-2;
+
+  &__toggle {
+    width: 100%;
+    @include m.flex-between;
+    padding: 6px 12px;
+    border-radius: t.$radius-md;
+    color: t.$text-subtle;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: color t.$transition-fast;
+
+    &:hover { color: t.$text-muted; }
+
+    &-left {
+      @include m.flex-start(t.$space-2);
+    }
+  }
+
+  &__items {
+    margin-top: t.$space-1;
+    margin-left: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__item {
+    width: 100%;
+    text-align: left;
+    font-size: 13.5px;
+    padding: 6px 12px;
+    border-radius: t.$radius-md;
+    border-left: 2px solid transparent;
+    color: t.$text-muted;
+    transition:
+      color       t.$transition-fast,
+      background  t.$transition-fast,
+      border-color t.$transition-fast;
+
+    &:hover {
+      color: t.$text-secondary;
+      background: t.$brand-glow;
+    }
+
+    &--active {
+      color: t.$violet-300;
+      background: t.$brand-glow;
+      border-left-color: t.$brand;
+    }
+  }
+}

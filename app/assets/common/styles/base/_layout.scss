@@ -1,0 +1,320 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Layout — Topbar, Sidebar, Main, TOC
+// ─────────────────────────────────────────────────────────────────────────────
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// ── Page root ─────────────────────────────────────────────────────────────────
+
+.docs {
+  min-height: 100vh;
+  background: t.$bg;
+  color: t.$text-primary;
+}
+
+// ── Topbar ────────────────────────────────────────────────────────────────────
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  height: t.$topbar-height;
+  @include m.flex-between;
+  padding: 0 t.$space-4;
+  @include m.glass-bg;
+  border-bottom: 1px solid t.$border-default;
+
+  &__left {
+    @include m.flex-start(t.$space-3);
+  }
+
+  &__logo {
+    @include m.flex-start(t.$space-2);
+  }
+
+  &__logo-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: t.$radius-md;
+    background: linear-gradient(135deg, t.$brand, t.$accent);
+    @include m.flex-center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  &__logo-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: t.$text-heading;
+  }
+
+  &__logo-version {
+    @include m.mono(11px, t.$violet-400);
+    background: t.$brand-dim;
+    padding: 2px 6px;
+    border-radius: t.$radius-sm;
+  }
+
+  &__nav {
+    display: none;
+    gap: t.$space-1;
+
+    @include m.md {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__nav-link {
+    padding: 6px 12px;
+    border-radius: t.$radius-md;
+    font-size: 14px;
+    color: t.$text-muted;
+    transition: color t.$transition-fast;
+
+    &:hover { color: t.$violet-300; }
+  }
+
+  &__actions {
+    @include m.flex-start(t.$space-2);
+  }
+
+  &__search {
+    display: none;
+    align-items: center;
+    gap: t.$space-2;
+    padding: 6px 12px;
+    border-radius: t.$radius-lg;
+    background: t.$bg-secondary;
+    border: 1px solid t.$border-default;
+    font-size: 14px;
+    color: t.$text-muted;
+    cursor: pointer;
+    transition: border-color t.$transition-fast;
+
+    @include m.md { display: flex; }
+
+    &:hover { border-color: t.$border-strong; }
+
+    &-kbd {
+      @include m.mono(11px, t.$text-subtle);
+      background: t.$bg-card;
+      padding: 2px 6px;
+      border-radius: t.$radius-sm;
+      margin-left: t.$space-2;
+    }
+  }
+
+  &__github {
+    @include m.flex-start(t.$space-2);
+    padding: 6px 10px;
+    border-radius: t.$radius-md;
+    background: t.$bg-secondary;
+    font-size: 12px;
+    color: t.$text-secondary;
+    transition: color t.$transition-fast;
+
+    &:hover { color: t.$text-primary; }
+
+    span {
+      display: none;
+
+      @include m.md { display: inline; }
+    }
+  }
+
+  &__mobile-menu {
+    display: flex;
+    color: t.$text-muted;
+    padding: t.$space-1;
+
+    @include m.lg { display: none; }
+  }
+}
+
+// ── Mobile overlay ────────────────────────────────────────────────────────────
+
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+
+  @include m.lg { display: none; }
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(#000, 0.6);
+  }
+
+  &__panel {
+    position: relative;
+    width: 288px;
+    height: 100%;
+    background: t.$bg-secondary;
+    border-right: 1px solid t.$border-default;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header {
+    @include m.flex-between;
+    padding: t.$space-4;
+    border-bottom: 1px solid t.$border-subtle;
+
+    span {
+      font-size: 14px;
+      font-weight: 600;
+      color: t.$text-heading;
+    }
+  }
+
+  &__close {
+    color: t.$text-muted;
+    padding: t.$space-1;
+    transition: color t.$transition-fast;
+
+    &:hover { color: t.$text-primary; }
+  }
+}
+
+// ── Three-column wrapper ──────────────────────────────────────────────────────
+
+.docs-body {
+  display: flex;
+  padding-top: t.$topbar-height;
+}
+
+// ── Left Sidebar ──────────────────────────────────────────────────────────────
+
+.sidebar {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: t.$topbar-height;
+  bottom: 0;
+  width: t.$sidebar-width;
+  background: darken(t.$bg, 2%);
+  border-right: 1px solid t.$border-default;
+  flex-direction: column;
+  @include m.no-scrollbar;
+
+  @include m.lg { display: flex; }
+
+  &__nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: t.$space-6 t.$space-3;
+    @include m.no-scrollbar;
+  }
+}
+
+// ── Main content ──────────────────────────────────────────────────────────────
+
+.main {
+  flex: 1;
+  min-width: 0;
+  padding: t.$space-10 t.$space-6;
+
+  @include m.lg {
+    margin-left: t.$sidebar-width;
+    margin-right: t.$toc-width;
+  }
+
+  &__inner {
+    max-width: t.$content-max-width;
+  }
+}
+
+// ── Right TOC ─────────────────────────────────────────────────────────────────
+
+.toc {
+  display: none;
+  position: fixed;
+  right: 0;
+  top: t.$topbar-height;
+  bottom: 0;
+  width: t.$toc-width;
+  padding: t.$space-8 t.$space-4;
+  overflow-y: auto;
+  @include m.no-scrollbar;
+
+  @include m.lg { display: block; }
+
+  &__title {
+    @include m.mono(11px, t.$text-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    margin-bottom: t.$space-4;
+  }
+
+  &__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__item {
+    button {
+      width: 100%;
+      text-align: left;
+      font-size: 12px;
+      padding: 5px 8px;
+      border-radius: t.$radius-md;
+      color: t.$text-subtle;
+      border-left: 2px solid transparent;
+      transition: color t.$transition-fast, border-color t.$transition-fast;
+
+      &:hover { color: t.$text-secondary; }
+    }
+
+    &--active button {
+      color: t.$violet-300;
+      border-left-color: t.$brand;
+    }
+  }
+
+  &__community {
+    margin-top: t.$space-8;
+    @include m.card-surface;
+    padding: t.$space-4;
+
+    &-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: t.$brand;
+      margin-bottom: t.$space-1;
+    }
+
+    &-desc {
+      font-size: 11px;
+      line-height: 1.6;
+      color: t.$text-subtle;
+      margin-bottom: t.$space-3;
+    }
+
+    &-links {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    &-link {
+      @include m.flex-start(t.$space-2);
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: t.$radius-sm;
+      color: t.$text-muted;
+      transition: color t.$transition-fast;
+
+      &:hover { color: t.$text-secondary; }
+    }
+  }
+}

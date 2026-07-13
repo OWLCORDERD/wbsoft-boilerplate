@@ -1,0 +1,155 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Mixins — Reusable SCSS helpers
+// ─────────────────────────────────────────────────────────────────────────────
+@use 'tokens' as t;
+
+// Responsive breakpoints
+@mixin md {
+  @media (min-width: #{t.$bp-md}) { @content; }
+}
+
+@mixin lg {
+  @media (min-width: #{t.$bp-lg}) { @content; }
+}
+
+@mixin xl {
+  @media (min-width: #{t.$bp-xl}) { @content; }
+}
+
+// 사이즈 지정
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+// 가운데지정
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// 2024.08.28 [mhlim] : x축 가운데 정렬 mixin 함수 생성
+@mixin relative-centerX {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin transition {
+  transition: all ease 0.2s;
+}
+
+// flexbox 가운데 정렬
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// flexbox 양쪽 정렬
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// flexbox 왼쪽 정렬
+@mixin flex-start($gap: 0) {
+  display: flex;
+  align-items: center;
+  @if $gap != 0 { gap: $gap; }
+}
+
+// 스크롤바 숨기기
+@mixin no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+// Card surface
+@mixin card-surface($radius: t.$radius-lg) {
+  background: t.$bg-card;
+  border: 1px solid t.$border-default;
+  border-radius: $radius;
+}
+
+// Mono text
+@mixin mono($size: 12px, $color: t.$text-muted) {
+  font-family: t.$font-mono;
+  font-size: $size;
+  color: $color;
+}
+
+// Focus ring
+@mixin focus-ring {
+  outline: none;
+
+  &:focus-visible {
+    outline: 2px solid t.$brand;
+    outline-offset: 2px;
+  }
+}
+
+// 1줄 말줄임
+@mixin truncate {
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// 2줄 이상 말줄임
+@mixin truncate-multi($line-clamp: 2) {
+  display: block;
+  display: -webkit-box;
+  display: -ms-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line-clamp;
+  overflow: hidden;
+  max-width: 100%;
+  word-wrap: break-word;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+}
+
+// Glass background (topbar)
+@mixin glass-bg {
+  background: rgba(t.$bg, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+// Status color helper — generates bg, border, color
+@mixin status-colors($color, $alpha-bg: 0.06, $alpha-border: 0.3) {
+  background: rgba($color, $alpha-bg);
+  border-color: rgba($color, $alpha-border);
+  color: $color;
+}
+
+// 반응형 사이즈
+@mixin responsive($media) {
+  $pc: '(min-width: 1025px)';
+  $tablet: '(max-width: 1024px)';
+  $mob: '(max-width: 768px)';
+  $mob-small: '(max-width: 375px)';
+
+  @if $media == pc {
+    @media only screen and #{$pc} {
+      @content;
+    }
+  } @else if $media == tablet {
+    @media only screen and #{$tablet} {
+      @content;
+    }
+  } @else if $media == mob {
+    @media only screen and #{$mob} {
+      @content;
+    }
+  } @else if $media == mob-small {
+    @media only screen and #{$mob-small} {
+      @content;
+    }
+  }
+}

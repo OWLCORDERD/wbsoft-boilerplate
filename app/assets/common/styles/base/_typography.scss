@@ -1,0 +1,198 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Typography — Headings, body, labels, code
+// ─────────────────────────────────────────────────────────────────────────────
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// ── Section heading ───────────────────────────────────────────────────────────
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+  font-size: 18px;
+  font-weight: 600;
+  color: t.$text-heading;
+  padding-bottom: t.$space-3;
+  margin-bottom: t.$space-6;
+  border-bottom: 1px solid t.$border-default;
+
+  &__icon {
+    color: t.$brand;
+    flex-shrink: 0;
+  }
+}
+
+// ── Breadcrumb ────────────────────────────────────────────────────────────────
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: t.$text-subtle;
+  margin-bottom: t.$space-6;
+
+  &__sep {
+    opacity: 0.5;
+  }
+
+  &__current {
+    color: t.$brand;
+  }
+}
+
+// ── Page title block ──────────────────────────────────────────────────────────
+
+.page-title {
+  &__kicker {
+    @include m.mono(11px, t.$brand);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: t.$space-2;
+  }
+
+  &__h1 {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: t.$text-heading;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: t.$space-4;
+  }
+
+  &__lead {
+    font-size: 15px;
+    line-height: 1.75;
+    color: t.$text-muted;
+
+    strong {
+      color: t.$violet-300;
+      font-weight: 600;
+    }
+  }
+}
+
+// ── Inline code badge ─────────────────────────────────────────────────────────
+
+.code-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border-radius: t.$radius-sm;
+  background: t.$bg-secondary;
+  color: t.$violet-400;
+  font-family: t.$font-mono;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background t.$transition-fast;
+  user-select: all;
+
+  &:hover { background: lighten(t.$bg-secondary, 3%); }
+
+  &__icon {
+    opacity: 0.4;
+    flex-shrink: 0;
+    transition: opacity t.$transition-fast;
+  }
+
+  &:hover &__icon { opacity: 0.7; }
+
+  &__check {
+    color: t.$green-400;
+  }
+}
+
+// ── Subsection h3 ─────────────────────────────────────────────────────────────
+
+.subsection-heading {
+  font-size: 15px;
+  font-weight: 600;
+  color: t.$text-heading;
+  margin-bottom: t.$space-4;
+}
+
+// ── Type scale table ──────────────────────────────────────────────────────────
+
+.type-scale {
+  @include m.card-surface;
+  overflow: hidden;
+  margin-bottom: t.$space-8;
+
+  &__header {
+    padding: 8px 16px;
+    background: t.$bg-card;
+    border-bottom: 1px solid t.$border-subtle;
+    @include m.mono(11px, t.$text-muted);
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: auto 48px 1fr;
+    align-items: center;
+    padding: 10px 16px;
+    gap: t.$space-4;
+    border-bottom: 1px solid t.$border-subtle;
+
+    &:last-child { border-bottom: none; }
+  }
+
+  &__size {
+    @include m.mono(11px, t.$text-subtle);
+    width: 40px;
+    flex-shrink: 0;
+  }
+}
+
+// ── Font cards ────────────────────────────────────────────────────────────────
+
+.font-cards {
+  display: grid;
+  gap: t.$space-4;
+  margin-bottom: t.$space-8;
+
+  @include m.md {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.font-card {
+  @include m.card-surface;
+  padding: t.$space-5;
+
+  &__role {
+    @include m.mono(11px, t.$brand);
+    font-weight: 600;
+    margin-bottom: t.$space-1;
+  }
+
+  &__name {
+    font-size: 13px;
+    color: t.$text-muted;
+    margin-bottom: t.$space-3;
+  }
+
+  &__sample {
+    font-size: 30px;
+    color: t.$text-heading;
+    margin-bottom: t.$space-4;
+    line-height: 1;
+
+    &--mono { font-family: t.$font-mono; }
+  }
+
+  &__weights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: t.$space-2;
+  }
+
+  &__weight-chip {
+    @include m.mono(11px, t.$text-muted);
+    background: t.$bg-secondary;
+    padding: 3px 8px;
+    border-radius: t.$radius-sm;
+  }
+}

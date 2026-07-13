@@ -1,0 +1,404 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Components — Button, Badge, Input, Select, Card, Alert, Tab
+// ─────────────────────────────────────────────────────────────────────────────
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// ── Button ────────────────────────────────────────────────────────────────────
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: t.$space-2;
+  font-family: t.$font-sans;
+  font-weight: 600;
+  border-radius: t.$radius-lg;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background    t.$transition-fast,
+    color         t.$transition-fast,
+    border-color  t.$transition-fast,
+    opacity       t.$transition-fast,
+    box-shadow    t.$transition-fast;
+  @include m.focus-ring;
+
+  // Sizes
+  &--xs {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: t.$radius-sm;
+  }
+
+  &--sm {
+    font-size: 13px;
+    padding: 6px 12px;
+    border-radius: t.$radius-md;
+  }
+
+  &--md {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  &--lg {
+    font-size: 15px;
+    padding: 10px 20px;
+  }
+
+  &--xl {
+    font-size: 17px;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-radius: t.$radius-xl;
+  }
+
+  // Icon-only
+  &--icon {
+    padding: 8px;
+    border-radius: t.$radius-lg;
+  }
+
+  // Variants
+  &--primary {
+    background: t.$brand;
+    color: #fff;
+
+    &:hover { background: t.$brand-hover; }
+
+    &:active {
+      background: t.$violet-700;
+      transform: translateY(1px);
+    }
+  }
+
+  &--secondary {
+    background: t.$bg-secondary;
+    color: t.$violet-300;
+
+    &:hover { background: lighten(t.$bg-secondary, 4%); }
+  }
+
+  &--outline {
+    background: transparent;
+    color: t.$brand;
+    border-color: rgba(t.$brand, 0.5);
+
+    &:hover {
+      background: t.$brand-glow;
+      border-color: t.$brand;
+    }
+
+    &-accent {
+      color: t.$accent;
+      border-color: rgba(t.$accent, 0.5);
+
+      &:hover { background: t.$accent-dim; }
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: t.$text-secondary;
+
+    &:hover {
+      background: t.$brand-glow;
+      color: t.$violet-300;
+    }
+  }
+
+  &--danger {
+    background: t.$red-500;
+    color: #fff;
+
+    &:hover { background: darken(t.$red-500, 8%); }
+
+    &-outline {
+      background: transparent;
+      color: t.$red-500;
+      border-color: rgba(t.$red-500, 0.5);
+
+      &:hover { background: rgba(t.$red-500, 0.08); }
+    }
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// ── Component showcase tab strip ──────────────────────────────────────────────
+
+.tab-strip {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: t.$bg-card;
+  border: 1px solid t.$border-default;
+  border-radius: t.$radius-lg;
+  width: fit-content;
+  margin-bottom: t.$space-6;
+
+  &__tab {
+    padding: 6px 12px;
+    border-radius: t.$radius-md;
+    font-size: 12px;
+    font-weight: 600;
+    color: t.$text-muted;
+    transition:
+      background t.$transition-fast,
+      color      t.$transition-fast;
+
+    &:hover { color: t.$text-secondary; }
+
+    &--active {
+      background: t.$brand;
+      color: #fff;
+
+      &:hover { background: t.$brand-hover; }
+    }
+  }
+}
+
+// ── Showcase panel ────────────────────────────────────────────────────────────
+
+.showcase {
+  @include m.card-surface;
+  padding: t.$space-6;
+  margin-bottom: t.$space-4;
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: t.$space-3;
+    margin-bottom: t.$space-6;
+
+    &:last-child { margin-bottom: 0; }
+  }
+
+  &__label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: t.$text-subtle;
+    margin-bottom: t.$space-2;
+  }
+}
+
+// ── Badge ─────────────────────────────────────────────────────────────────────
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: t.$radius-full;
+
+  &--violet  { background: t.$brand-dim;   color: t.$brand; }
+  &--cyan    { background: t.$accent-dim;  color: t.$accent; }
+  &--green   { background: rgba(t.$green-500, 0.15); color: t.$green-500; }
+  &--amber   { background: rgba(t.$amber-500, 0.15); color: t.$amber-500; }
+  &--red     { background: rgba(t.$red-500, 0.15);   color: t.$red-500; }
+  &--neutral { background: t.$bg-secondary; color: t.$text-secondary; }
+}
+
+// ── Form inputs ───────────────────────────────────────────────────────────────
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  &__label {
+    font-size: 12px;
+    font-weight: 600;
+    color: t.$text-secondary;
+  }
+
+  &__error-msg {
+    font-size: 12px;
+    color: t.$red-500;
+  }
+}
+
+.input {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: t.$radius-lg;
+  background: t.$bg-secondary;
+  color: t.$text-primary;
+  border: 1px solid t.$border-default;
+  font-size: 14px;
+  outline: none;
+  transition:
+    border-color t.$transition-fast,
+    box-shadow   t.$transition-fast;
+
+  &::placeholder { color: t.$text-subtle; }
+
+  &:focus {
+    border-color: t.$brand;
+    box-shadow: 0 0 0 3px rgba(t.$brand, 0.15);
+  }
+
+  &--error {
+    border-color: rgba(t.$red-500, 0.6);
+
+    &:focus { box-shadow: 0 0 0 3px rgba(t.$red-500, 0.15); }
+  }
+}
+
+.select {
+  @extend .input;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235C607E' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+
+  option {
+    background: t.$bg-card;
+    color: t.$text-primary;
+  }
+}
+
+// ── Card ──────────────────────────────────────────────────────────────────────
+
+.card {
+  @include m.card-surface;
+  padding: t.$space-5;
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: t.$space-3;
+  }
+
+  &__title {
+    font-size: 14px;
+    font-weight: 600;
+    color: t.$text-primary;
+  }
+
+  &__body {
+    font-size: 12px;
+    line-height: 1.65;
+    color: t.$text-muted;
+  }
+
+  &__footer {
+    display: flex;
+    gap: t.$space-2;
+    margin-top: t.$space-4;
+  }
+}
+
+// ── Alert / feedback strip ────────────────────────────────────────────────────
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: t.$space-3;
+  padding: 12px 16px;
+  border-radius: t.$radius-xl;
+  border: 1px solid transparent;
+  font-size: 14px;
+
+  &__icon {
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  &__label {
+    font-weight: 600;
+    margin-right: t.$space-2;
+  }
+
+  &__body {
+    color: t.$text-secondary;
+  }
+
+  &--success {
+    background: var(--success-dim);
+    border-color: var(--success-border);
+
+    .alert__icon,
+    .alert__label { color: var(--success); }
+  }
+
+  &--info {
+    background: var(--info-dim);
+    border-color: var(--info-border);
+
+    .alert__icon,
+    .alert__label { color: var(--info); }
+  }
+
+  &--warning {
+    background: var(--warning-dim);
+    border-color: var(--warning-border);
+
+    .alert__icon,
+    .alert__label { color: var(--warning); }
+  }
+
+  &--error {
+    background: var(--error-dim);
+    border-color: var(--error-border);
+
+    .alert__icon,
+    .alert__label { color: var(--error); }
+  }
+}
+
+// ── Callout (inline docs note) ────────────────────────────────────────────────
+
+.callout {
+  display: flex;
+  gap: t.$space-3;
+  padding: 12px 16px;
+  border-radius: t.$radius-lg;
+  border: 1px solid transparent;
+  font-size: 14px;
+  margin-bottom: t.$space-6;
+
+  &__marker {
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  &__body {
+    line-height: 1.7;
+    color: t.$text-secondary;
+  }
+
+  &--info {
+    background: rgba(t.$cyan-500, 0.06);
+    border-color: rgba(t.$cyan-500, 0.3);
+
+    .callout__marker { color: t.$cyan-500; }
+  }
+
+  &--tip {
+    background: rgba(t.$brand, 0.06);
+    border-color: rgba(t.$brand, 0.3);
+
+    .callout__marker { color: t.$brand; }
+  }
+
+  &--warning {
+    background: rgba(t.$amber-500, 0.06);
+    border-color: rgba(t.$amber-500, 0.3);
+
+    .callout__marker { color: t.$amber-500; }
+  }
+}

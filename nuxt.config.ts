@@ -1,3 +1,8 @@
+import { createRequire } from "node:module";
+import { join } from "node:path";
+
+const require = createRequire(import.meta.url);
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-07-06',
@@ -40,18 +45,17 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
       scss: {
-          additionalData: '@use "@/assets/common/styles/base/variables.scss" as *;',
+          additionalData: '@use "@/assets/common/styles/base/main.scss" as *;',
           quietDeps: true,
           silenceDeprecations: ['import', 'legacy-js-api'],
         },
       },
     },
   },
-  // 2024.09.08: 전역 공통 css 설정
-  css: [
-    '@/assets/common/styles/base/layout.scss',
-    '@/assets/common/styles/base/reset.scss',
-  ],
+  // // 2024.09.08: 전역 공통 css 설정
+  // css: [
+  //   '@/assets/common/styles/base/main.scss',
+  // ],
   // 2026.07.06: Nuxt 4 레이어 구조 활성화 처리
   future: {
     compatibilityVersion: 4,
@@ -59,7 +63,7 @@ export default defineNuxtConfig({
   extends: [
     'wb-ui-layout'
   ],
-  modules: ['./modules/overlay-bridge', 'nuxt-font-loader'],
+  modules: ['./modules/overlay-bridge', 'nuxt-font-loader', 'nuxt-svgo'],
   fontLoader: {
     local: [
       {
@@ -84,6 +88,19 @@ export default defineNuxtConfig({
         display: 'swap'
       },
     ],
+  },
+  // 2026.07.13 [mhlim]: 외부 패키지 컴포넌트 등록
+  components: [
+    // 도메인 레이어별 레이아웃 (wb-ui-layout) 컴포넌트 조각 등록
+    {
+      path: join(require.resolve('@wbsoft/ui-layout/package.json'), '../src'),
+      pathPrefix: false,
+      global: true,
+    }
+  ],
+  // nuxt-svgo 컴포넌트 autoImport 경로 설정
+  svgo: {
+    autoImportPath: '@/assets/lxp/images/svg',
   },
   runtimeConfig: {
     public: {

@@ -1,0 +1,550 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Docs-specific blocks — code blocks, file tree, architecture, palette, spacing
+// ─────────────────────────────────────────────────────────────────────────────
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// ── Section spacing ───────────────────────────────────────────────────────────
+
+.section {
+  margin-bottom: 64px;
+
+  &__lead {
+    font-size: 14px;
+    line-height: 1.75;
+    color: t.$text-muted;
+    margin-bottom: t.$space-5;
+  }
+}
+
+// ── Feature card grid ─────────────────────────────────────────────────────────
+
+.feature-grid {
+  display: grid;
+  gap: t.$space-3;
+  margin-top: t.$space-6;
+
+  @include m.md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.feature-card {
+  @include m.card-surface;
+  padding: t.$space-4;
+
+  &__icon {
+    color: t.$brand;
+    margin-bottom: t.$space-2;
+  }
+
+  &__title {
+    font-size: 14px;
+    font-weight: 600;
+    color: t.$violet-300;
+    margin-bottom: t.$space-1;
+  }
+
+  &__desc {
+    font-size: 12px;
+    line-height: 1.65;
+    color: t.$text-subtle;
+  }
+}
+
+// ── Code block ────────────────────────────────────────────────────────────────
+
+.code-block {
+  @include m.card-surface;
+  border-radius: t.$radius-xl;
+  overflow: hidden;
+  margin-bottom: t.$space-4;
+  background: darken(t.$bg, 2%);
+
+  &__topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    background: t.$bg-card;
+    border-bottom: 1px solid t.$border-default;
+  }
+
+  &__traffic-lights {
+    display: flex;
+    gap: 6px;
+  }
+
+  &__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: t.$radius-full;
+
+    &--red    { background: rgba(t.$red-500,   0.7); }
+    &--yellow { background: rgba(t.$amber-500, 0.7); }
+    &--green  { background: rgba(t.$green-500, 0.7); }
+  }
+
+  &__label {
+    @include m.mono(11px, t.$text-muted);
+  }
+
+  &__body {
+    padding: t.$space-4;
+  }
+
+  &__line {
+    display: flex;
+    gap: t.$space-3;
+    font-family: t.$font-mono;
+    font-size: 14px;
+    line-height: 1.7;
+    color: t.$text-primary;
+  }
+
+  &__prompt {
+    color: t.$brand;
+    user-select: none;
+  }
+}
+
+// ── File tree ─────────────────────────────────────────────────────────────────
+
+.file-tree {
+  @include m.card-surface;
+  border-radius: t.$radius-xl;
+  overflow: hidden;
+  background: darken(t.$bg, 2%);
+  font-family: t.$font-mono;
+
+  &__topbar {
+    display: flex;
+    align-items: center;
+    gap: t.$space-3;
+    padding: 8px 16px;
+    background: t.$bg-card;
+    border-bottom: 1px solid t.$border-default;
+  }
+
+  &__traffic-lights {
+    display: flex;
+    gap: 6px;
+  }
+
+  &__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: t.$radius-full;
+
+    &--red    { background: rgba(t.$red-500,   0.7); }
+    &--yellow { background: rgba(t.$amber-500, 0.7); }
+    &--green  { background: rgba(t.$green-500, 0.7); }
+  }
+
+  &__root-label {
+    @include m.mono(11px, t.$text-muted);
+  }
+
+  &__body {
+    padding: t.$space-4;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 2px 0;
+    font-size: 13px;
+
+    &-icon {
+      flex-shrink: 0;
+
+      &--dir  { color: t.$brand; }
+      &--file { color: t.$text-muted; }
+    }
+
+    &-name {
+      &--dir  { color: t.$violet-300; }
+      &--file { color: t.$slate-400; }
+    }
+
+    &-note {
+      @include m.mono(11px, t.$text-subtle);
+      margin-left: 4px;
+    }
+  }
+}
+
+// ── Layer diagram ─────────────────────────────────────────────────────────────
+
+.layer-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+  margin-bottom: t.$space-6;
+}
+
+.layer-item {
+  display: flex;
+  align-items: flex-start;
+  gap: t.$space-4;
+  padding: t.$space-4;
+  border-radius: t.$radius-xl;
+  border: 1px solid transparent;
+
+  &__id {
+    font-family: t.$font-mono;
+    font-size: 11px;
+    font-weight: 600;
+    min-width: 24px;
+  }
+
+  &__name {
+    font-size: 14px;
+    font-weight: 600;
+    min-width: 80px;
+    flex-shrink: 0;
+  }
+
+  &__arrow {
+    flex-shrink: 0;
+    margin-top: 3px;
+    opacity: 0.5;
+  }
+
+  &__desc {
+    font-size: 13px;
+    line-height: 1.65;
+    color: t.$text-muted;
+  }
+
+  // Color schemes per layer
+  @each $name, $color in (
+    'violet': t.$brand,
+    'cyan':   t.$accent,
+    'green':  t.$green-500,
+    'amber':  t.$amber-500,
+  ) {
+    &--#{$name} {
+      background: rgba($color, 0.08);
+      border-color: rgba($color, 0.25);
+
+      .layer-item__id,
+      .layer-item__name,
+      .layer-item__arrow { color: $color; }
+    }
+  }
+}
+
+// ── State management cards ────────────────────────────────────────────────────
+
+.state-cards {
+  display: grid;
+  gap: t.$space-3;
+
+  @include m.md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.state-card {
+  @include m.card-surface;
+  padding: t.$space-4;
+
+  &__scope {
+    font-family: t.$font-mono;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: t.$space-1;
+  }
+
+  &__tool {
+    font-size: 13px;
+    font-weight: 600;
+    color: t.$text-primary;
+    margin-bottom: t.$space-2;
+  }
+
+  &__desc {
+    font-size: 12px;
+    line-height: 1.65;
+    color: t.$text-subtle;
+  }
+
+  &--green .state-card__scope  { color: t.$green-500; }
+  &--cyan  .state-card__scope  { color: t.$accent; }
+  &--violet .state-card__scope { color: t.$brand; }
+}
+
+// ── Color palette showcase ────────────────────────────────────────────────────
+
+.semantic-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: t.$space-3;
+  margin-bottom: t.$space-8;
+
+  @include m.md {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.color-swatch {
+  @include m.card-surface;
+  overflow: hidden;
+
+  &__block {
+    height: 64px;
+  }
+
+  &__info {
+    padding: 10px 12px;
+    background: t.$bg-card;
+  }
+
+  &__name {
+    font-size: 12px;
+    font-weight: 600;
+    color: t.$text-primary;
+    margin-bottom: 4px;
+  }
+
+  &__token {
+    @include m.mono(10px, t.$text-subtle);
+    margin-top: 4px;
+  }
+}
+
+.palette-section {
+  margin-bottom: t.$space-6;
+
+  &__label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: t.$text-subtle;
+    margin-bottom: t.$space-3;
+  }
+}
+
+.palette-strip {
+  display: flex;
+  border-radius: t.$radius-lg;
+  overflow: hidden;
+  border: 1px solid t.$border-default;
+
+  &__shade {
+    flex: 1;
+    position: relative;
+    cursor: pointer;
+
+    &-block { height: 48px; }
+
+    &:hover &-tooltip { display: flex; }
+
+    &-tooltip {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 4px 8px;
+      background: t.$bg;
+      border: 1px solid t.$border-strong;
+      border-radius: t.$radius-sm;
+      font-family: t.$font-mono;
+      font-size: 10px;
+      color: t.$text-primary;
+      white-space: nowrap;
+      z-index: 10;
+
+      span { color: t.$text-subtle; }
+    }
+  }
+
+  &__labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+    font-family: t.$font-mono;
+    font-size: 10px;
+    color: t.$text-subtle;
+  }
+}
+
+// ── Spacing scale ─────────────────────────────────────────────────────────────
+
+.spacing-scale {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+  margin-bottom: t.$space-8;
+
+  &__row {
+    display: grid;
+    grid-template-columns: 32px 1fr 80px;
+    align-items: center;
+    gap: t.$space-3;
+  }
+
+  &__name {
+    @include m.mono(11px, t.$text-muted);
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  &__bar {
+    height: 20px;
+    border-radius: t.$radius-sm;
+    background: linear-gradient(90deg, t.$brand, t.$accent);
+    min-width: 2px;
+  }
+
+  &__values {
+    @include m.mono(11px, t.$text-subtle);
+  }
+}
+
+// ── Grid demo ─────────────────────────────────────────────────────────────────
+
+.grid-demo {
+  border-radius: t.$radius-lg;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 4px;
+  height: 40px;
+  margin-bottom: t.$space-2;
+
+  &__col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: t.$font-mono;
+    font-size: 10px;
+    color: t.$brand;
+
+    &:nth-child(odd)  { background: rgba(t.$brand, 0.2); }
+    &:nth-child(even) { background: rgba(t.$brand, 0.08); }
+  }
+}
+
+.grid-caption {
+  font-size: 12px;
+  color: t.$text-subtle;
+}
+
+// ── CSS Variables table ───────────────────────────────────────────────────────
+
+.vars-table {
+  @include m.card-surface;
+  overflow: hidden;
+
+  &__head {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    padding: 8px 16px;
+    background: t.$bg-card;
+    border-bottom: 1px solid t.$border-default;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: t.$text-subtle;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    align-items: center;
+    padding: 10px 16px;
+    border-bottom: 1px solid t.$border-subtle;
+    gap: t.$space-4;
+
+    &:last-child { border-bottom: none; }
+
+    &:hover { background: t.$brand-glow; }
+  }
+
+  &__token {
+    @include m.mono(12px, t.$violet-400);
+  }
+
+  &__value {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    span {
+      @include m.mono(12px, t.$text-muted);
+    }
+  }
+
+  &__color-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: t.$radius-full;
+    flex-shrink: 0;
+    border: 1px solid rgba(#fff, 0.1);
+  }
+
+  &__usage {
+    font-size: 12px;
+    color: t.$text-muted;
+  }
+
+  &__copy {
+    padding: 4px;
+    border-radius: t.$radius-sm;
+    color: t.$text-subtle;
+    transition: color t.$transition-fast;
+
+    &:hover { color: t.$text-secondary; }
+
+    &--copied { color: t.$green-400; }
+  }
+}
+
+// ── Form showcase grid ────────────────────────────────────────────────────────
+
+.form-grid {
+  @include m.card-surface;
+  padding: t.$space-6;
+  display: grid;
+  gap: t.$space-4;
+
+  @include m.md {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// ── Card grid ─────────────────────────────────────────────────────────────────
+
+.card-grid {
+  display: grid;
+  gap: t.$space-4;
+
+  @include m.md {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// ── Feedback / alerts stack ───────────────────────────────────────────────────
+
+.alerts-stack {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-3;
+}
+
+// ── Badge row ─────────────────────────────────────────────────────────────────
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: t.$space-2;
+  margin-top: t.$space-6;
+}

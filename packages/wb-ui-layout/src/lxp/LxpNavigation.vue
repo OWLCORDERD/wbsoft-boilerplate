@@ -1,19 +1,7 @@
 <template>
     <nav :class="{ 'is-fold': navFold }">
-      <div class="btn-area">
-        <button
-          type="button"
-          class="nav-fold-btn"
-          :class="{ 'is-active': navFold }"
-          @click="navToggle()"
-          title="네비게이션 토글"
-        >
-          <SvgoGnbClose v-if="!navFold" />
-          <SvgoGnbOpen v-else />
-        </button>
-      </div>
       <ul class="nav">
-        <template v-for="(depth1, i) in menuList">
+        <template v-for="(depth1, i) in $menuList">
           <li
             class="nav-item depth1"
             :class="{ 'is-active': oneDepthOpened === i }"
@@ -129,38 +117,37 @@
   </template>
   
   <script setup>
-  import Pencil from '@/assets/images/lxp/common/icon/svg/GNB/nav-pen.svg';
-  import FilePencil from '@/assets/images/lxp/common/icon/svg/GNB/nav-file-pen.svg';
-  import BookOpen from '@/assets/images/lxp/common/icon/svg/GNB/nav-book-open.svg';
-  import Setting from '@/assets/images/lxp/common/icon/svg/GNB/nav-setting.svg';
-  import FileOx from '@/assets/images/lxp/common/icon/svg/GNB/nav-file-ox.svg';
-  import Board from '@/assets/images/lxp/common/icon/svg/GNB/nav-bubble-star.svg';
-  import FileLines from '@/assets/images/lxp/common/icon/svg/GNB/nav-file-lines.svg';
-  import User from '@/assets/images/lxp/common/icon/svg/GNB/nav-user.svg';
-  import Info from '@/assets/images/lxp/common/icon/svg/GNB/nav-info.svg';
-  import Book from '@/assets/images/lxp/common/icon/svg/GNB/nav-book.svg';
-  import Medal from '@/assets/images/lxp/common/icon/svg/GNB/nav-medal.svg';
-  import Survey from '@/assets/images/lxp/common/icon/svg/GNB/nav-survey.svg';
-  import Badge from '@/assets/images/lxp/common/icon/svg/GNB/nav-badge.svg';
-  import Chatbot from '@/assets/images/lxp/common/icon/svg/GNB/nav-chatbot.svg';
-  import BooksApple from '@/assets/images/lxp/common/icon/svg/GNB/nav-books-apple.svg';
-  import Bubble2 from '@/assets/images/lxp/common/icon/svg/GNB/nav-bubble2.svg';
-  import Customer from '@/assets/images/lxp/common/icon/svg/GNB/nav-customer.svg';
-  import Pay from '@/assets/images/lxp/common/icon/svg/GNB/nav-pay.svg';
-  import Bell from '@/assets/images/lxp/common/icon/svg/GNB/nav-bell.svg';
-  import Category from '@/assets/images/lxp/common/icon/svg/GNB/nav-category.svg';
-  import Bubble1 from '@/assets/images/lxp/common/icon/svg/GNB/nav-bubble1.svg';
-  import GraphPie from '@/assets/images/lxp/common/icon/svg/GNB/nav-graph-pie.svg';
-  import HomepageSetting from '@/assets/images/lxp/common/icon/svg/GNB/nav-homepage-setting.svg';
-  import Star from '@/assets/images/lxp/common/icon/svg/GNB/nav-star.svg';
-  import Guide from '@/assets/images/lxp/common/icon/svg/GNB/nav-guide.svg';
+  import Pencil from '@/assets/lxp/images/svg/GNB/nav-pen.svg';
+  import FilePencil from '@/assets/lxp/images/svg/GNB/nav-file-pen.svg';
+  import BookOpen from '@/assets/lxp/images/svg/GNB/nav-book-open.svg';
+  import Setting from '@/assets/lxp/images/svg/GNB/nav-setting.svg';
+  import FileOx from '@/assets/lxp/images/svg/GNB/nav-file-ox.svg';
+  import Board from '@/assets/lxp/images/svg/GNB/nav-bubble-star.svg';
+  import FileLines from '@/assets/lxp/images/svg/GNB/nav-file-lines.svg';
+  import User from '@/assets/lxp/images/svg/GNB/nav-user.svg';
+  import Info from '@/assets/lxp/images/svg/GNB/nav-info.svg';
+  import Book from '@/assets/lxp/images/svg/GNB/nav-book.svg';
+  import Medal from '@/assets/lxp/images/svg/GNB/nav-medal.svg';
+  import Survey from '@/assets/lxp/images/svg/GNB/nav-survey.svg';
+  import Badge from '@/assets/lxp/images/svg/GNB/nav-badge.svg';
+  import Chatbot from '@/assets/lxp/images/svg/GNB/nav-chatbot.svg';
+  import BooksApple from '@/assets/lxp/images/svg/GNB/nav-books-apple.svg';
+  import Bubble2 from '@/assets/lxp/images/svg/GNB/nav-bubble2.svg';
+  import Customer from '@/assets/lxp/images/svg/GNB/nav-customer.svg';
+  import Pay from '@/assets/lxp/images/svg/GNB/nav-pay.svg';
+  import Bell from '@/assets/lxp/images/svg/GNB/nav-bell.svg';
+  import Category from '@/assets/lxp/images/svg/GNB/nav-category.svg';
+  import Bubble1 from '@/assets/lxp/images/svg/GNB/nav-bubble1.svg';
+  import GraphPie from '@/assets/lxp/images/svg/GNB/nav-graph-pie.svg';
+  import HomepageSetting from '@/assets/lxp/images/svg/GNB/nav-homepage-setting.svg';
+  import Star from '@/assets/lxp/images/svg/GNB/nav-star.svg';
+  import Guide from '@/assets/lxp/images/svg/GNB/nav-guide.svg';
   
   const { $menuList } = useNuxtApp();
   
   const route = useRoute();
   const emit = defineEmits(['menuData', 'navToggle']);
   const props = defineProps({
-    menuList: Array,
     menuPath: Array,
   });
   
@@ -180,8 +167,8 @@
     () => props.menuPath,
     () => {
       if (route.path !== '/') {
-        for (let i = 0; i < props.menuList?.length; i++) {
-          const menu = props.menuList[i];
+        for (let i = 0; i < $menuList.value.length; i++) {
+          const menu = $menuList.value[i];
           if (menu.id === props.menuPath[0]?.id) {
             oneDepthOpened.value = i;
           }
@@ -352,9 +339,5 @@
   const isMenuActive = (depth2, menuName) => {
     return depth2.menuName === menuName;
   };
-
-  onMounted(() => {
-    alert('컴포넌트 준비완료');
-  });
   </script>
   
