@@ -7,150 +7,104 @@
   </nav>
 
   <!-- ── Introduction ──────────────────────────────────────────────────── -->
-  <section id="introduction" class="section">
-    <div class="page-title">
-      <div class="page-title__kicker">Getting Started</div>
-      <h1 class="page-title__h1">소개</h1>
-      <p class="page-title__lead">
-        자사 프레임워크는 확장 가능하고 일관된 방식으로 웹 애플리케이션을 구축하기 위한
-        <strong>아키텍처 보일러플레이트</strong>입니다.
-        공통 UI 컴포넌트, 상태 관리 패턴, CSS 디자인 토큰을 포함한 통합 개발 환경을 제공합니다.
-      </p>
-    </div>
+  <DOCSSection 
+    sectionId="introduction"
+    :callout="docCalloutList.find((callout) => callout.id === 'introduction')"
+  >
+    <template #pageKicker>Getting Started</template>
+    <template #pageTitle>소개</template>
+    <template #pageLead>
+      자사 프레임워크는 확장 가능하고 일관된 방식으로 웹 애플리케이션을 구축하기 위한
+      <strong>아키텍처 보일러플레이트</strong>입니다.
+      공통 UI 컴포넌트, 상태 관리 패턴, CSS 디자인 토큰을 포함한 통합 개발 환경을 제공합니다.
+    </template>
 
-    <DocsCallout type="tip">
-      이 가이드라인은 지속적으로 업데이트됩니다. 새로운 패턴이나 컴포넌트 추가 제안은 내부 GitHub
-      리포지토리를 통해 PR을 제출해주세요.
-    </DocsCallout>
-
-    <div class="feature-grid">
-      <div v-for="card in FEATURE_CARDS" :key="card.label" class="feature-card">
-        <div class="feature-card__icon">{{ card.icon }}</div>
-        <div class="feature-card__title">{{ card.label }}</div>
-        <div class="feature-card__desc">{{ card.desc }}</div>
-      </div>
-    </div>
-  </section>
+    <template #content>
+      <DocsFeatureGrid :cards="FEATURE_CARDS" />
+    </template>
+  </DOCSSection>
 
   <!-- ── Quick Start ────────────────────────────────────────────────────── -->
-  <section id="quick-start" class="section">
-    <h2 class="section-heading">
-      <span class="section-heading__icon">⚡</span>빠른 시작
-    </h2>
-    <p class="section__lead">아래 명령어로 새 프로젝트를 생성하고 개발 서버를 시작합니다.</p>
+  <DOCSSection sectionId="quick-start">
+    <template #heading>
+      <h2 class="section-heading">
+        <span class="section-heading__icon">⚡</span>
+        빠른 시작
+      </h2>
+      <p class="section__lead">아래 명령어로 새 프로젝트를 생성하고 개발 서버를 시작합니다.</p>
+    </template>
 
-    <div class="code-block">
-      <div class="code-block__topbar">
-        <div class="code-block__traffic-lights">
-          <div class="code-block__dot code-block__dot--red" />
-          <div class="code-block__dot code-block__dot--yellow" />
-          <div class="code-block__dot code-block__dot--green" />
-        </div>
-        <span class="code-block__label">Terminal</span>
-      </div>
-      <div class="code-block__body">
-        <div v-for="cmd in QUICK_START_CMDS" :key="cmd" class="code-block__line">
-          <span class="code-block__prompt">$</span>
-          <span>{{ cmd }}</span>
-        </div>
-      </div>
-    </div>
-  </section>
+    <template #content>
+      <DOCSGettingStartedTerminal :commands="QUICK_START_CMDS" />
+    </template>
+  </DOCSSection>
 
   <!-- ── Installation ───────────────────────────────────────────────────── -->
-  <section id="installation" class="section">
-    <h2 class="section-heading">
-      <span class="section-heading__icon">📦</span>프로젝트 생성
-    </h2>
-    <DocsCallout type="info">Node.js 18 이상, pnpm 8 이상이 필요합니다.</DocsCallout>
-    <p class="section__lead">
-      생성된 프로젝트는 TypeScript, ESLint, Prettier, Dart Sass, Vitest가 사전 설정되어 있습니다.
-      별도의 추가 설정 없이 바로 개발을 시작할 수 있습니다.
-    </p>
-  </section>
+  <DOCSSection sectionId="installation"
+  callout-txt="Node.js 18 이상, pnpm 8 이상이 필요합니다.">
+    <template #heading>
+      <h2 class="section-heading">
+        <span class="section-heading__icon">📦</span>
+        프로젝트 생성
+      </h2>
+    </template>
+
+    <template #content>
+      <p class="section__lead">
+        생성된 프로젝트는 TypeScript, ESLint, Prettier, Dart Sass, Vitest가 사전 설정되어 있습니다.
+        별도의 추가 설정 없이 바로 개발을 시작할 수 있습니다.
+      </p>
+    </template>
+  </DOCSSection>
 
   <!-- ── Project Structure ──────────────────────────────────────────────── -->
-  <section id="project-structure" class="section">
-    <h2 class="section-heading">
-      <span class="section-heading__icon">📁</span>프로젝트 구조
-    </h2>
-    <p class="section__lead">
-      모든 프로젝트는 아래 디렉토리 구조를 따릅니다. 각 레이어는 명확한 역할을 가지며
-      상위 레이어가 하위 레이어를 단방향으로 참조하는 의존성 규칙을 지킵니다.
-    </p>
+  <DOCSSection sectionId="project-structure">
+    <template #heading>
+      <h2 class="section-heading">
+        <span class="section-heading__icon">📁</span>프로젝트 구조
+      </h2>
+    </template>
 
-    <div class="file-tree">
-      <div class="file-tree__topbar">
-        <div class="file-tree__traffic-lights">
-          <div class="file-tree__dot file-tree__dot--red" />
-          <div class="file-tree__dot file-tree__dot--yellow" />
-          <div class="file-tree__dot file-tree__dot--green" />
-        </div>
-        <span class="file-tree__root-label">project/</span>
-      </div>
-      <div class="file-tree__body">
-        <div
-          v-for="(item, i) in flatFileTree"
-          :key="i"
-          class="file-tree__item"
-          :style="{ paddingLeft: item.depth * 16 + 'px' }"
-        >
-          <span :class="`file-tree__item-icon file-tree__item-icon--${item.type}`">
-            {{ item.type === 'dir' ? '📂' : '📄' }}
-          </span>
-          <span :class="`file-tree__item-name file-tree__item-name--${item.type}`">
-            {{ item.name }}
-          </span>
-          <span v-if="item.note" class="file-tree__item-note"># {{ item.note }}</span>
-        </div>
-      </div>
-    </div>
-  </section>
+    <template #content>
+      <p class="section__lead">
+        모든 프로젝트는 아래 디렉토리 구조를 따릅니다. 각 레이어는 명확한 역할을 가지며
+        상위 레이어가 하위 레이어를 단방향으로 참조하는 의존성 규칙을 지킵니다.
+      </p>
+
+      <DOCSArchitectureFileTree />
+    </template>
+  </DOCSSection>
 
   <!-- ── Layers & Modules ───────────────────────────────────────────────── -->
-  <section id="layers-modules" class="section">
-    <h2 class="section-heading">
-      <span class="section-heading__icon">🗂</span>레이어 & 모듈
-    </h2>
-    <p class="section__lead">
-      아키텍처는 4개의 레이어로 구성되며, 화살표 방향으로만 의존성을 가집니다. 역방향 참조는 금지됩니다.
-    </p>
+  <DOCSSection sectionId="layers-modules">
+    <template #heading>
+      <h2 class="section-heading">
+        <span class="section-heading__icon">🗂</span>레이어 & 모듈
+      </h2>
 
-    <div class="layer-diagram">
-      <div
-        v-for="item in LAYER_ITEMS"
-        :key="item.name"
-        :class="`layer-item layer-item${item.mod}`"
-      >
-        <span class="layer-item__id">{{ item.l }}</span>
-        <span class="layer-item__name">{{ item.name }}</span>
-        <span class="layer-item__arrow">→</span>
-        <span class="layer-item__desc">{{ item.desc }}</span>
-      </div>
-    </div>
-  </section>
+      <p class="section__lead">
+        아키텍처는 4개의 레이어로 구성되며, 화살표 방향으로만 의존성을 가집니다. 역방향 참조는 금지됩니다.
+      </p>
+    </template>
+
+    <template #content>
+      <DOCSArchitectureLayerDiagram :layerItems="LAYER_ITEMS" />
+    </template>
+  </DOCSSection>
 
   <!-- ── State Management ───────────────────────────────────────────────── -->
-  <section id="state-management" class="section">
-    <h2 class="section-heading">
-      <span class="section-heading__icon">⊞</span>상태 관리
-    </h2>
-    <DocsCallout type="warning">
-      모든 전역 상태를 Pinia로 관리하지 마세요. 서버 상태는 useFetch/useAsyncData, 로컬 UI 상태는 ref를 우선 사용하세요.
-    </DocsCallout>
+  <DOCSSection sectionId="state-management"
+  :callout="docCalloutList.find((callout) => callout.id === 'state-management')">
+    <template #heading>
+      <h2 class="section-heading">
+        <span class="section-heading__icon">⊞</span>상태 관리
+      </h2>
+    </template>
 
-    <div class="state-cards">
-      <div
-        v-for="card in STATE_CARDS"
-        :key="card.tool"
-        :class="`state-card state-card${card.mod}`"
-      >
-        <div class="state-card__scope">{{ card.scope }}</div>
-        <div class="state-card__tool">{{ card.tool }}</div>
-        <div class="state-card__desc">{{ card.desc }}</div>
-      </div>
-    </div>
-  </section>
+    <template #content>
+      <DOCSArchitectureStateCards :stateCards="STATE_CARDS" />
+    </template>
+  </DOCSSection>
 
   <!-- ── Color Palette ──────────────────────────────────────────────────── -->
   <section id="color-palette" class="section">
@@ -440,6 +394,19 @@ type FlatFileItem = Omit<FileItem, 'children'> & { depth: number }
 const copiedVar = ref<string | null>(null)
 const activeTab = ref<'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'>('primary')
 
+const docCalloutList = ref<calloutType[]>([
+  {
+    type: 'tip',
+    id: 'introduction',
+    text: '이 가이드라인은 지속적으로 업데이트됩니다. 새로운 패턴이나 컴포넌트 추가 제안은 내부 GitHub 리포지토리를 통해 PR을 제출해주세요.'
+  },
+  {
+    type: 'warning',
+    id: 'state-management',
+    text: '모든 전역 상태를 Pinia로 관리하지 마세요. 서버 상태는 useFetch/useAsyncData, 로컬 UI 상태는 ref를 우선 사용하세요.'
+  }
+]);
+
 // ── Static data ──────────────────────────────────────────────────────────────
 const BUTTON_TABS = ['primary', 'secondary', 'outline', 'ghost', 'danger'] as const
 
@@ -524,74 +491,6 @@ const SPACING_SCALE = [
   { name: '24', px: '96px', rem: '6rem'    },
 ]
 
-const FILE_TREE_ITEMS: FileItem[] = [
-  {
-    type: 'dir', name: 'src/', children: [
-      {
-        type: 'dir', name: 'app/', note: '앱 엔트리 & 전역 설정',
-        children: [
-          { type: 'file', name: 'App.tsx',    note: '루트 컴포넌트' },
-          { type: 'file', name: 'router.tsx', note: '라우트 정의' },
-          { type: 'file', name: 'store.ts',   note: '전역 스토어 초기화' },
-        ],
-      },
-      {
-        type: 'dir', name: 'pages/', note: '라우트 페이지 컴포넌트',
-        children: [
-          { type: 'file', name: 'HomePage.tsx' },
-          { type: 'file', name: 'DashboardPage.tsx' },
-        ],
-      },
-      {
-        type: 'dir', name: 'features/', note: '도메인별 기능 모듈',
-        children: [
-          {
-            type: 'dir', name: 'auth/',
-            children: [
-              { type: 'file', name: 'AuthForm.tsx' },
-              { type: 'file', name: 'useAuth.ts' },
-              { type: 'file', name: 'auth.store.ts' },
-            ],
-          },
-          { type: 'dir', name: 'dashboard/', children: [] },
-        ],
-      },
-      {
-        type: 'dir', name: 'components/', note: '공통 UI 컴포넌트',
-        children: [
-          { type: 'dir', name: 'ui/',     note: '원자 단위 컴포넌트' },
-          { type: 'dir', name: 'layout/', note: '레이아웃 컴포넌트' },
-        ],
-      },
-      {
-        type: 'dir', name: 'hooks/', note: '공통 커스텀 훅',
-        children: [
-          { type: 'file', name: 'useMediaQuery.ts' },
-          { type: 'file', name: 'useDebounce.ts' },
-        ],
-      },
-      {
-        type: 'dir', name: 'lib/', note: '유틸리티 & 서비스',
-        children: [
-          { type: 'file', name: 'api.ts',   note: 'HTTP 클라이언트' },
-          { type: 'file', name: 'utils.ts' },
-        ],
-      },
-      {
-        type: 'dir', name: 'styles/', note: '전역 스타일',
-        children: [
-          { type: 'dir',  name: 'scss/',    note: 'Dart Sass 파티얼' },
-          { type: 'file', name: 'fonts.css' },
-        ],
-      },
-      { type: 'dir', name: 'types/', note: '전역 타입 정의' },
-    ],
-  },
-  { type: 'file', name: 'package.json' },
-  { type: 'file', name: 'tsconfig.json' },
-  { type: 'file', name: 'vite.config.ts' },
-]
-
 const LAYER_ITEMS = [
   { mod: '--violet', l: 'L4', name: 'Pages',      desc: '라우트 단위 페이지. 레이아웃 조합만 담당. 비즈니스 로직 없음.' },
   { mod: '--cyan',   l: 'L3', name: 'Features',   desc: '도메인 로직, 로컬 상태, API 호출. 독립적으로 이동 가능한 단위.' },
@@ -633,24 +532,10 @@ const ALERT_VARIANTS = [
   { mod: 'error',   icon: '✕', label: '오류', msg: '서버와 연결할 수 없습니다. 다시 시도해 주세요.' },
 ]
 
-// ── File tree flatten ────────────────────────────────────────────────────────
-function flattenTree(items: FileItem[], depth = 0): FlatFileItem[] {
-  return items.flatMap((item) => [
-    { type: item.type, name: item.name, note: item.note, depth },
-    ...(item.children ? flattenTree(item.children, depth + 1) : []),
-  ])
-}
-
-const flatFileTree = computed(() => flattenTree(FILE_TREE_ITEMS))
-
 // ── Methods ──────────────────────────────────────────────────────────────────
 const copyVar = (token: string) => {
   navigator.clipboard.writeText(token)
   copiedVar.value = token
   setTimeout(() => (copiedVar.value = null), 1500)
 }
-
-definePageMeta({
-  layout: 'default'
-})
 </script>

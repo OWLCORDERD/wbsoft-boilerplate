@@ -6,7 +6,7 @@
 
 // ── SCSS Variables (compile-time) ────────────────────────────────────────────
 
-// Color primitives
+// 가이드 전용 Color primitives
 $violet-50:  #F5F3FF;
 $violet-100: #EDE9FE;
 $violet-200: #DDD6FE;
@@ -46,6 +46,107 @@ $amber-400: #FBBF24;
 $amber-500: #F59E0B;
 $red-400:   #F87171;
 $red-500:   #EF4444;
+
+// 관리자 or 학습자 전용 Color primitives
+
+// 포인트 컬러
+$colorPoint1: #fd8788;
+$colorPoint2: #ff3b30;
+$colorPoint3: #fff9e5;
+$colorPoint4: #00a9ff;
+$colorPoint5: #ecf9ff;
+
+// 대시보드/캘린더 컬러 포인터
+$colorWheel1: #ea6bd6;
+$colorWheel2: #7685d7;
+$colorWheel3: #a072eb;
+$colorWheel4: #47a1e6;
+$colorWheel5: #1eb7b9;
+$colorWheel6: #3da68c;
+$colorWheel7: #72be48;
+$colorWheel8: #ffa800;
+$colorWheel9: #ff8919;
+$colorWheel10: #fc696a;
+
+// 신호등 색상
+// 빨간색
+$redLightTxt: #fc696a;
+$redLightBg: #fff0f0;
+// 초록색
+$greenLightTxt: #3da68c;
+$greenLightBg: #ebf6f3;
+// 노란색
+$orangeLightTxt: #ff8919;
+$orangeLightBg: #fff3e8;
+// 회색
+$grayMidTxt: #666666;
+$grayLightTxt: #999999;
+$grayLightBg: #f1f1f1;
+// 분홍색
+$pinkLightTxt: #e55ed8;
+$pinkLightBg: #ffeefd;
+// 파란색
+$blueLightTxt: #47a1e6;
+$blueLightBg: #ecf5fc;
+$blueNavy: #014099;
+$blueNavyLight: #EBF7FF;
+// 보라색
+$purpleLightTxt: #a072eb;
+$purpleLightBg: #f6f1fd;
+
+// 서브 텍스트 색상 컬러
+$colorText1: #333;
+$colorText2: #666;
+$colorText3: #777;
+$colorText4: #888;
+$colorText5: #999;
+$colorText6: #c2c2c2;
+$colorText7: #ccc;
+
+// 서브 배경 & 선 색상 컬러
+$colorBorder1: #c2c2c2;
+$colorBorder2: #d7d7d7;
+$colorBorder3: #eaeaea;
+$colorBorder4: #e7e7e7; //2025.09.08[njLee]
+$colorBorder5: #eeeeee; //2025.10.17[한수원][shhan]: 그리드 컬럼 가로 경계선
+$colorBorder6: #666666; //2025.12.05[한수원][kslim]: 버튼 기본 XSmall 강조 테두리 색상
+
+$colorBg1: #f9f9f9; //2025.10.24[한수원][shhan]: 입력폼 라벨 컬러 #f8f8f8 -> #f9f9f9
+$colorBg2: #d7d7d7;
+$colorBg3: #ffefee; //2025.09.08[njLee]: 결재회수 버튼 비활성화 색상
+$colorBg4: #f9f9f9;
+$colorDisabledBg: #f0f0f0;
+// 카드형 과정목록 컬러
+// 파란색 카드
+$blueCardBg: #ebf7ff;
+$blueCardBorder: #2494de;
+// 초록색 카드
+$greenCardBg: #e9f8ee;
+$greenCardBorder: #2f9f54;
+// 보라색 카드
+$purpleCardBg: #eff4ff;
+$purpleCardBorder: #8b74d2;
+// 분홍색 카드
+$pinkCardBg: #f9f4ff;
+$pinkCardBorder: #e561b9;
+// 주황색 카드
+$orangeCardBg: #fff9e5;
+$orangeCardBorder: #ff8a41;
+// 빨간색 카드
+$redCardBg: #fff6f5;
+$redCardBorder: #ff5c5c;
+// 연두색 카드
+$lightgreenCardBg: #faffe6;
+$lightgreenCardBorder: #89a800;
+// 청록색 카드
+$blueGreenCardBg: #eefffc;
+$blueGreenCardBorder: #00a897;
+// 갈색 카드
+$brownCardBg: #fff6ef;
+$brownCardBorder: #a47959;
+// 보라색 카드
+$violetCardBg: #f4f6ff;
+$violetCardBorder: #5563c2;
 
 // Semantic SCSS vars (maps to CSS props below)
 $bg:              #0C0D18;
@@ -95,6 +196,22 @@ $space-10: 40px;
 $space-12: 48px;
 $space-16: 64px;
 
+// 관리자 or 학습자 폰트 사이즈 토큰
+$font-adm-xxxl: 26px;
+$font-adm-xxl: 22px;
+$font-adm-xl: 20px;
+$font-adm-lg: 18px;
+$font-adm-base: 16px;
+$font-adm-sm: 14px;
+$font-adm-xs: 12px;
+
+$font-xxl: 22px;
+$font-xl: 20px;
+$font-lg: 18px;
+$font-base: 16px;
+$font-sm: 14px;
+$font-xs: 12px;
+
 // Border radius
 $radius-sm:  4px;
 $radius-md:  6px;
@@ -114,203 +231,67 @@ $bp-xl: 1280px;
 // ── CSS Custom Properties (runtime / theming) ────────────────────────────────
 
 :root {
-  // Surfaces
-  --bg:              #{$bg};
-  --bg-card:         #{$bg-card};
-  --bg-secondary:    #{$bg-secondary};
-  --bg-muted:        #{$bg-muted};
-  --bg-input:        #{$bg-input};
+// Surfaces
+--bg:              #{$bg};
+--bg-card:         #{$bg-card};
+--bg-secondary:    #{$bg-secondary};
+--bg-muted:        #{$bg-muted};
+--bg-input:        #{$bg-input};
 
-  // Text
-  --text:            #{$text-primary};
-  --text-heading:    #{$text-heading};
-  --text-secondary:  #{$text-secondary};
-  --text-muted:      #{$text-muted};
-  --text-subtle:     #{$text-subtle};
+// Text
+--text:            #{$text-primary};
+--text-heading:    #{$text-heading};
+--text-secondary:  #{$text-secondary};
+--text-muted:      #{$text-muted};
+--text-subtle:     #{$text-subtle};
 
-  // Brand
-  --brand:           #{$brand};
-  --brand-hover:     #{$brand-hover};
-  --brand-dim:       #{$brand-dim};
-  --brand-glow:      #{$brand-glow};
-  --accent:          #{$accent};
-  --accent-dim:      #{$accent-dim};
+// Brand
+--brand:           #{$brand};
+--brand-hover:     #{$brand-hover};
+--brand-dim:       #{$brand-dim};
+--brand-glow:      #{$brand-glow};
+--accent:          #{$accent};
+--accent-dim:      #{$accent-dim};
 
-  // Status
-  --success:         #{$green-500};
-  --success-dim:     rgba(#{$green-500}, 0.08);
-  --success-border:  rgba(#{$green-500}, 0.3);
-  --warning:         #{$amber-500};
-  --warning-dim:     rgba(#{$amber-500}, 0.08);
-  --warning-border:  rgba(#{$amber-500}, 0.3);
-  --error:           #{$red-500};
-  --error-dim:       rgba(#{$red-500}, 0.08);
-  --error-border:    rgba(#{$red-500}, 0.3);
-  --info:            #{$cyan-500};
-  --info-dim:        rgba(#{$cyan-500}, 0.08);
-  --info-border:     rgba(#{$cyan-500}, 0.3);
+// Status
+--success:         #{$green-500};
+--success-dim:     rgba(#{$green-500}, 0.08);
+--success-border:  rgba(#{$green-500}, 0.3);
+--warning:         #{$amber-500};
+--warning-dim:     rgba(#{$amber-500}, 0.08);
+--warning-border:  rgba(#{$amber-500}, 0.3);
+--error:           #{$red-500};
+--error-dim:       rgba(#{$red-500}, 0.08);
+--error-border:    rgba(#{$red-500}, 0.3);
+--info:            #{$cyan-500};
+--info-dim:        rgba(#{$cyan-500}, 0.08);
+--info-border:     rgba(#{$cyan-500}, 0.3);
 
-  // Borders
-  --border:          #{$border-default};
-  --border-strong:   #{$border-strong};
-  --border-subtle:   #{$border-subtle};
+// Borders
+--border:          #{$border-default};
+--border-strong:   #{$border-strong};
+--border-subtle:   #{$border-subtle};
 
-  // Typography
-  --font-sans:       #{$font-sans};
-  --font-mono:       #{$font-mono};
-  --font-paperlogy:  #{$font-paperlogy};
+// Typography
+--font-sans:       #{$font-sans};
+--font-mono:       #{$font-mono};
+--font-paperlogy:  #{$font-paperlogy};
 
-  // Layout
-  --sidebar-width:   #{$sidebar-width};
-  --toc-width:       #{$toc-width};
-  --topbar-height:   #{$topbar-height};
+// Layout
+--sidebar-width:   #{$sidebar-width};
+--toc-width:       #{$toc-width};
+--topbar-height:   #{$topbar-height};
 
-  // Radius
-  --radius-sm:       #{$radius-sm};
-  --radius-md:       #{$radius-md};
-  --radius-lg:       #{$radius-lg};
-  --radius-xl:       #{$radius-xl};
+// Radius
+--radius-sm:       #{$radius-sm};
+--radius-md:       #{$radius-md};
+--radius-lg:       #{$radius-lg};
+--radius-xl:       #{$radius-xl};
 
-  // Palette maps (for reference table)
-  --color-primary:   #{$violet-500};
-  --color-accent:    #{$cyan-500};
-  --color-success:   #{$green-500};
-  --color-warning:   #{$amber-500};
-  --color-error:     #{$red-500};
-
-  --font-adm-xxxl: 26px;
-	--font-adm-xxl: 22px;
-	--font-adm-xl: 20px;
-	--font-adm-lg: 18px;
-	--font-adm-base: 16px;
-	--font-adm-sm: 14px;
-	--font-adm-xs: 12px;
-  
-	--font-xxl: 22px;
-	--font-xl: 20px;
-	--font-lg: 18px;
-	--font-base: 16px;
-	--font-sm: 14px;
-	--font-xs: 12px;
-  
-	// 포인트 컬러
-	--colorPoint1: #fd8788;
-	--colorPoint2: #ff3b30;
-	--colorPoint3: #fff9e5;
-	--colorPoint4: #00a9ff;
-	--colorPoint5: #ecf9ff;
-  
-	// 대시보드/캘린더 컬러 포인터
-	--colorWheel1: #ea6bd6;
-	--colorWheel2: #7685d7;
-	--colorWheel3: #a072eb;
-	--colorWheel4: #47a1e6;
-	--colorWheel5: #1eb7b9;
-	--colorWheel6: #3da68c;
-	--colorWheel7: #72be48;
-	--colorWheel8: #ffa800;
-	--colorWheel9: #ff8919;
-	--colorWheel10: #fc696a;
-  
-	// 신호등 색상
-  
-	// 빨간색
-	--redLightTxt: #fc696a;
-	--redLightBg: #fff0f0;
-	// 초록색
-	--greenLightTxt: #3da68c;
-	--greenLightBg: #ebf6f3;
-	// 노란색
-	--orangeLightTxt: #ff8919;
-	--orangeLightBg: #fff3e8;
-	// 회색
-	--grayMidTxt: #666666;
-	--grayLightTxt: #999999;
-	--grayLightBg: #f1f1f1;
-	// 분홍색
-	--pinkLightTxt: #e55ed8;
-	--pinkLightBg: #ffeefd;
-	// 파란색
-	--blueLightTxt: #47a1e6;
-	--blueLightBg: #ecf5fc;
-	--blueNavy: #014099;
-	--blueNavyLight: #EBF7FF;
-	// 보라색
-	--purpleLightTxt: #a072eb;
-	--purpleLightBg: #f6f1fd;
-  
-	// 서브 텍스트 색상 컬러
-	--colorText1: #333;
-	--colorText2: #666;
-	--colorText3: #777;
-	--colorText4: #888;
-	--colorText5: #999;
-	--colorText6: #c2c2c2;
-	--colorText7: #ccc;
-	--materialTableText: #252F72;
-  
-	// 서브 배경 & 선 색상 컬러
-	--colorBorder1: #c2c2c2;
-	--colorBorder2: #d7d7d7;
-	--colorBorder3: #eaeaea;
-	--colorBorder4: #e7e7e7; //2025.09.08[njLee]
-	--colorBorder5: #eeeeee; //2025.10.17[한수원][shhan]: 그리드 컬럼 가로 경계선
-	--colorBorder6: #666666; //2025.12.05[한수원][kslim]: 버튼 기본 XSmall 강조 테두리 색상
-	--materialTableBorder: #AAB4EE;
-  
-	--colorBg1: #f9f9f9; //2025.10.24[한수원][shhan]: 입력폼 라벨 컬러 #f8f8f8 -> #f9f9f9
-	--colorBg2: #d7d7d7;
-	--colorBg3: #ffefee; //2025.09.08[njLee]: 결재회수 버튼 비활성화 색상
-	--colorBg4: #f9f9f9;
-	--colorDisabledBg: #f0f0f0;
-	--materialTableBg: #F9FAFF;
-  
-	// 카드형 과정목록 컬러
-	// 파란색 카드
-	--blueCardBg: #ebf7ff;
-	--blueCardBorder: #2494de;
-	// 초록색 카드
-	--greenCardBg: #e9f8ee;
-	--greenCardBorder: #2f9f54;
-	// 보라색 카드
-	--purpleCardBg: #eff4ff;
-	--purpleCardBorder: #8b74d2;
-	// 분홍색 카드
-	--pinkCardBg: #f9f4ff;
-	--pinkCardBorder: #e561b9;
-	// 주황색 카드
-	--orangeCardBg: #fff9e5;
-	--orangeCardBorder: #ff8a41;
-	// 빨간색 카드
-	--redCardBg: #fff6f5;
-	--redCardBorder: #ff5c5c;
-	// 연두색 카드
-	--lightgreenCardBg: #faffe6;
-	--lightgreenCardBorder: #89a800;
-	// 청록색 카드
-	--blueGreenCardBg: #eefffc;
-	--blueGreenCardBorder: #00a897;
-	// 갈색 카드
-	--brownCardBg: #fff6ef;
-	--brownCardBorder: #a47959;
-	// 보라색 카드
-	--violetCardBg: #f4f6ff;
-	--violetCardBorder: #5563c2;
-  
-	/* TTM 트리 > 체계별 유형 색상 */
-	--color-comp: #2F9F54;
-	--color-job: #8B74D2;
-	--color-edu: #0E9EA3;
-  
-	/* Type Colors */
-	--type-competency: #1abc9c;
-	--type-behavioral-indicator: #16a085;
-	--type-job-family: #e74c3c;
-	--type-job-series: #f39c12;
-	--type-job: #3498db;
-	--type-task: #2ecc71;
-	--type-kst: #9b59b6;
-	--type-course: #d35400;
-	--type-lesson: #e74c3c;
-	--type-learning-object: #c0392b;
+// Palette maps (for reference table)
+--color-primary:   #{$violet-500};
+--color-accent:    #{$cyan-500};
+--color-success:   #{$green-500};
+--color-warning:   #{$amber-500};
+--color-error:     #{$red-500};
 }

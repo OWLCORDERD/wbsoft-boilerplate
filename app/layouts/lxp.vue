@@ -1,5 +1,5 @@
 <template>
-  <div class="guide-layout" data-testid="e2e-default-layout-div">
+  <div class="guide-layout">
     <!-- 2025.04.02[ygpark]: scss 포인트컬러 변수 활용을 위한 data-point-theme 추가 -->
     <div
       class="wrapper"
@@ -351,7 +351,3 @@ onMounted(async () => {
   // await menuListRefresh();
 });
 </script>
-
-<style lang="scss" scoped>
-@use "@/assets/lxp/styles/_layout.scss" as *;
-</style>

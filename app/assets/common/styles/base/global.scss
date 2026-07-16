@@ -1,0 +1,19 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// global.scss — CSS 출력 전용 엔트리 (css 배열 전용)
+//
+// 동일한 전역 스타일 레지스트리 main.scss
+// → additionalData에서 mixin/변수 주입 용도로만 사용
+
+// → additionalData + css 배열 중복 로드 시 @use 충돌 방지를 위해 globals 분리
+//
+// 이 파일은 CSS 규칙을 출력하는 파일만 @use
+// ─────────────────────────────────────────────────────────────────────────────
+
+@use 'tokens' as t;
+@use 'mixins' as m;
+@use 'base';
+@use 'typography';
+@use 'layout';
+@use 'nav';
+@use 'components';
+@use 'docs';

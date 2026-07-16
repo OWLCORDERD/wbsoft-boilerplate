@@ -4,17 +4,9 @@
 // Import order matters: tokens → mixins → base → layout → components → docs
 //
 // @forward: additionalData(@use "main" as *)로 소비 시 멤버를 외부에 재공개
-// @use    : CSS 출력 파일은 여기서 소비, 재공개 불필요
+// @use    : CSS 출력 파일은 globals.scss에서 배열 등록
 // ─────────────────────────────────────────────────────────────────────────────
 
 // ── 유틸리티 — additionalData 소비자에게 mixin/변수 재공개 (@forward) ─────────
 @forward 'tokens';
 @forward 'mixins';
-
-// ── CSS 출력 파일 — 전역 번들에서 1회 로드 (@use) ────────────────────────────
-@use 'base';
-@use 'typography';
-@use 'layout';
-@use 'nav';
-@use 'components';
-@use 'docs';

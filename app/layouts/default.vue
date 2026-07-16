@@ -6,9 +6,9 @@
       <div class="topbar__left">
         <button class="topbar__mobile-menu" @click="mobileNavOpen = true">☰</button>
         <div class="topbar__logo">
-          <div class="topbar__logo-mark">FW</div>
-          <span class="topbar__logo-name">FrameWork</span>
-          <span class="topbar__logo-version">v2.0</span>
+          <div class="topbar__logo-mark">WB</div>
+          <span class="topbar__logo-name">Boilerplate</span>
+          <span class="topbar__logo-version">v1.0</span>
         </div>
       </div>
 
@@ -22,7 +22,7 @@
         </button>
       </nav>
 
-      <div class="topbar__actions">
+      <!-- <div class="topbar__actions">
         <div class="topbar__search">
           <span>🔍</span>
           <span>검색...</span>
@@ -32,7 +32,7 @@
           <span>⎇</span>
           <span>GitHub</span>
         </a>
-      </div>
+      </div> -->
     </header>
 
     <!-- ── Mobile overlay ────────────────────────────────────────────────── -->
@@ -44,7 +44,7 @@
             <span>Navigation</span>
             <button class="mobile-overlay__close" @click="mobileNavOpen = false">✕</button>
           </div>
-          <DocsSidebarNav
+          <DOCSSidebarNav
             :active-section="activeSection"
             :expanded-groups="expandedGroups"
             @toggle-group="toggleGroup"
@@ -59,7 +59,7 @@
 
       <!-- Left Sidebar -->
       <aside class="sidebar">
-        <DocsSidebarNav
+        <DOCSSidebarNav
           :active-section="activeSection"
           :expanded-groups="expandedGroups"
           @toggle-group="toggleGroup"
@@ -76,17 +76,6 @@
 
       <!-- Right TOC -->
       <aside class="toc">
-        <div class="toc__title">On this page</div>
-        <ul class="toc__list">
-          <li
-            v-for="item in TOC_ITEMS"
-            :key="item.id"
-            :class="['toc__item', { 'toc__item--active': activeSection === item.id }]"
-          >
-            <button @click="scrollTo(item.id)">{{ item.label }}</button>
-          </li>
-        </ul>
-
         <div class="toc__community">
           <div class="toc__community-label">커뮤니티</div>
           <p class="toc__community-desc">내부 Slack #framework 채널에서 논의에 참여하세요.</p>
@@ -102,17 +91,6 @@
 </template>
 
 <script setup lang="ts">
-const TOC_ITEMS = [
-  { label: '소개', id: 'introduction' },
-  { label: '프로젝트 구조', id: 'project-structure' },
-  { label: '레이어 & 모듈', id: 'layers-modules' },
-  { label: '컬러 팔레트', id: 'color-palette' },
-  { label: '타이포그래피', id: 'typography' },
-  { label: '스페이싱 & 그리드', id: 'spacing-grid' },
-  { label: 'CSS 변수 레퍼런스', id: 'css-variables' },
-  { label: '컴포넌트 가이드', id: 'buttons' },
-]
-
 const mobileNavOpen = ref(false)
 const activeSection = ref('introduction')
 const expandedGroups = reactive<Record<string, boolean>>({

@@ -275,7 +275,7 @@
       &:hover { color: t.$text-secondary; }
     }
 
-    &--active button {
+    &.active button {
       color: t.$violet-300;
       border-left-color: t.$brand;
     }

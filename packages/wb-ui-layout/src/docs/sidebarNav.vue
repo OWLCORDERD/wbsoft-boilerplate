@@ -13,7 +13,7 @@
         <button
           v-for="item in group.items"
           :key="item.id"
-          :class="['nav-group__item', { 'nav-group__item--active': activeSection === item.id }]"
+          :class="['nav-group__item', { 'active': activeSection === item.id }]"
           @click="emit('scroll-to', item.id)"
         >
           {{ item.label }}

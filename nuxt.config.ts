@@ -52,16 +52,18 @@ export default defineNuxtConfig({
       },
     },
   },
-  // // 2024.09.08: 전역 공통 css 설정
-  // css: [
-  //   '@/assets/common/styles/base/main.scss',
-  // ],
+  // 2024.09.08: 전역 공통 css 설정
+  // main.scss는 additionalData 전용 (mixin/변수 주입) → 중복 로드 방지를 위해 global.scss 분리 사용
+  css: [
+    '@/assets/common/styles/base/global.scss',
+  ],
   // 2026.07.06: Nuxt 4 레이어 구조 활성화 처리
   future: {
     compatibilityVersion: 4,
   },
   extends: [
-    'wb-ui-layout'
+    'wb-ui-layout',
+    'wb-ui-overlay',
   ],
   modules: ['./modules/overlay-bridge', 'nuxt-font-loader', 'nuxt-svgo'],
   fontLoader: {
@@ -89,15 +91,15 @@ export default defineNuxtConfig({
       },
     ],
   },
-  // 2026.07.13 [mhlim]: 외부 패키지 컴포넌트 등록
-  components: [
-    // 도메인 레이어별 레이아웃 (wb-ui-layout) 컴포넌트 조각 등록
-    {
-      path: join(require.resolve('@wbsoft/ui-layout/package.json'), '../src'),
-      pathPrefix: false,
-      global: true,
-    }
-  ],
+  // // 2026.07.13 [mhlim]: 외부 패키지 컴포넌트 등록
+  // components: [
+  //   // 도메인 레이어별 레이아웃 (wb-ui-layout) 컴포넌트 조각 등록
+  //   {
+  //     path: join(require.resolve('@wbsoft/ui-layout/package.json'), '../src'),
+  //     pathPrefix: false,
+  //     global: true,
+  //   }
+  // ],
   // nuxt-svgo 컴포넌트 autoImport 경로 설정
   svgo: {
     autoImportPath: '@/assets/lxp/images/svg',

@@ -1,5 +1,5 @@
 <template>
-  <div :class="`callout callout--${type}`">
+  <div :class="'callout callout' + '--' + type">
     <span class="callout__marker">{{ marker }}</span>
     <span class="callout__body"><slot /></span>
   </div>

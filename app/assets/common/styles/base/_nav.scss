@@ -39,8 +39,7 @@
     text-align: left;
     font-size: 13.5px;
     padding: 6px 12px;
-    border-radius: t.$radius-md;
-    border-left: 2px solid transparent;
+    border-left: 5px solid transparent;
     color: t.$text-muted;
     transition:
       color       t.$transition-fast,
@@ -52,7 +51,7 @@
       background: t.$brand-glow;
     }
 
-    &--active {
+    &.active {
       color: t.$violet-300;
       background: t.$brand-glow;
       border-left-color: t.$brand;
