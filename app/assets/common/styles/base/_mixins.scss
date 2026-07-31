@@ -77,7 +77,6 @@
 
 // Mono text
 @mixin mono($size: 12px, $color: t.$text-muted) {
-  font-family: t.$font-mono;
   font-size: $size;
   color: $color;
 }

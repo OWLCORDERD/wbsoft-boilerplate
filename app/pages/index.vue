@@ -9,14 +9,14 @@
   <!-- ── Introduction ──────────────────────────────────────────────────── -->
   <DOCSSection 
     sectionId="introduction"
-    :callout="docCalloutList.find((callout) => callout.id === 'introduction')"
+    :callout="docCalloutList.find((callout: calloutType) => callout.id === 'introduction')"
   >
     <template #pageKicker>Getting Started</template>
     <template #pageTitle>소개</template>
     <template #pageLead>
-      자사 프레임워크는 확장 가능하고 일관된 방식으로 웹 애플리케이션을 구축하기 위한
+      모든 신규 프로젝트마다 확장 가능하고 일관된 방식으로 웹 애플리케이션을 구축하기 위한
       <strong>아키텍처 보일러플레이트</strong>입니다.
-      공통 UI 컴포넌트, 상태 관리 패턴, CSS 디자인 토큰을 포함한 통합 개발 환경을 제공합니다.
+      <strong>공통 UI 컴포넌트 패키지</strong> 및 <strong>상태 관리 패턴</strong>과 <strong>CSS 디자인 토큰</strong> 등을 포함한 <strong>통합 개발 환경</strong>을 제공합니다.
     </template>
 
     <template #content>
@@ -31,7 +31,7 @@
         <span class="section-heading__icon">⚡</span>
         빠른 시작
       </h2>
-      <p class="section__lead">아래 명령어로 새 프로젝트를 생성하고 개발 서버를 시작합니다.</p>
+      <p class="section__lead">아래 명령어로 pnpm workspace 패키지를 설치하고 개발 서버를 시작합니다.</p>
     </template>
 
     <template #content>
@@ -51,7 +51,7 @@
 
     <template #content>
       <p class="section__lead">
-        생성된 프로젝트는 TypeScript, ESLint, Prettier, Dart Sass, Vitest가 사전 설정되어 있습니다.
+        본 프로젝트는 TypeScript, ESLint, Prettier, Dart Sass, Vite가 사전 설정되어 있습니다.
         별도의 추가 설정 없이 바로 개발을 시작할 수 있습니다.
       </p>
     </template>
@@ -107,78 +107,33 @@
   </DOCSSection>
 
   <!-- ── Color Palette ──────────────────────────────────────────────────── -->
-  <section id="color-palette" class="section">
-    <h2 class="section-heading">
-      <span class="section-heading__icon">🎨</span>컬러 팔레트
-    </h2>
+  <DOCSSection sectionId="color-palette">
+    <template #heading>
+      <h2 class="section-heading">
+        <span class="section-heading__icon">🎨</span>컬러 팔레트
+      </h2>
     <p class="section__lead">
       모든 색상은 SCSS 변수와 CSS 커스텀 프로퍼티로 이중 정의됩니다.
       컴포넌트에서는 반드시 CSS 변수를 참조하고, 계산이 필요한 경우에만 SCSS 변수를 사용하세요.
     </p>
-
-    <div class="palette-section">
-      <div class="palette-section__label">시맨틱 컬러</div>
-      <div class="semantic-grid">
-        <div v-for="c in SEMANTIC_COLORS" :key="c.name" class="color-swatch">
-          <div class="color-swatch__block" :style="{ background: c.hex }" />
-          <div class="color-swatch__info">
-            <div class="color-swatch__name">{{ c.name }}</div>
-            <DocsCodeBadge :text="c.hex" />
-            <div class="color-swatch__token">{{ c.token }}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div v-for="palette in PALETTES" :key="palette.name" class="palette-section">
-      <div class="palette-section__label">{{ palette.name }}</div>
-      <div class="palette-strip">
-        <div v-for="s in palette.shades" :key="s.shade" class="palette-strip__shade">
-          <div class="palette-strip__shade-block" :style="{ background: s.hex }" />
-          <div class="palette-strip__shade-tooltip">
-            {{ s.shade }}
-            <span>{{ s.hex }}</span>
-          </div>
-        </div>
-      </div>
-      <div class="palette-strip__labels">
-        <span>50</span>
-        <span>500</span>
-        <span>900</span>
-      </div>
-    </div>
-  </section>
+    </template>
+    <template #content>
+      <DOCSUiColorPallate />
+    </template>
+  </DOCSSection>
 
   <!-- ── Typography ─────────────────────────────────────────────────────── -->
-  <section id="typography" class="section">
-    <h2 class="section-heading">
-      <span class="section-heading__icon">𝐓</span>타이포그래피
-    </h2>
 
-    <div class="font-cards">
-      <div v-for="font in FONT_CARDS" :key="font.name" class="font-card">
-        <div class="font-card__role">{{ font.role }}</div>
-        <div class="font-card__name">{{ font.name }}</div>
-        <div :class="['font-card__sample', { 'font-card__sample--mono': font.mono }]">
-          {{ font.sample }}
-        </div>
-        <div class="font-card__weights">
-          <span v-for="w in font.weights" :key="w" class="font-card__weight-chip">{{ w }}</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="type-scale">
-      <div class="type-scale__header">Type Scale</div>
-      <div v-for="row in TYPE_SCALE" :key="row.cls" class="type-scale__row">
-        <DocsCodeBadge :text="row.cls" />
-        <span class="type-scale__size">{{ row.size }}</span>
-        <span :style="{ fontSize: row.size, fontWeight: row.weight, color: 'var(--text)', lineHeight: '1.4' }">
-          {{ row.sample }}
-        </span>
-      </div>
-    </div>
-  </section>
+  <DOCSSection sectionId="typography">
+    <template #heading>
+      <h2 class="section-heading">
+        <span class="section-heading__icon">𝐓</span>타이포그래피
+      </h2>
+    </template>
+    <template #content>
+      <DOCSUiTypoGraphy />
+    </template>
+  </DOCSSection>
 
   <!-- ── Spacing & Grid ─────────────────────────────────────────────────── -->
   <section id="spacing-grid" class="section">
@@ -380,6 +335,8 @@
 </template>
 
 <script setup lang="ts">
+import type { calloutType } from '~~/packages/wb-ui-layout/src/docs/section.vue'
+
 // ── Types ────────────────────────────────────────────────────────────────────
 type FileItem = {
   type: 'dir' | 'file'
@@ -387,8 +344,6 @@ type FileItem = {
   note?: string
   children?: FileItem[]
 }
-
-type FlatFileItem = Omit<FileItem, 'children'> & { depth: number }
 
 // ── State ────────────────────────────────────────────────────────────────────
 const copiedVar = ref<string | null>(null)
@@ -416,47 +371,7 @@ const FEATURE_CARDS = [
   { icon: '🎨', label: '디자인 토큰', desc: 'CSS 변수 기반의 일관된 스타일 시스템' },
 ]
 
-const QUICK_START_CMDS = ['npx create-fw-app my-project', 'cd my-project', 'npm run dev']
-
-const PALETTES = [
-  {
-    name: 'Primary — Violet',
-    shades: [
-      { shade: '50',  hex: '#F5F3FF' }, { shade: '100', hex: '#EDE9FE' },
-      { shade: '200', hex: '#DDD6FE' }, { shade: '300', hex: '#C4B5FD' },
-      { shade: '400', hex: '#A78BFA' }, { shade: '500', hex: '#8B5CF6' },
-      { shade: '600', hex: '#7C3AED' }, { shade: '700', hex: '#6D28D9' },
-      { shade: '800', hex: '#5B21B6' }, { shade: '900', hex: '#4C1D95' },
-    ],
-  },
-  {
-    name: 'Accent — Cyan',
-    shades: [
-      { shade: '50',  hex: '#ECFEFF' }, { shade: '100', hex: '#CFFAFE' },
-      { shade: '200', hex: '#A5F3FC' }, { shade: '300', hex: '#67E8F9' },
-      { shade: '400', hex: '#22D3EE' }, { shade: '500', hex: '#06B6D4' },
-      { shade: '600', hex: '#0891B2' }, { shade: '700', hex: '#0E7490' },
-      { shade: '800', hex: '#155E75' }, { shade: '900', hex: '#164E63' },
-    ],
-  },
-  {
-    name: 'Neutral — Slate',
-    shades: [
-      { shade: '50',  hex: '#F8FAFC' }, { shade: '100', hex: '#F1F5F9' },
-      { shade: '200', hex: '#E2E8F0' }, { shade: '300', hex: '#CBD5E1' },
-      { shade: '400', hex: '#94A3B8' }, { shade: '500', hex: '#64748B' },
-      { shade: '600', hex: '#475569' }, { shade: '700', hex: '#334155' },
-      { shade: '800', hex: '#1E293B' }, { shade: '900', hex: '#0F172A' },
-    ],
-  },
-]
-
-const SEMANTIC_COLORS = [
-  { name: 'Success', hex: '#10B981', token: '--color-success' },
-  { name: 'Warning', hex: '#F59E0B', token: '--color-warning' },
-  { name: 'Error',   hex: '#EF4444', token: '--color-error' },
-  { name: 'Info',    hex: '#06B6D4', token: '--color-accent' },
-]
+const QUICK_START_CMDS = ['pnpm install', 'pnpm run local']
 
 const CSS_VARS = [
   { token: '--bg',           value: '#0C0D18',             usage: '페이지 전체 배경',   hex: '#0C0D18' },
@@ -502,22 +417,6 @@ const STATE_CARDS = [
   { mod: '--green',  scope: '컴포넌트 로컬',  tool: 'ref / reactive',   desc: '폼 열림/닫힘, 입력값, 토글 등 컴포넌트 내부 상태' },
   { mod: '--cyan',   scope: '서버 상태',      tool: 'useFetch / useAsyncData', desc: 'API 데이터 페칭, 캐싱, 동기화. 전역 공유 불필요' },
   { mod: '--violet', scope: '클라이언트 전역', tool: 'Pinia',            desc: '인증 정보, 테마, 여러 컴포넌트가 구독하는 UI 상태' },
-]
-
-const FONT_CARDS = [
-  { role: 'Display / Body', name: 'Plus Jakarta Sans', sample: 'Aa Bb 가나다', weights: ['300', '400', '600', '700', '800'], mono: false },
-  { role: 'Code / Label',   name: 'JetBrains Mono',   sample: 'const x = 1', weights: ['400', '500', '600'],               mono: true  },
-]
-
-const TYPE_SCALE = [
-  { cls: 'text-4xl',  size: '36px', weight: '700', sample: 'Display Heading' },
-  { cls: 'text-3xl',  size: '30px', weight: '700', sample: 'Hero Title' },
-  { cls: 'text-2xl',  size: '24px', weight: '600', sample: 'Section Heading' },
-  { cls: 'text-xl',   size: '20px', weight: '600', sample: 'Sub-heading' },
-  { cls: 'text-lg',   size: '18px', weight: '600', sample: 'Large Body' },
-  { cls: 'text-base', size: '16px', weight: '400', sample: '본문 텍스트입니다' },
-  { cls: 'text-sm',   size: '14px', weight: '400', sample: '보조 설명 텍스트' },
-  { cls: 'text-xs',   size: '12px', weight: '500', sample: 'Label / Caption' },
 ]
 
 const CARD_ITEMS = [

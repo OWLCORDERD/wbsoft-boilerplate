@@ -174,9 +174,12 @@ $border-strong:   rgba($violet-500, 0.25);
 $border-subtle:   rgba($violet-500, 0.06);
 
 // Typography
-$font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-$font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-$font-paperlogy: 'Paperlogy_R', sans-serif;
+$font-sans:              'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+$font-mono:              'JetBrains Mono', 'Fira Code', monospace;
+$font-pretendard:        'pretendard', sans-serif;
+$font-notosans:          'NotoSans', sans-serif;
+$font-elicedigitalbaeum: 'EliceDigitalBaeum', sans-serif;
+$font-paperlogy:         'Paperlogy_R', sans-serif;
 
 // Sizing
 $sidebar-width:     240px;
@@ -275,6 +278,9 @@ $bp-xl: 1280px;
 // Typography
 --font-sans:       #{$font-sans};
 --font-mono:       #{$font-mono};
+--font-pretendard: #{$font-pretendard};
+--font-notosans:   #{$font-notosans};
+--font-elicedigitalbaeum: #{$font-elicedigitalbaeum};
 --font-paperlogy:  #{$font-paperlogy};
 
 // Layout
@@ -294,4 +300,40 @@ $bp-xl: 1280px;
 --color-success:   #{$green-500};
 --color-warning:   #{$amber-500};
 --color-error:     #{$red-500};
+
+// ── 키 컬러 — 프로젝트 테마 (런타임 동적 변경 가능) ──────────────────────────
+// 기본 테마: Indigo Blue
+--key-dark:        #102531;
+--key-default:     #147CBC;
+--key-medium:      #41A0C0;
+--key-light:       #F2FDFE;
+}
+
+// ── 키 컬러 테마 클래스 — html 또는 :root에 적용하면 전체 테마 전환 ─────────
+.theme-indigo-blue {
+  --key-dark:    #102531;
+  --key-default: #147CBC;
+  --key-medium:  #41A0C0;
+  --key-light:   #F2FDFE;
+}
+
+.theme-cobalt-blue {
+  --key-dark:    #011E51;
+  --key-default: #1447BC;
+  --key-medium:  #5A82E0;
+  --key-light:   #EBF0FF;
+}
+
+.theme-violet-purple {
+  --key-dark:    #1C0E51;
+  --key-default: #7C1AC3;
+  --key-medium:  #A866E0;
+  --key-light:   #F2EAFF;
+}
+
+.theme-sea-green {
+  --key-dark:    #0A3B2B;
+  --key-default: #14BC7C;
+  --key-medium:  #52D4A8;
+  --key-light:   #E8FFF6;
 }
