@@ -8,23 +8,22 @@
 
 .docs {
   min-height: 100vh;
-  background: t.$bg;
   color: t.$text-primary;
 }
 
 // ── Topbar ────────────────────────────────────────────────────────────────────
 
 .topbar {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
   z-index: 50;
-  height: t.$topbar-height;
   @include m.flex-between;
-  padding: 0 t.$space-4;
+  padding: t.$space-10 0;
   @include m.glass-bg;
   border-bottom: 1px solid t.$border-default;
+  margin-bottom: t.$space-6;
 
   &__left {
     @include m.flex-start(t.$space-3);
@@ -38,7 +37,7 @@
     width: 28px;
     height: 28px;
     border-radius: t.$radius-md;
-    background: linear-gradient(135deg, t.$brand, t.$accent);
+    background: linear-gradient(135deg, var(--colorMain), var(--colorSub));
     @include m.flex-center;
     font-size: 11px;
     font-weight: 700;
@@ -54,7 +53,7 @@
 
   &__logo-version {
     @include m.mono(11px, t.$violet-400);
-    background: t.$brand-dim;
+    background: rgba(var(--colorMain), 0.15);
     padding: 2px 6px;
     border-radius: t.$radius-sm;
   }
@@ -187,7 +186,6 @@
 
 .docs-body {
   display: flex;
-  padding-top: t.$topbar-height;
 }
 
 // ── Left Sidebar ──────────────────────────────────────────────────────────────
@@ -196,10 +194,11 @@
   display: none;
   position: fixed;
   left: 0;
-  top: t.$topbar-height;
+  top: 0;
   bottom: 0;
   width: t.$sidebar-width;
-  background: darken(t.$bg, 2%);
+  background: var(--colorSub);
+  // @include m.glass-bg;
   border-right: 1px solid t.$border-default;
   flex-direction: column;
   @include m.no-scrollbar;
@@ -219,11 +218,10 @@
 .main {
   flex: 1;
   min-width: 0;
-  padding: t.$space-10 t.$space-6;
+  padding: 0 t.$space-10;
 
   @include m.lg {
     margin-left: t.$sidebar-width;
-    margin-right: t.$toc-width;
   }
 
   &__inner {

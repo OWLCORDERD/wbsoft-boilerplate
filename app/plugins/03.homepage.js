@@ -1,7 +1,7 @@
 export default defineNuxtPlugin(async (NuxtApp) => {
   // 플랫폼별 최종 테마 색상 코드
   const colorCode = useCookie('colorCode', {
-    default: () => '147c6c',
+    default: () => '4a509f',
     maxAge: 60 * 60 * 24 * 365 * 2,
     decode(value) {
       return decodeURIComponent(value).toString();
@@ -44,15 +44,10 @@ export default defineNuxtPlugin(async (NuxtApp) => {
       title: '씨그린',
       color: ['105e51', '147c6c', '439689', 'F2FDFB'],
     },
-    {
-      type: 'SpringGreen',
-      title: '스프링그린',
-      color: ['006D00', '008900', '32A832', 'F5FFF5'],
-    }
   ];
 
   const font = useCookie('font', {
-    default: () => 'khnpHanulrim',
+    default: () => 'pretendard',
     maxAge: 60 * 60 * 24 * 365 * 2,
   });
 

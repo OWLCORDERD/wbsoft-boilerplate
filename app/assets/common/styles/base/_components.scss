@@ -85,15 +85,15 @@
     border-color: rgba(t.$brand, 0.5);
 
     &:hover {
-      background: t.$brand-glow;
+      background: rgba(var(--colorMain), 0.08);
       border-color: t.$brand;
     }
 
     &-accent {
-      color: t.$accent;
-      border-color: rgba(t.$accent, 0.5);
+      color: var(--colorSub);
+      border-color: rgba(var(--colorSub), 0.5);
 
-      &:hover { background: t.$accent-dim; }
+      &:hover { background: rgba(var(--colorSub), 0.15); }
     }
   }
 
@@ -102,7 +102,7 @@
     color: t.$text-secondary;
 
     &:hover {
-      background: t.$brand-glow;
+      background: rgba(var(--colorMain), 0.08);
       color: t.$violet-300;
     }
   }
@@ -199,8 +199,6 @@
   padding: 3px 10px;
   border-radius: t.$radius-full;
 
-  &--violet  { background: t.$brand-dim;   color: t.$brand; }
-  &--cyan    { background: t.$accent-dim;  color: t.$accent; }
   &--green   { background: rgba(t.$green-500, 0.15); color: t.$green-500; }
   &--amber   { background: rgba(t.$amber-500, 0.15); color: t.$amber-500; }
   &--red     { background: rgba(t.$red-500, 0.15);   color: t.$red-500; }
@@ -377,7 +375,7 @@
 
   &__body {
     line-height: 1.7;
-    color: t.$text-secondary;
+    color: #fff;
   }
 
   &--info {
@@ -388,10 +386,10 @@
   }
 
   &--tip {
-    background: rgba(t.$brand, 0.06);
-    border-color: rgba(t.$brand, 0.3);
+    background: t.$brand-hover;
+    border-color: t.$brand;
 
-    .callout__marker { color: t.$brand; }
+    .callout__marker { color: #fff; }
   }
 
   &--warning {

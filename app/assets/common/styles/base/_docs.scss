@@ -12,7 +12,7 @@
   &__lead {
     font-size: 14px;
     line-height: 1.75;
-    color: t.$text-muted;
+    color: t.$text-subtle;
     margin-bottom: t.$space-5;
   }
 }
@@ -218,7 +218,6 @@
   // Color schemes per layer
   @each $name, $color in (
     'violet': t.$brand,
-    'cyan':   t.$accent,
     'green':  t.$green-500,
     'amber':  t.$amber-500,
   ) {
@@ -268,7 +267,6 @@
   }
 
   &--green .state-card__scope  { color: t.$green-500; }
-  &--cyan  .state-card__scope  { color: t.$accent; }
   &--violet .state-card__scope { color: t.$brand; }
 }
 
@@ -393,7 +391,7 @@
   &__bar {
     height: 20px;
     border-radius: t.$radius-sm;
-    background: linear-gradient(90deg, t.$brand, t.$accent);
+    background: linear-gradient(90deg, var(--colorMain), var(--colorSub));
     min-width: 2px;
   }
 
@@ -409,7 +407,7 @@
   overflow: hidden;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 4px;
+  gap: 20px;
   height: 40px;
   margin-bottom: t.$space-2;
 
@@ -459,7 +457,7 @@
 
     &:last-child { border-bottom: none; }
 
-    &:hover { background: t.$brand-glow; }
+    &:hover { background: rgba(var(--colorMain), 0.08); }
   }
 
   &__token {

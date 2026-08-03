@@ -39,24 +39,6 @@
     </template>
   </DOCSSection>
 
-  <!-- ── Installation ───────────────────────────────────────────────────── -->
-  <DOCSSection sectionId="installation"
-  callout-txt="Node.js 18 이상, pnpm 8 이상이 필요합니다.">
-    <template #heading>
-      <h2 class="section-heading">
-        <span class="section-heading__icon">📦</span>
-        프로젝트 생성
-      </h2>
-    </template>
-
-    <template #content>
-      <p class="section__lead">
-        본 프로젝트는 TypeScript, ESLint, Prettier, Dart Sass, Vite가 사전 설정되어 있습니다.
-        별도의 추가 설정 없이 바로 개발을 시작할 수 있습니다.
-      </p>
-    </template>
-  </DOCSSection>
-
   <!-- ── Project Structure ──────────────────────────────────────────────── -->
   <DOCSSection sectionId="project-structure">
     <template #heading>
@@ -79,6 +61,15 @@
   <DOCSSection sectionId="layers-modules">
     <template #heading>
       <h2 class="section-heading">
+        <span class="section-heading__icon">🗂</span>아이콘 디렉토리
+      </h2>
+    </template>
+
+    <template #content>
+      <DOCSArchitectureIconStructure />
+    </template>
+    <!-- <template #heading>
+      <h2 class="section-heading">
         <span class="section-heading__icon">🗂</span>레이어 & 모듈
       </h2>
 
@@ -89,7 +80,7 @@
 
     <template #content>
       <DOCSArchitectureLayerDiagram :layerItems="LAYER_ITEMS" />
-    </template>
+    </template> -->
   </DOCSSection>
 
   <!-- ── State Management ───────────────────────────────────────────────── -->
@@ -141,7 +132,7 @@
       <span class="section-heading__icon">⊞</span>스페이싱 & 그리드
     </h2>
     <p class="section__lead">
-      4px 기반 스케일. SCSS 변수 <DocsCodeBadge text="$space-4" />처럼 참조하거나
+      사스다 디자인 시스템 기반으로 구성된 gap 여백 스케일들을 SCSS 변수 <DOCSUiCodeBadge text="$space-1" /> ~ <DOCSUiCodeBadge text="$space-16" /> 처럼 참조하거나
       CSS 변수로 직접 사용합니다.
     </p>
 
@@ -153,15 +144,15 @@
       </div>
     </div>
 
-    <div class="palette-section__label" style="margin-bottom: 12px">그리드 시스템</div>
+    <div class="palette-section__label" style="margin-bottom: 12px">폼 요소 시스템</div>
     <div class="grid-demo">
       <div v-for="i in 12" :key="i" class="grid-demo__col">{{ i }}</div>
     </div>
-    <div class="grid-caption">12컬럼 그리드 — 기본 gap: 24px ($space-6)</div>
+    <div class="grid-caption">폼 요소 기본 gap: 20px ($space-6)</div>
   </section>
 
   <!-- ── CSS Variables ──────────────────────────────────────────────────── -->
-  <section id="css-variables" class="section">
+  <!-- <section id="css-variables" class="section">
     <h2 class="section-heading">
       <span class="section-heading__icon">{}</span>CSS 변수 레퍼런스
     </h2>
@@ -192,10 +183,10 @@
         </button>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- ── Buttons ────────────────────────────────────────────────────────── -->
-  <section id="buttons" class="section">
+  <!-- <section id="buttons" class="section">
     <h2 class="section-heading">
       <span class="section-heading__icon">□</span>컴포넌트 가이드
     </h2>
@@ -249,10 +240,10 @@
         <button class="btn btn--xl btn--primary">xl</button>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- ── Form Elements ──────────────────────────────────────────────────── -->
-  <section id="form-elements" class="section">
+  <!-- <section id="form-elements" class="section">
     <h3 class="subsection-heading">폼 엘리먼트</h3>
     <div class="form-grid">
       <div class="field">
@@ -283,10 +274,10 @@
         <span class="field__error-msg">이 필드는 필수입니다.</span>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- ── Cards & Panels ─────────────────────────────────────────────────── -->
-  <section id="cards-panels" class="section">
+  <!-- <section id="cards-panels" class="section">
     <h3 class="subsection-heading">카드 & 패널</h3>
     <div class="card-grid">
       <div v-for="card in CARD_ITEMS" :key="card.title" class="card">
@@ -301,10 +292,10 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- ── Feedback ───────────────────────────────────────────────────────── -->
-  <section id="feedback" class="section">
+  <!-- <section id="feedback" class="section">
     <h3 class="subsection-heading">피드백 컴포넌트</h3>
     <div class="alerts-stack">
       <div
@@ -331,7 +322,7 @@
       <span class="badge badge--red">Red</span>
       <span class="badge badge--neutral">Neutral</span>
     </div>
-  </section>
+  </section> -->
 </template>
 
 <script setup lang="ts">
@@ -394,16 +385,14 @@ const CSS_VARS = [
 
 const SPACING_SCALE = [
   { name: '1',  px: '4px',  rem: '0.25rem' },
-  { name: '2',  px: '8px',  rem: '0.5rem'  },
-  { name: '3',  px: '12px', rem: '0.75rem' },
+  { name: '2',  px: '5px',  rem: '0.5rem'  },
+  { name: '3',  px: '6px', rem: '0.75rem' },
   { name: '4',  px: '16px', rem: '1rem'    },
-  { name: '6',  px: '24px', rem: '1.5rem'  },
-  { name: '8',  px: '32px', rem: '2rem'    },
-  { name: '10', px: '40px', rem: '2.5rem'  },
-  { name: '12', px: '48px', rem: '3rem'    },
-  { name: '16', px: '64px', rem: '4rem'    },
-  { name: '20', px: '80px', rem: '5rem'    },
-  { name: '24', px: '96px', rem: '6rem'    },
+  { name: '6',  px: '20px', rem: '1.5rem'  },
+  { name: '8',  px: '28px', rem: '2rem'    },
+  { name: '10', px: '32px', rem: '2.5rem'  },
+  { name: '12', px: '36px', rem: '3rem'    },
+  { name: '16', px: '40px', rem: '4rem'    },
 ]
 
 const LAYER_ITEMS = [

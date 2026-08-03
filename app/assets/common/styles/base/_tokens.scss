@@ -159,15 +159,11 @@ $bg-popover:      #161729;
 $text-primary:    #CDD0E8;
 $text-heading:    #E8EAFF;
 $text-secondary:  #A0A3BE;
-$text-muted:      #5C607E;
-$text-subtle:     #3D4060;
+$text-muted:      #d5d5d5;
+$text-subtle:     #a7a7a7;
 
-$brand:           $violet-500;   // #8B5CF6
-$brand-hover:     $violet-600;   // #7C3AED
-$brand-dim:       rgba($violet-500, 0.15);
-$brand-glow:      rgba($violet-500, 0.08);
-$accent:          $cyan-500;     // #06B6D4
-$accent-dim:      rgba($cyan-500, 0.15);
+$brand:           var(--colorMain);   // #8B5CF6
+$brand-hover:     var(--colorSub);   // #7C3AED
 
 $border-default:  rgba($violet-500, 0.14);
 $border-strong:   rgba($violet-500, 0.25);
@@ -187,33 +183,27 @@ $toc-width:         220px;
 $topbar-height:     56px;
 $content-max-width: 780px;
 
-// Spacing scale (4px base)
+// 공통 디자인 가이드 기반 space gap 토큰 
 $space-1: 4px;
-$space-2: 8px;
-$space-3: 12px;
-$space-4: 16px;
-$space-5: 20px;
-$space-6: 24px;
-$space-8: 32px;
-$space-10: 40px;
-$space-12: 48px;
-$space-16: 64px;
+$space-2: 5px;
+$space-3: 6px;
+$space-4: 8px;
+$space-5: 10px; 
+$space-6: 20px;
+$space-8: 28px;
+$space-10: 32px;
+$space-12: 36px;
+$space-16: 40px; 
 
 // 관리자 or 학습자 폰트 사이즈 토큰
 $font-adm-xxxl: 26px;
-$font-adm-xxl: 22px;
-$font-adm-xl: 20px;
-$font-adm-lg: 18px;
+$font-adm-xxl: 24px;
+$font-adm-xl: 22px;
+$font-adm-lg: 20px;
+$font-adm-md: 18px;
 $font-adm-base: 16px;
 $font-adm-sm: 14px;
 $font-adm-xs: 12px;
-
-$font-xxl: 22px;
-$font-xl: 20px;
-$font-lg: 18px;
-$font-base: 16px;
-$font-sm: 14px;
-$font-xs: 12px;
 
 // Border radius
 $radius-sm:  4px;
@@ -248,13 +238,9 @@ $bp-xl: 1280px;
 --text-muted:      #{$text-muted};
 --text-subtle:     #{$text-subtle};
 
-// Brand
+// 브랜드 컬러 (동적 테마 색상 적용)
 --brand:           #{$brand};
 --brand-hover:     #{$brand-hover};
---brand-dim:       #{$brand-dim};
---brand-glow:      #{$brand-glow};
---accent:          #{$accent};
---accent-dim:      #{$accent-dim};
 
 // Status
 --success:         #{$green-500};

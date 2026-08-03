@@ -145,53 +145,55 @@ interface KeyTheme  { id: string; label: string; shades: KeyShade[] }
 
 const KEY_THEMES: KeyTheme[] = [
   {
-    id: 'indigo-blue', label: 'Indigo Blue',
+    id: 'Indigo Blue', label: 'Indigo Blue',
     shades: [
-      { label: 'Dark',    hex: '#102531', cssVar: '--key-dark' },
-      { label: 'Default', hex: '#147CBC', cssVar: '--key-default' },
-      { label: 'Medium',  hex: '#41A0C0', cssVar: '--key-medium' },
-      { label: 'Light',   hex: '#F2FDFE', cssVar: '--key-light' },
+      { label: 'Dark',    hex: '#3d4282', cssVar: '--colorSub' },
+      { label: 'Default', hex: '#4a509f', cssVar: '--colorMain' },
+      { label: 'Medium',  hex: '#6e73b2', cssVar: '--key-medium' },
+      { label: 'Light',   hex: '#f2f3f8', cssVar: '--colorClear' },
     ],
   },
   {
-    id: 'cobalt-blue', label: 'Cobalt Blue',
+    id: 'Cobalt Blue', label: 'Cobalt Blue',
     shades: [
-      { label: 'Dark',    hex: '#011E51', cssVar: '--key-dark' },
-      { label: 'Default', hex: '#1447BC', cssVar: '--key-default' },
-      { label: 'Medium',  hex: '#5A82E0', cssVar: '--key-medium' },
-      { label: 'Light',   hex: '#EBF0FF', cssVar: '--key-light' },
+      { label: 'Dark',    hex: '#27428f', cssVar: '--key-dark' },
+      { label: 'Default', hex: '#345abf', cssVar: '--key-default' },
+      { label: 'Medium',  hex: '#5d7bcc', cssVar: '--key-medium' },
+      { label: 'Light',   hex: '#f1f3fa', cssVar: '--key-light' },
     ],
   },
   {
-    id: 'violet-purple', label: 'Violet Purple',
+    id: 'Violet Purple', label: 'Violet Purple',
     shades: [
-      { label: 'Dark',    hex: '#1C0E51', cssVar: '--key-dark' },
-      { label: 'Default', hex: '#7C1AC3', cssVar: '--key-default' },
-      { label: 'Medium',  hex: '#A866E0', cssVar: '--key-medium' },
-      { label: 'Light',   hex: '#F2EAFF', cssVar: '--key-light' },
+      { label: 'Dark',    hex: '#4d338a', cssVar: '--key-dark' },
+      { label: 'Default', hex: '#6644b6', cssVar: '--key-default' },
+      { label: 'Medium',  hex: '#8569c5', cssVar: '--key-medium' },
+      { label: 'Light',   hex: '#f4f2fa', cssVar: '--key-light' },
     ],
   },
   {
-    id: 'sea-green', label: 'Sea Green',
+    id: 'Sea Green', label: 'Sea Green',
     shades: [
-      { label: 'Dark',    hex: '#0A3B2B', cssVar: '--key-dark' },
-      { label: 'Default', hex: '#14BC7C', cssVar: '--key-default' },
-      { label: 'Medium',  hex: '#52D4A8', cssVar: '--key-medium' },
-      { label: 'Light',   hex: '#E8FFF6', cssVar: '--key-light' },
+      { label: 'Dark',    hex: '#105e51', cssVar: '--key-dark' },
+      { label: 'Default', hex: '#147c6c', cssVar: '--key-default' },
+      { label: 'Medium',  hex: '#439689', cssVar: '--key-medium' },
+      { label: 'Light',   hex: '#f2fdfb', cssVar: '--key-light' },
     ],
   },
 ]
 
-const activeTheme = ref('indigo-blue')
+const activeTheme = computed(() => {
+  return KEY_THEMES.find((theme) => theme.shades[1]?.hex.split('#')[1] === code.value)?.id || 'Indigo Blue';
+});
+
+const { $homepage } = useNuxtApp();
+
+const { colorCode: code, font, colorType: type, defaultColorSet, themeColorSelector } = $homepage;
 
 function applyTheme(theme: KeyTheme) {
-  activeTheme.value = theme.id
-  const root = document.documentElement
-  // 기존 테마 클래스 제거 후 새 테마 클래스 적용
-  root.classList.remove('theme-indigo-blue', 'theme-cobalt-blue', 'theme-violet-purple', 'theme-sea-green')
-  root.classList.add(`theme-${theme.id}`)
-  // CSS Custom Properties 직접 갱신 (즉각 반영)
-  theme.shades.forEach(({ cssVar, hex }) => root.style.setProperty(cssVar, hex))
+  if (type.value === 'theme') {
+    code.value = theme.shades[1]?.hex.split('#')[1] || code.value;
+  }
 }
 
 // ── 서브 컬러 (무채색 고정) ──────────────────────────────────────────────────
@@ -300,8 +302,8 @@ const DASHBOARD_ROWS = [
   transition: border-color 0.2s;
 
   &--active {
-    border-color: var(--key-default, #147CBC);
-    box-shadow: 0 0 0 2px rgba(#147CBC, 0.12);
+    border-color: var(--colorMain);
+    box-shadow: 0 0 0 2px rgba(var(--colorMain), 0.12);
   }
 
   &__header {
@@ -329,13 +331,13 @@ const DASHBOARD_ROWS = [
     transition: all 0.15s;
 
     &:hover {
-      border-color: var(--key-default, #147CBC);
-      color: var(--key-default, #147CBC);
+      border-color: var(--colorMain);
+      color: var(--colorMain);
     }
 
     &--applied {
-      background: var(--key-default, #147CBC);
-      border-color: var(--key-default, #147CBC);
+      background: var(--colorMain);
+      border-color: var(--colorMain);
       color: #fff;
     }
   }

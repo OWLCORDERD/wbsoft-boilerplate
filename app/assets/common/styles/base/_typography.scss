@@ -16,11 +16,6 @@
   padding-bottom: t.$space-3;
   margin-bottom: t.$space-6;
   border-bottom: 1px solid t.$border-default;
-
-  &__icon {
-    color: t.$brand;
-    flex-shrink: 0;
-  }
 }
 
 // ── Breadcrumb ────────────────────────────────────────────────────────────────
@@ -29,7 +24,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: t.$font-adm-base;
   color: t.$text-subtle;
   margin-bottom: t.$space-6;
 
@@ -70,7 +65,7 @@
     margin: t.$space-5 0;
 
     strong {
-      color: t.$violet-300;
+      color: var(--colorMain);
       font-weight: 600;
     }
   }
@@ -130,17 +125,20 @@
   }
 
   &__row {
+    padding: t.$space-6;
 
-    &__type {
+    .scale-type {
       display: block;
-      font-size: t.$font-adm-xxxl;
+      font-size: t.$font-adm-xxl;
       font-weight: bold;
+      margin-bottom: t.$space-4;
     }
-    &__wrapper {
+
+    .scale-wrapper {
       display: grid;
       grid-template-columns: auto 48px 1fr;
       align-items: center;
-      padding: 10px 16px;
+      padding: 10px 0px;
       gap: t.$space-4;
       border-bottom: 1px solid t.$border-subtle;
   
@@ -148,7 +146,7 @@
     }
   }
 
-  &__size {
+  .scale-size {
     @include m.mono(11px, t.$text-subtle);
     width: 40px;
     flex-shrink: 0;
@@ -186,12 +184,13 @@
   &__sample {
     font-size: 35px;
     color: t.$text-heading;
-    margin-bottom: t.$space-4;
+    margin: t.$space-6 0;
     line-height: 1;
 
-    &.Pretendard { font-family: var(--font-pretendard); }
-    &.NotoSans { font-family: var(--font-notosans); }
-    &.EliceDigitalBaeum { font-family: var(--font-elicedigitalbaeum); }
+    // 각 폰트 샘플별 데이터 코드에 따른 폰트 적용
+    &[data-code="$font-pretendard"] { font-family: var(--font-pretendard); }
+    &[data-code="$font-notosans"] { font-family: var(--font-notosans); }
+    &[data-code="$font-elicedigitalbaeum"] { font-family: var(--font-elicedigitalbaeum); }
   }
 
   &__weights {

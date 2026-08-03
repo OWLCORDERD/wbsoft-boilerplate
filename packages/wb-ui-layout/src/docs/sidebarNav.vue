@@ -34,7 +34,6 @@ const NAV: NavGroup[] = [
     items: [
       { label: '소개', id: 'introduction' },
       { label: '빠른 시작', id: 'quick-start' },
-      { label: '프로젝트 생성', id: 'installation' },
     ],
   },
   {
@@ -53,19 +52,18 @@ const NAV: NavGroup[] = [
       { label: '컬러 팔레트', id: 'color-palette' },
       { label: '타이포그래피', id: 'typography' },
       { label: '스페이싱 & 그리드', id: 'spacing-grid' },
-      { label: 'CSS 변수 레퍼런스', id: 'css-variables' },
     ],
   },
-  {
-    group: '컴포넌트',
-    icon: '📦',
-    items: [
-      { label: '버튼', id: 'buttons' },
-      { label: '폼 엘리먼트', id: 'form-elements' },
-      { label: '카드 & 패널', id: 'cards-panels' },
-      { label: '피드백', id: 'feedback' },
-    ],
-  },
+  // {
+  //   group: '컴포넌트',
+  //   icon: '📦',
+  //   items: [
+  //     { label: '버튼', id: 'buttons' },
+  //     { label: '폼 엘리먼트', id: 'form-elements' },
+  //     { label: '카드 & 패널', id: 'cards-panels' },
+  //     { label: '피드백', id: 'feedback' },
+  //   ],
+  // },
 ]
 
 defineProps<{
