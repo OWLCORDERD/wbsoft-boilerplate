@@ -67,14 +67,14 @@
     &:hover { background: t.$brand-hover; }
 
     &:active {
-      background: t.$violet-700;
+      background: var(--colorMain);
       transform: translateY(1px);
     }
   }
 
   &--secondary {
     background: t.$bg-secondary;
-    color: t.$violet-300;
+    color: var(--colorMain);
 
     &:hover { background: lighten(t.$bg-secondary, 4%); }
   }
@@ -103,7 +103,7 @@
 
     &:hover {
       background: rgba(var(--colorMain), 0.08);
-      color: t.$violet-300;
+      color: var(--colorMain);
     }
   }
 
@@ -357,6 +357,66 @@
   }
 }
 
+// 토스트 모달
+.toast-modal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 43px;
+  min-width: 300px;
+  border-radius: 8px;
+  background: var(--colorClear);
+  border: 1px solid var(--colorMain);
+  color: #fff;
+  padding: 10px 30px;
+  line-height: 1.2;
+  box-shadow: 0px 3px 10px 0px rgba(16, 11, 2, 0.08);
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+
+  &.kiosk {
+    background: #2083fe;
+    border: none;
+    padding: 18px 30px;
+    border-radius: 16px;
+
+    .txt {
+      color: #fff;
+    }
+
+    .nuxt-icon {
+      width: 25px;
+      height: 25px;
+      & > path {
+        fill: #fff;
+      }
+    }
+
+    &.rookie {
+      background: #00a800;
+    }
+  }
+
+  .nuxt-icon {
+    margin-bottom: 0;
+    font-size: 16px;
+
+    path {
+      fill: var(--colorMain);
+    }
+  }
+
+  .txt {
+    font-size: var(--font-adm-base);
+    margin-left: 10px;
+    font-weight: bold;
+    color: var(--colorMain);
+  }
+}
+
 // ── Callout (inline docs note) ────────────────────────────────────────────────
 
 .callout {
@@ -376,13 +436,6 @@
   &__body {
     line-height: 1.7;
     color: #fff;
-  }
-
-  &--info {
-    background: rgba(t.$cyan-500, 0.06);
-    border-color: rgba(t.$cyan-500, 0.3);
-
-    .callout__marker { color: t.$cyan-500; }
   }
 
   &--tip {

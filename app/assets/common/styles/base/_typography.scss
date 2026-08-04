@@ -16,6 +16,7 @@
   padding-bottom: t.$space-3;
   margin-bottom: t.$space-6;
   border-bottom: 1px solid t.$border-default;
+  font-family: t.$font-pretendard;
 }
 
 // ── Breadcrumb ────────────────────────────────────────────────────────────────
@@ -80,7 +81,7 @@
   padding: 2px 8px;
   border-radius: t.$radius-sm;
   background: t.$bg-secondary;
-  color: t.$violet-400;
+  color: var(--colorMain);
   font-size: 12px;
   cursor: pointer;
   transition: background t.$transition-fast;

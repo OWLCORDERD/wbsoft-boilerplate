@@ -1,6 +1,6 @@
 <template>
   <nav class="sidebar__nav">
-    <div v-for="group in NAV" :key="group.group" class="nav-group">
+    <div v-for="group in model" :key="group.group" class="nav-group">
       <button class="nav-group__toggle" @click="emit('toggle-group', group.group)">
         <span class="nav-group__toggle-left">
           <span class="nav-group__icon">{{ group.icon }}</span>
@@ -24,47 +24,9 @@
 </template>
 
 <script setup lang="ts">
-type NavItem = { label: string; id: string }
-type NavGroup = { group: string; icon: string; items: NavItem[] }
+import type { NavGroup } from '~/layouts/default.vue';
 
-const NAV: NavGroup[] = [
-  {
-    group: '시작하기',
-    icon: '📖',
-    items: [
-      { label: '소개', id: 'introduction' },
-      { label: '빠른 시작', id: 'quick-start' },
-    ],
-  },
-  {
-    group: '아키텍처',
-    icon: '🗂',
-    items: [
-      { label: '프로젝트 구조', id: 'project-structure' },
-      { label: '레이어 & 모듈', id: 'layers-modules' },
-      { label: '상태 관리', id: 'state-management' },
-    ],
-  },
-  {
-    group: '디자인 시스템',
-    icon: '🎨',
-    items: [
-      { label: '컬러 팔레트', id: 'color-palette' },
-      { label: '타이포그래피', id: 'typography' },
-      { label: '스페이싱 & 그리드', id: 'spacing-grid' },
-    ],
-  },
-  // {
-  //   group: '컴포넌트',
-  //   icon: '📦',
-  //   items: [
-  //     { label: '버튼', id: 'buttons' },
-  //     { label: '폼 엘리먼트', id: 'form-elements' },
-  //     { label: '카드 & 패널', id: 'cards-panels' },
-  //     { label: '피드백', id: 'feedback' },
-  //   ],
-  // },
-]
+const model = defineModel<NavGroup[]>({ required: true });
 
 defineProps<{
   activeSection: string

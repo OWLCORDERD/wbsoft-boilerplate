@@ -7,39 +7,6 @@
 // ── SCSS Variables (compile-time) ────────────────────────────────────────────
 
 // 가이드 전용 Color primitives
-$violet-50:  #F5F3FF;
-$violet-100: #EDE9FE;
-$violet-200: #DDD6FE;
-$violet-300: #C4B5FD;
-$violet-400: #A78BFA;
-$violet-500: #8B5CF6;
-$violet-600: #7C3AED;
-$violet-700: #6D28D9;
-$violet-800: #5B21B6;
-$violet-900: #4C1D95;
-
-$cyan-50:  #ECFEFF;
-$cyan-100: #CFFAFE;
-$cyan-200: #A5F3FC;
-$cyan-300: #67E8F9;
-$cyan-400: #22D3EE;
-$cyan-500: #06B6D4;
-$cyan-600: #0891B2;
-$cyan-700: #0E7490;
-$cyan-800: #155E75;
-$cyan-900: #164E63;
-
-$slate-50:  #F8FAFC;
-$slate-100: #F1F5F9;
-$slate-200: #E2E8F0;
-$slate-300: #CBD5E1;
-$slate-400: #94A3B8;
-$slate-500: #64748B;
-$slate-600: #475569;
-$slate-700: #334155;
-$slate-800: #1E293B;
-$slate-900: #0F172A;
-
 $green-400: #34D399;
 $green-500: #10B981;
 $amber-400: #FBBF24;
@@ -148,7 +115,7 @@ $brownCardBorder: #a47959;
 $violetCardBg: #f4f6ff;
 $violetCardBorder: #5563c2;
 
-// Semantic SCSS vars (maps to CSS props below)
+// 가이드 문서 배경 SCSS vars (maps to CSS props below)
 $bg:              #0C0D18;
 $bg-card:         #111223;
 $bg-secondary:    #1A1C30;
@@ -165,9 +132,9 @@ $text-subtle:     #a7a7a7;
 $brand:           var(--colorMain);   // #8B5CF6
 $brand-hover:     var(--colorSub);   // #7C3AED
 
-$border-default:  rgba($violet-500, 0.14);
-$border-strong:   rgba($violet-500, 0.25);
-$border-subtle:   rgba($violet-500, 0.06);
+$border-default:  color-mix(in srgb, var(--colorMain) 14%, transparent);
+$border-strong:   color-mix(in srgb, var(--colorMain) 25%, transparent);
+$border-subtle:   color-mix(in srgb, var(--colorMain)  6%, transparent);
 
 // Typography
 $font-sans:              'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -179,8 +146,9 @@ $font-paperlogy:         'Paperlogy_R', sans-serif;
 
 // Sizing
 $sidebar-width:     240px;
-$toc-width:         220px;
-$topbar-height:     56px;
+// 우측 사이드바 TOC 사이즈
+$toc-width:         300px;
+$topbar-height:     86px;
 $content-max-width: 780px;
 
 // 공통 디자인 가이드 기반 space gap 토큰 
@@ -252,9 +220,6 @@ $bp-xl: 1280px;
 --error:           #{$red-500};
 --error-dim:       rgba(#{$red-500}, 0.08);
 --error-border:    rgba(#{$red-500}, 0.3);
---info:            #{$cyan-500};
---info-dim:        rgba(#{$cyan-500}, 0.08);
---info-border:     rgba(#{$cyan-500}, 0.3);
 
 // Borders
 --border:          #{$border-default};
@@ -279,47 +244,4 @@ $bp-xl: 1280px;
 --radius-md:       #{$radius-md};
 --radius-lg:       #{$radius-lg};
 --radius-xl:       #{$radius-xl};
-
-// Palette maps (for reference table)
---color-primary:   #{$violet-500};
---color-accent:    #{$cyan-500};
---color-success:   #{$green-500};
---color-warning:   #{$amber-500};
---color-error:     #{$red-500};
-
-// ── 키 컬러 — 프로젝트 테마 (런타임 동적 변경 가능) ──────────────────────────
-// 기본 테마: Indigo Blue
---key-dark:        #102531;
---key-default:     #147CBC;
---key-medium:      #41A0C0;
---key-light:       #F2FDFE;
-}
-
-// ── 키 컬러 테마 클래스 — html 또는 :root에 적용하면 전체 테마 전환 ─────────
-.theme-indigo-blue {
-  --key-dark:    #102531;
-  --key-default: #147CBC;
-  --key-medium:  #41A0C0;
-  --key-light:   #F2FDFE;
-}
-
-.theme-cobalt-blue {
-  --key-dark:    #011E51;
-  --key-default: #1447BC;
-  --key-medium:  #5A82E0;
-  --key-light:   #EBF0FF;
-}
-
-.theme-violet-purple {
-  --key-dark:    #1C0E51;
-  --key-default: #7C1AC3;
-  --key-medium:  #A866E0;
-  --key-light:   #F2EAFF;
-}
-
-.theme-sea-green {
-  --key-dark:    #0A3B2B;
-  --key-default: #14BC7C;
-  --key-medium:  #52D4A8;
-  --key-light:   #E8FFF6;
 }

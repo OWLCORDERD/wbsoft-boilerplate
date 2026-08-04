@@ -32,7 +32,7 @@ a {
   color: t.$brand;
   text-decoration: none;
 
-  &:hover { color: t.$violet-400; }
+  &:hover { color: var(--colorMain); }
 }
 
 button {

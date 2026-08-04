@@ -15,7 +15,9 @@
             <span>Navigation</span>
             <button class="mobile-overlay__close" @click="mobileNavOpen = false">✕</button>
           </div>
+          <!-- ── 모바일 사이드바 내비게이션 (Mobile Sidebar Navigation) ──────────────────────────────────────────────────────── -->
           <DOCSSidebarNav
+            v-model="currentPathNavMenuList"
             :active-section="activeSection"
             :expanded-groups="expandedGroups"
             @toggle-group="toggleGroup"
@@ -28,9 +30,10 @@
     <!-- ── 3-column body ─────────────────────────────────────────────────── -->
     <div class="docs-body">
 
-      <!-- Left Sidebar -->
+      <!-- 좌측 사이드바 (Sidebar) -->
       <aside class="sidebar">
         <DOCSSidebarNav
+          v-model="currentPathNavMenuList"
           :active-section="activeSection"
           :expanded-groups="expandedGroups"
           @toggle-group="toggleGroup"
@@ -40,7 +43,7 @@
 
       <!-- Main Content (page slot) -->
       <main class="main">
-        <!-- ── Topbar ──────────────────────────────────────────────────────── -->
+        <!-- ── 상단 네비게이션 (Topbar) ──────────────────────────────────────────────────────── -->
         <header class="topbar">
           <div class="topbar__left">
             <button class="topbar__mobile-menu" @click="mobileNavOpen = true">☰</button>
@@ -52,26 +55,15 @@
           </div>
 
           <nav class="topbar__nav">
-            <button
-              v-for="label in ['아이콘 디렉토리', '공통 UI 패키지', 'FSD 구조', '협업 워크스페이스']"
-              :key="label"
+            <a
+              v-for="menu in topbarMenu"
+              :key="menu.id"
               class="topbar__nav-link"
+              :href="menu.href"
             >
-              {{ label }}
-            </button>
-          </nav>
-
-          <!-- <div class="topbar__actions">
-            <div class="topbar__search">
-              <span>🔍</span>
-              <span>검색...</span>
-              <kbd class="topbar__search-kbd">⌘K</kbd>
-            </div>
-            <a href="#" class="topbar__github">
-              <span>⎇</span>
-              <span>GitHub</span>
+              {{ menu.label }}
             </a>
-          </div> -->
+          </nav>
         </header>
 
         <div class="main__inner">
@@ -79,27 +71,24 @@
         </div>
       </main>
 
-      <!-- Right TOC -->
-      <!-- <aside class="toc">
+      <!-- 우측 사이드바 TOC (Right TOC) -->
+      <aside class="toc">
         <div class="toc__community">
           <div class="toc__community-label">커뮤니티</div>
-          <p class="toc__community-desc">내부 Slack #framework 채널에서 논의에 참여하세요.</p>
+          <p class="toc__community-desc">프론트 협업 워크스페이스 참여하기</p>
           <div class="toc__community-links">
-            <button class="toc__community-link">⎇ GitHub</button>
-            <button class="toc__community-link">↗ Discord</button>
+            <a target="_blank" href="https://app.notion.com/p/owlcoderd/24dd88bad98180bdae77faaa622abc9c" class="toc__community-link">⎇ Notion</a>
           </div>
         </div>
-      </aside> -->
+      </aside>
 
     </div>
-  </div>
 
-  <WBToast />
+    <V1Toast />
+  </div>
 </template>
 
 <script setup lang="ts">
-import gsap from 'gsap';
-
 const mobileNavOpen = ref(false)
 const activeSection = ref('introduction')
 const expandedGroups = reactive<Record<string, boolean>>({
@@ -107,10 +96,115 @@ const expandedGroups = reactive<Record<string, boolean>>({
   '아키텍처': true,
   '디자인 시스템': true,
   '컴포넌트': false,
+  '아이콘': true,
 })
 
+const topbarMenu = [
+  {
+    id: 1,
+    label: '홈',
+    href: '/',
+  },
+  {
+    id: 2,
+    label: '아이콘 디렉토리',
+    href: '/icon',
+  },
+  {
+    id: 3,
+    label: '공통 UI 패키지',
+    href: '/ui-package',
+  },
+  {
+    id: 4,
+    label: 'FSD 구조',
+    href: '/fsd-structure',
+  },
+  {
+    id: 5,
+    label: '협업 워크스페이스',
+    href: 'https://app.notion.com/p/owlcoderd/24dd88bad98180bdae77faaa622abc9c',
+  },
+]
+
+export type NavGroup = { group: string; icon: string; items: NavItem[]; baseUrl: string; }
+
+export type NavItem = { label: string; id: string }
+
+const NAV: NavGroup[] = [
+  {
+    group: '시작하기',
+    icon: '📖',
+    items: [
+      { label: '소개', id: 'introduction' },
+      { label: '빠른 시작', id: 'quick-start' },
+    ],
+    baseUrl: '/',
+  },
+  {
+    group: '아키텍처',
+    icon: '🗂',
+    items: [
+      { label: '프로젝트 구조', id: 'project-structure' },
+      // { label: '레이어 & 모듈', id: 'layers-modules' },
+      { label: '상태 관리', id: 'state-management' },
+    ],
+    baseUrl: '/',
+  },
+  {
+    group: '디자인 시스템',
+    icon: '🎨',
+    items: [
+      { label: '컬러 팔레트', id: 'color-palette' },
+      { label: '타이포그래피', id: 'typography' },
+      { label: '스페이싱 & 그리드', id: 'spacing-grid' },
+    ],
+    baseUrl: '/',
+  },
+  {
+    group: '컴포넌트',
+    icon: '📦',
+    items: [
+      { label: '버튼', id: 'buttons' },
+      { label: '폼 엘리먼트', id: 'form-elements' },
+      { label: '카드 & 패널', id: 'cards-panels' },
+      { label: '피드백', id: 'feedback' },
+    ],
+    baseUrl: '/components',
+  },
+  {
+    group: '아이콘',
+    icon: '📂',
+    items: [
+      { label: '버튼 아이콘', id: '버튼 아이콘' },
+      { label: '화살표 아이콘', id: '화살표 아이콘' },
+      { label: '과정 상세 아이콘', id: '과정 상세 아이콘' },
+      { label: '상세 정보 아이콘', id: '상세 정보 아이콘' },
+      { label: '드래그 드롭 아이콘', id: '드래그 드롭 아이콘' },
+      { label: '기타 아이콘', id: '기타 아이콘' },
+      { label: '파일 확장자 아이콘', id: '파일 확장자 아이콘' },
+      { label: '필터 아이콘', id: '필터 아이콘' },
+      { label: '플로팅 버튼 아이콘', id: '플로팅 버튼 아이콘' },
+      { label: 'GNB 네비게이션 아이콘', id: 'GNB 네비게이션 아이콘' },
+      { label: '홈 설정 아이콘', id: '홈 설정 아이콘' },
+      { label: '학습자 아이콘', id: '학습자 아이콘' },
+      { label: '요금제 아이콘', id: '요금제 아이콘' },
+      { label: '우선순위 아이콘', id: '우선순위 아이콘' },
+      { label: '테이블 하위데이터 아이콘', id: '테이블 하위데이터 아이콘' },
+      { label: '텍스트필드 아이콘', id: '텍스트필드 아이콘' },
+    ],
+    baseUrl: '/icon',
+  }
+]
+
+const path = useRoute();
+
+const currentPathNavMenuList = computed(() => {
+  return NAV.filter((item) => item.baseUrl === path.fullPath);
+});
+
 const scrollTo = (id: string) => {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
   mobileNavOpen.value = false
 }
 
@@ -136,6 +230,7 @@ onUnmounted(() => {
   sectionObserver?.disconnect()
 })
 
+
 // 2023.07.28[bnJung]: 색상테마 설정 - default: 4a509f
 const { $homepage } = useNuxtApp();
 const {
@@ -157,7 +252,6 @@ const codeRgb = computed(() => {
 // 2025.10.14[mhlim]: 기본 테마 선택 컬러 코드가 포함된 테마 객체 반환
 const selectDefaultTheme = computed(() => {
   if (type.value === 'theme') {
-    console.log(defaultColorSet);
     return defaultColorSet.filter((theme) => {
       if (Array.isArray(theme.color) && theme.color.includes(code.value)) {
         return theme;

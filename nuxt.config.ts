@@ -56,6 +56,7 @@ export default defineNuxtConfig({
   // main.scss는 additionalData 전용 (mixin/변수 주입) → 중복 로드 방지를 위해 global.scss 분리 사용
   css: [
     '@/assets/common/styles/base/global.scss',
+    '@/assets/common/styles/base/animation.scss',
   ],
   // 2026.07.06: Nuxt 4 레이어 구조 활성화 처리
   future: {

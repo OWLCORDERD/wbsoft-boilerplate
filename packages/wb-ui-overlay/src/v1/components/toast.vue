@@ -5,7 +5,7 @@
       v-if="toastShow"
       :class="{ kiosk: isKiosk, rookie: isRookie }"
     >
-      <svgo-common-alert-circle filled />
+      <svgo-GNB-info filled />
       <p class="txt" v-html="toastText"></p>
     </div>
   </transition>

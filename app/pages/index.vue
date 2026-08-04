@@ -57,32 +57,6 @@
     </template>
   </DOCSSection>
 
-  <!-- ── Layers & Modules ───────────────────────────────────────────────── -->
-  <DOCSSection sectionId="layers-modules">
-    <template #heading>
-      <h2 class="section-heading">
-        <span class="section-heading__icon">🗂</span>아이콘 디렉토리
-      </h2>
-    </template>
-
-    <template #content>
-      <DOCSArchitectureIconStructure />
-    </template>
-    <!-- <template #heading>
-      <h2 class="section-heading">
-        <span class="section-heading__icon">🗂</span>레이어 & 모듈
-      </h2>
-
-      <p class="section__lead">
-        아키텍처는 4개의 레이어로 구성되며, 화살표 방향으로만 의존성을 가집니다. 역방향 참조는 금지됩니다.
-      </p>
-    </template>
-
-    <template #content>
-      <DOCSArchitectureLayerDiagram :layerItems="LAYER_ITEMS" />
-    </template> -->
-  </DOCSSection>
-
   <!-- ── State Management ───────────────────────────────────────────────── -->
   <DOCSSection sectionId="state-management"
   :callout="docCalloutList.find((callout) => callout.id === 'state-management')">

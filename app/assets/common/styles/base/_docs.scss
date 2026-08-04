@@ -34,14 +34,13 @@
   padding: t.$space-4;
 
   &__icon {
-    color: t.$brand;
     margin-bottom: t.$space-2;
   }
 
   &__title {
     font-size: 14px;
     font-weight: 600;
-    color: t.$violet-300;
+    color: var(--colorMain);
     margin-bottom: t.$space-1;
   }
 
@@ -162,8 +161,8 @@
     }
 
     &-name {
-      &--dir  { color: t.$violet-300; }
-      &--file { color: t.$slate-400; }
+      &--dir  { color: var(--colorMain); }
+      &--file { color: t.$text-muted; }
     }
 
     &-note {
@@ -461,7 +460,7 @@
   }
 
   &__token {
-    @include m.mono(12px, t.$violet-400);
+    @include m.mono(12px, var(--colorMain));
   }
 
   &__value {
