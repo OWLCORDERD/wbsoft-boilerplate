@@ -1,0 +1,1957 @@
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6);
+
+    &.is-show {
+      display: flex;
+    }
+
+    &-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 400px;
+      max-width: 830px;
+      max-height: 75vh;
+      padding: 40px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0px 10px 20px 0px rgba(16, 11, 2, 0.2);
+
+      &.type01 {
+        padding: 0;
+        overflow: hidden;
+
+        .modal-header {
+          margin: 40px 0 0 0;
+          padding: 0 40px;
+
+          //2025.09.22[한수원][shhan]: modal-header 아래에 추가 정보 필요시 줄바꿈 처리
+          &.with-info {
+            flex-wrap: wrap;
+          }
+
+          .info-title {
+            width: 100%;
+            display: flex;
+            gap: 5px;
+            color: #999;
+            font-size: 12px;
+          }
+        }
+
+        .modal-info {
+          padding: 30px 40px 0;
+
+          .course-info {
+            margin-bottom: 0;
+          }
+        }
+
+        .modal-wrap {
+          display: flex;
+          gap: 30px;
+          padding: 0 40px;
+
+          &::v-deep(.modal-cont) {
+            padding: 0;
+
+            &.mail {
+              .target {
+                max-width: 620px;
+              }
+            }
+          }
+        }
+
+        &::v-deep(.modal-cont) {
+          padding: 0.15em 40px;
+          overflow-y: auto;
+
+          &::-webkit-scrollbar {
+            width: 8px;
+            cursor: pointer;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background-color: rgba(187, 187, 187, 1);
+            border-radius: 4px;
+          }
+
+          &::-webkit-scrollbar-track,
+          &::-webkit-scrollbar-track-piece {
+            background-color: rgba(0, 0, 0, 0);
+          }
+
+          // .btn-group {
+          //   display: flex;
+          //   width: 100%;
+          // }
+
+          //2025.09.22[한수원][shhan]: 직인 보기 모달 css
+          .stamp-view {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+
+            img {
+              width: 200px;
+              height: 200px;
+            }
+
+            button {
+              color: #fff;
+              display: flex;
+              gap: 5px;
+              padding: 11px 20px;
+              border-radius: 5px;
+              width: 100%;
+              background-color: var(--colorMain);
+              justify-content: center;
+            }
+          }
+
+          &.multi-channel {
+            display: flex;
+            gap: 30px;
+
+            .target {
+              max-width: 500px;
+            }
+          }
+
+          // 2025.10.29 [mhlim]: 메일 발송 모달 > 컨텐츠 영역
+          &.mail {
+            display: flex;
+            gap: 30px;
+
+            .title {
+              font-weight: 700;
+            }
+
+            .target {
+              max-width: 500px;
+
+              .form {
+                &.write {
+                  margin-bottom: 30px;
+                }
+              }
+
+              .grid-wrapper {
+                & > [id^='toast-grid-'] {
+                  max-height: 400px;
+                  overflow-y: auto;
+                }
+
+                .pagination {
+                  .btn-wrap {
+                    .btn-first,
+                    .btn-prev,
+                    .btn-next,
+                    .btn-last {
+                      min-width: 43px !important;
+                    }
+                  }
+                }
+              }
+
+              .tooltip {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+
+                margin-top: 30px;
+                color: var(--colorText3);
+              }
+            }
+
+            .template {
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+              min-width: 600px;
+
+              background-color: #439689;
+              width: 480px;
+              height: 680px;
+              border-radius: 20px;
+              padding: 20px 10px 10px;
+
+              &-top {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 10px;
+                height: 35px;
+
+                .nuxt-icon {
+                  font-size: 45px;
+                  color: #fff;
+                }
+              }
+
+              &-cont {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                flex: 1;
+                background-color: #fff;
+                border-radius: 15px;
+                padding: 20px;
+                height: 605px;
+
+                .form-item {
+                  .form-box {
+                    & > dt {
+                      min-width: 68px;
+                      background-color: #f9f9f9;
+                    }
+                  }
+
+                  &.mail {
+                    margin-bottom: 20px;
+
+                    // 메일 내용 입력 토스트 에디터
+                    .editor-wrap {
+                      height: 450px;
+
+                      // 자동 높이가 아닌 부모 wrapper 영역 높이 100% 조절
+                      .auto-height {
+                        height: 100% !important;
+
+                        .toastui-editor-defaultUI {
+                          height: 100% !important;
+                        }
+
+                        // 툴바 설정 아이콘 그룹 중앙 정렬
+                        .toastui-editor-toolbar-group {
+                          align-items: center;
+                        }
+
+                        // 툴바 아이콘 간격 조절
+                        .toastui-editor-defaultUI-toolbar {
+                          button {
+                            margin: 0 5px;
+                          }
+                        }
+
+                        // 입력 필드 컨테이너 최대 높이 조절
+                        .toastui-editor-main-container {
+                          max-height: 400px;
+                          height: inherit;
+                        }
+                      }
+                    }
+                  }
+                }
+
+                .cont-btn {
+                  .send-btn {
+                    height: 40px;
+                    font-weight: 500;
+                    font-size: 16px;
+                  }
+                }
+              }
+            }
+          }
+
+          // 2025.10.29 [mhlim]: 문자 발송 모달 > 컨텐츠 영역
+          &.sms {
+            display: flex;
+            gap: 30px;
+
+            .title {
+              font-weight: 700;
+            }
+
+            .target {
+              max-width: 500px;
+
+              .form {
+                &.write {
+                  margin-bottom: 30px;
+                }
+              }
+
+              .grid-wrapper {
+                width: 100%;
+
+                & > [id^='toast-grid-'] {
+                  max-height: 480px;
+                  overflow-y: auto;
+                }
+
+                .pagination {
+                  .btn-wrap {
+                    .btn-first,
+                    .btn-prev,
+                    .btn-next,
+                    .btn-last {
+                      min-width: 43px !important;
+                    }
+                  }
+                }
+              }
+
+              .tooltip {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+
+                margin-top: 30px;
+                color: var(--colorText3);
+              }
+            }
+
+            .template {
+              display: flex;
+              flex-direction: column;
+              width: 340px;
+              height: 680px;
+              padding: 22px;
+              border: 8px solid var(--colorText1);
+              border-radius: 50px;
+
+              &-top {
+                display: flex;
+
+                .icon-wrap {
+                  color: var(--colorBorder1);
+                  margin-left: auto;
+                  display: flex;
+                  gap: 12px;
+                }
+              }
+
+              &-cont {
+                margin-top: 20px;
+
+                .title-area {
+                  .form-box {
+                    .sms-title {
+                      min-width: initial;
+                      background-color: #f9f9f9;
+                    }
+                  }
+                }
+
+                .content-area {
+                  margin-top: 20px;
+
+                  .sms-content {
+                    padding: 0;
+                    border: none;
+                    height: 400px;
+                  }
+
+                  .sms-capacity {
+                    padding-top: 10px;
+                    text-align: right;
+                    border-top: 1px solid var(--colorBorder3);
+                    color: var(--colorText3);
+                    margin-bottom: 30px;
+
+                    span {
+                      color: var(--colorText1);
+
+                      &.count {
+                        color: var(--colorText4);
+                      }
+
+                      &.exceeded {
+                        color: var(--colorPoint1);
+                      }
+                    }
+
+                    .sms-desc {
+                      display: flex;
+                      align-items: center;
+                      gap: 5px;
+                      margin-top: 12px;
+
+                      span {
+                        color: var(--colorText4);
+                        font-size: var(--font-sm);
+                        font-weight: 400;
+                      }
+                    }
+                  }
+                }
+              }
+
+              &-bottom {
+                margin-top: auto;
+
+                .send-btn {
+                  height: 40px;
+                  font-size: var(--font-base);
+                  font-weight: 400;
+                }
+              }
+            }
+          }
+        }
+
+        .modal-footer {
+          background: var(--colorMain);
+
+          .btn-wrap {
+            margin-top: 0;
+          }
+
+          .btn-group {
+            display: flex;
+            width: 100%;
+          }
+        }
+
+        .btn-completion {
+          display: none;
+        }
+      }
+
+      &.type02 {
+        &.excel-upload-modal {
+          max-height: 80vh;
+        }
+        padding: 0;
+        text-align: center;
+        overflow: hidden;
+
+        .modal-header {
+          padding: 30px 40px 20px;
+          margin: 0;
+          flex-direction: column;
+          gap: 30px;
+
+          &.no-title {
+            .title {
+              display: none;
+            }
+          }
+
+          .btn-close {
+            position: absolute;
+            right: 40px;
+            top: 40px;
+
+            .nuxt-icon {
+              font-size: 20px;
+            }
+          }
+
+          .nuxt-icon {
+            color: var(--colorMain);
+            font-size: 40px;
+            margin: 0 auto;
+          }
+
+          .title {
+            margin: -0.12em 0;
+            font-size: 18px;
+            color: #333;
+          }
+        }
+
+        &::v-deep(.modal-cont) {
+          padding: 0 40px;
+          margin: 0 0 40px 0;
+          line-height: 1.4;
+          font-size: var(
+            --font-adm-base
+          ); // [kslim] 2025.10.24 모달 서브 텍스트 사이즈 변경
+          color: #777;
+
+          &.table-scroll {
+            max-height: 60vh;
+            overflow-y: auto;
+          }
+
+          .txt {
+            display: inline-block;
+            color: var(--colorText3);
+            font-size: var(--font-adm-sm);
+
+            .fi-circle-i {
+              margin: 1px 4px 0 0;
+              font-size: var(--font-adm-base);
+              color: var(--colorPoint1);
+            }
+          }
+
+          textarea {
+            margin-top: 10px;
+          }
+
+          .sub {
+            font-size: var(--font-adm-base);
+            color: var(--colorText1);
+            margin: -0.14em 0;
+          }
+
+          .question {
+            font-size: var(--font-adm-base);
+            color: var(--colorText1);
+            line-height: 1.3;
+          }
+        }
+
+        .modal-footer {
+          .btn-wrap {
+            margin-top: 0;
+          }
+
+          .btn-group {
+            display: flex;
+            width: 100%;
+          }
+        }
+      }
+
+      &.is-wide {
+        min-width: 1000px;
+        max-width: 1000px;
+      }
+
+      &.evaluation-classroom-simple-assignment {
+        width: 1053px !important;
+        max-width: 1053px !important;
+        max-height: 90vh;
+
+        .modal-cont {
+          text-align: left;
+        }
+      }
+
+      &.exam-seat-layout {
+        width: 1360px !important;
+        max-width: 1360px !important;
+        max-height: 90vh;
+
+        .modal-cont {
+          text-align: left;
+        }
+      }
+
+      &.is-alert {
+        &:not(:has(.modal-cont)) {
+          .modal-header {
+            padding-bottom: 40px;
+          }
+        }
+      }
+    }
+
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+
+      .title {
+        font-size: 24px;
+        font-weight: 600;
+        flex: 1;
+        margin-top: -3px;
+        line-height: 1.2;
+
+        .fi-circle-question {
+          font-size: var(--font-adm-xl);
+          color: var(--colorText5);
+        }
+      }
+
+      .title-label {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 4px;
+
+        .title {
+          margin: 0.1em 0 !important;
+          word-break: keep-all;
+          line-height: 24px;
+        }
+
+        .label {
+          display: block;
+          text-align: center;
+          font-size: 14px;
+          font-weight: 400;
+          color: #0065cd;
+          padding: 6px 10px;
+          border: 1px solid var(--colorBg2);
+          border-radius: 100px;
+          margin-bottom: auto;
+        }
+      }
+
+      .btn-close {
+        display: block;
+        background-size: auto 100%;
+        width: 22px;
+        height: 22px;
+      }
+    }
+
+    &-cont {
+      overflow: hidden;
+      line-height: 1.2;
+      margin: 30px 0 40px 0;
+
+      .section-sub-title {
+        //2025.11.07[kslim]: 모달 내부 section-sub-title 하단 margin 조절
+        margin: 30px 0 20px 0;
+
+        &.required {
+          &:after {
+            content: ' *';
+            color: #ff3b30;
+            font-weight: normal; // strong 태그의 font-weight 상속 방지
+          }
+        }
+      }
+
+      .section-info-title {
+        display: flex;
+        margin: 20px 0 30px; //2025.11.07[kslim]: 모달 내부 course-info 하단 margin 조절
+        color: var(--colorPoint1);
+
+        > h3 {
+          color: #333333;
+          padding-right: 10px;
+          //[2025.09.11][한수원][shhan]: 폰트 크기 미지정으로 인한 h3 기본 폰트 크기 적용 방지
+          font-size: var(--font-adm-lg);
+
+          &.required {
+            &:after {
+              content: ' *';
+              color: #ff3b30;
+              font-weight: normal; // strong 태그의 font-weight 상속 방지
+            }
+          }
+        }
+
+        & > i {
+          margin-right: 8px;
+        }
+
+        & > svg {
+          margin-right: 8px;
+        }
+
+        & > span {
+          margin-top: -0.12em;
+          line-height: 1.2;
+          word-break: keep-all;
+        }
+
+        &.color-gray {
+          color: var(--colorText4);
+        }
+
+        &.center {
+          align-items: center;
+        }
+
+        &.no-mt {
+          margin-top: 0;
+        }
+      }
+
+      & > .section-sub-title,
+      & > .section-info-title {
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+
+      // 2025.10.24[njlee]: p 태그 다음에 오는 modal-cont-border에 상단 여백 추가
+      & > p + .modal-cont-border {
+        margin-top: 20px;
+      }
+
+      //2025.09.25[njlee]: useAlert및 useConfirm에 Border옵션 추가
+      //2025.11.06[njLee]: useAlert및 useConfirm에 아이콘 변경 및 가운데 정렬 추가
+      &-border {
+        border: 1px solid var(--colorBorder2);
+        border-radius: 16px;
+        padding: 16px 8px;
+        justify-items: center;
+        align-items: center;
+
+        p {
+          color: var(--colorText1);
+          font-size: var(--font-adm-lg);
+          font-weight: bold;
+          margin: 0 0 20px 0;
+        }
+
+        ul {
+          padding: 0;
+          /* 들여쓰기 제거 (그리드로 대체) */
+          display: grid;
+          grid-template-columns: max-content 8px 1fr;
+          max-width: 250px;
+
+          /* 1: 사이저, 2: 간격, 3: 텍스트 */
+          > li {
+            margin: 0 0 2px 0;
+            display: grid;
+            grid-template-columns: subgrid;
+            /* 모든 li가 같은 컬럼폭 공유 */
+            grid-column: 1 / -1;
+
+            /* 내부를 subgrid에 직접 배치 */
+            .border-item {
+              display: contents;
+
+              /* 1열: 아이콘 (가로/세로 중앙) */
+              .check-icon {
+                grid-column: 1;
+                justify-self: center;
+                align-self: center;
+                width: 16px;
+                height: 16px;
+                margin: 0;
+                /* 중앙정렬 방해 제거 */
+              }
+
+              /* 간격 */
+              &::after {
+                content: '';
+                grid-column: 2;
+              }
+
+              /* 실제 텍스트(왼쪽정렬) */
+              p {
+                grid-column: 3;
+                margin: 0;
+                color: var(--colorText3);
+                font-style: normal !important;
+                font-size: var(--font-adm-sm) !important;
+                text-align: left;
+              }
+            }
+          }
+        }
+      }
+
+      // 2025.XX.XX[작성자]: 테이블 영역 (border 없이, 테이블 자체에 border-radius 적용)
+      &-table {
+        margin-top: 20px;
+        max-height: 400px;
+        overflow-y: auto;
+
+        // 스크롤바 스타일
+        &::-webkit-scrollbar {
+          width: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: rgba(187, 187, 187, 1);
+          border-radius: 4px;
+        }
+
+        &::-webkit-scrollbar-track,
+        &::-webkit-scrollbar-track-piece {
+          background-color: rgba(0, 0, 0, 0);
+        }
+
+        table.default {
+          width: 100%;
+          border-collapse: separate;
+          border-spacing: 0;
+          // 테이블 외곽 border 제거 (각 셀의 border만 사용)
+          border-radius: 16px;
+          overflow: hidden;
+
+          th,
+          td {
+            height: 40px;
+            max-height: 40px;
+            text-align: center;
+            padding: 8px 12px;
+            vertical-align: middle;
+            overflow: hidden;
+
+            &.align-left {
+              text-align: left;
+              padding-left: 12px;
+            }
+          }
+
+          tbody {
+            tr {
+              th,
+              td {
+                // 기본적으로 border 없음 (필요한 부분만 명시적으로 지정)
+                border: none;
+                color: var(--colorText1);
+              }
+
+              th {
+                font-weight: normal;
+              }
+
+              // 모든 셀에 left border만 적용 (세로선 중복 방지)
+              th,
+              td {
+                border-left: 1px solid var(--colorBorder2);
+              }
+
+              // 마지막 셀에만 right border 추가
+              th:last-child,
+              td:last-child {
+                border-right: 1px solid var(--colorBorder2);
+              }
+
+              // 첫 번째 행: 상단 border와 border-radius 적용
+              &:first-child {
+                th,
+                td {
+                  border-top: 1px solid var(--colorBorder2);
+                }
+
+                th:first-child,
+                td:first-child {
+                  border-top-left-radius: 16px;
+                }
+
+                th:last-child,
+                td:last-child {
+                  border-top-right-radius: 16px;
+                }
+              }
+
+              // 마지막 행: 하단 border와 border-radius 적용
+              &:last-child {
+                th,
+                td {
+                  border-bottom: 1px solid var(--colorBorder2);
+                }
+
+                th:first-child,
+                td:first-child {
+                  border-bottom-left-radius: 16px;
+                }
+
+                th:last-child,
+                td:last-child {
+                  border-bottom-right-radius: 16px;
+                }
+              }
+            }
+
+            //2025.10.20[한수원][shhan]: 본문의 중간 행 border 경계선 색상 수정
+            tr:not(:last-child) {
+              td {
+                border-bottom: 1px solid var(--colorBorder5);
+              }
+            }
+          }
+        }
+      }
+
+      //2025.11.05[shhan]: 모달 내부에서 form write 간격 -> 30px
+      .form.write {
+        margin-bottom: 30px;
+
+        // 2025.11.19[njlee]: 간격 조절을 위한 추가 클래스
+        &.no-mb {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    &-footer {
+      position: relative;
+
+      &:has(button) {
+        &:before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 20px;
+          background: #000;
+        }
+      }
+
+      .btn-wrap {
+        position: relative;
+        margin-top: 0;
+
+        &:has(.check-item) {
+          font-size: var(--font-adm-lg);
+        }
+
+        & > [class*='btn'] {
+          margin-top: 0;
+        }
+
+        &::v-deep(.btn-gray) {
+          background: var(--colorBg2);
+          flex: 1;
+          height: 50px;
+          line-height: 48px;
+          color: var(--colorText3);
+          position: relative;
+          z-index: 0;
+
+          &:disabled {
+            color: var(--colorText2) !important;
+            border: 1px solid var(--colorBorder2) !important;
+            background: var(--colorBg1) !important;
+            cursor: auto;
+
+            &:before {
+              display: none;
+            }
+          }
+
+          &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: scaleX(0);
+            transition: all 0.2s;
+            background: var(--colorText6);
+          }
+
+          &:hover {
+            &:before {
+              opacity: 1;
+              transform: scaleX(1);
+            }
+          }
+
+          .check-item {
+            input[type='checkbox'] {
+              & + label {
+                .check-item {
+                  &-icon {
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 50%;
+
+                    .icon {
+                      &:before {
+                        bottom: 0;
+                        left: 2px;
+                        height: 6px;
+                        background: #b4b4b4;
+                      }
+
+                      &:after {
+                        bottom: -1px;
+                        right: 3px;
+                        height: 11px;
+                        background: #b4b4b4;
+                      }
+                    }
+                  }
+                }
+              }
+
+              &:checked {
+                & + label {
+                  .check-item-icon {
+                    .icon {
+                      &:before,
+                      &:after {
+                        background: #fff;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        &::v-deep(.btn-reset) {
+          background: var(--colorBg2);
+          flex: 1;
+          height: 50px;
+          line-height: 48px;
+          color: var(--colorText3);
+          position: relative;
+          z-index: 0;
+
+          &:hover {
+            &:before {
+              opacity: 1;
+              transform: scaleX(1);
+            }
+          }
+
+          &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: scaleX(0);
+            transition: all 0.2s;
+            background: var(--colorText6);
+          }
+        }
+
+        &::v-deep(.btn-main) {
+          background: var(--colorMain);
+          flex: 1;
+          height: 50px;
+          line-height: 48px;
+          color: #fff;
+          position: relative;
+          z-index: 0;
+
+          &:disabled {
+            color: var(--colorText2) !important;
+            border: 1px solid var(--colorBorder2) !important;
+            background: var(--colorBg1) !important;
+            cursor: auto;
+
+            &:before {
+              display: none;
+            }
+          }
+
+          &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: scaleX(0);
+            transition: all 0.2s;
+            background: var(--colorMainDark);
+          }
+
+          &:hover {
+            &:before {
+              opacity: 1;
+              transform: scaleX(1);
+            }
+          }
+
+          &.custom {
+            background-color: #008900;
+
+            &::before {
+              background-color: #00a000;
+            }
+          }
+        }
+      }
+
+      &#popup-title {
+        flex: 1;
+        min-width: 0;
+        text-align: left;
+      }
+
+      &#popup-footer {
+        :deep(.btn-wrap) {
+          margin-top: 0;
+          .btn-gray {
+            background: var(--colorBg2);
+            flex: 1;
+            height: 50px;
+            line-height: 48px;
+            color: var(--colorText3);
+            position: relative;
+            z-index: 0;
+
+            &:disabled {
+              color: var(--colorText2) !important;
+              border: 1px solid var(--colorBorder2) !important;
+              background: var(--colorBg1) !important;
+              cursor: auto;
+
+              &:before {
+                display: none;
+              }
+            }
+
+            &:before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              z-index: -1;
+              width: 100%;
+              height: 100%;
+              opacity: 0;
+              transform: scaleX(0);
+              transition: all 0.2s;
+              background: var(--colorText6);
+            }
+
+            &:hover {
+              &:before {
+                opacity: 1;
+                transform: scaleX(1);
+              }
+            }
+
+            .check-item {
+              input[type='checkbox'] {
+                & + label {
+                  .check-item {
+                    &-icon {
+                      width: 24px;
+                      height: 24px;
+                      border-radius: 50%;
+
+                      .icon {
+                        &:before {
+                          bottom: 0;
+                          left: 2px;
+                          height: 6px;
+                          background: #b4b4b4;
+                        }
+
+                        &:after {
+                          bottom: -1px;
+                          right: 3px;
+                          height: 11px;
+                          background: #b4b4b4;
+                        }
+                      }
+                    }
+                  }
+                }
+
+                &:checked {
+                  & + label {
+                    .check-item-icon {
+                      .icon {
+                        &:before,
+                        &:after {
+                          background: #fff;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          .btn-main {
+            background: var(--colorMain);
+            flex: 1;
+            height: 50px;
+            line-height: 48px;
+            color: #fff;
+            position: relative;
+            z-index: 0;
+
+            &:disabled {
+              color: var(--colorText2) !important;
+              border: 1px solid var(--colorBorder2) !important;
+              background: var(--colorBg1) !important;
+              cursor: auto;
+
+              &:before {
+                display: none;
+              }
+            }
+
+            &:before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              z-index: -1;
+              width: 100%;
+              height: 100%;
+              opacity: 0;
+              transform: scaleX(0);
+              transition: all 0.2s;
+              background: var(--colorMainDark);
+            }
+
+            &:hover {
+              &:before {
+                opacity: 1;
+                transform: scaleX(1);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    //
+    &-skip {
+      position: absolute;
+      margin-top: 4px;
+
+      &-positioning {
+        position: relative;
+      }
+    }
+
+    // 2026.04.23[mhlim]: 드래그 & 리사이징 기능 탑재 레이어 팝업 v2
+    &.layer-popup-v2 {
+      z-index: 102;
+      background: transparent;
+      pointer-events: none;
+
+      &::v-deep(.vdr-container) {
+        pointer-events: visible;
+      }
+
+      &::v-deep(.modal-container) {
+        pointer-events: visible;
+        position: relative;
+        border: 2px solid var(--colorMain);
+        box-shadow: none;
+        padding: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        // 최대 너비, 높이 뷰포트 100%
+        max-width: 100%;
+        max-height: 100%;
+        // 기본 높이 > 리사이징 실시간 높이 적용
+        height: 100%;
+        // 최소 너비, 높이 200px 적용
+        min-width: 200px;
+
+        // max-height: initial;
+        &:has(.reporting-viewer) {
+          min-width: 910px;
+        }
+
+        &:has(.reporting-viewer) {
+          &:has(.horizontal) {
+            min-width: 1230px;
+          }
+        }
+
+        .modal-header {
+          flex-shrink: 0;
+          margin: 40px 0 0 0;
+          padding: 0 40px;
+        }
+
+        .modal-cont-wrap {
+          flex: 1;
+          min-height: 0;
+          width: 100%;
+          overflow: auto;
+
+          &::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+          }
+        }
+
+        .modal-cont {
+          padding: 0 40px;
+          text-align: center;
+          // min-width: min-content;
+          min-width: 680px;
+          width: 100%;
+          min-height: 0;
+          &:has(.auto-assign-management-content) {
+            min-width: 460px;
+          }
+          &:has(.dormitory-restriction-content) {
+            min-width: 1100px;
+          }
+          &:has(.criteria-management-content) {
+            min-width: 1100px;
+          }
+
+          &:has(.user-registration-content) {
+            min-width: 1400px;
+          }
+
+          &:has(.teaching-material-content),
+          &:has(.warning-issue-popup),
+          &:has(.change-request-reject-reason),
+          &:has(.view-change-request-reject-reason) {
+            min-width: 400px;
+          }
+
+          &:has(.task-detail-content),
+          &:has(.course-kst-content) {
+            min-width: 400px;
+          }
+
+          &:has(.education-standard-detail-content) {
+            min-width: 900px;
+          }
+
+          &:has(.performance-management-detail-view-wrapper) {
+            min-width: 900px;
+          }
+          .grid-wrapper {
+            width: 100%;
+          }
+
+          // 2026.06.04[hglee]: 직인 보기 모달 scss 추가
+          .stamp-view {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+
+            img {
+              width: 200px;
+              height: 200px;
+            }
+
+            button {
+              color: #fff;
+              display: flex;
+              gap: 5px;
+              padding: 11px 20px;
+              border-radius: 5px;
+              width: 100%;
+              background-color: var(--colorMain);
+              justify-content: center;
+            }
+          }
+        }
+
+        &:has(.modal-footer:not(:empty)) {
+          .modal-cont {
+            margin-bottom: 0;
+            padding-bottom: 40px;
+          }
+        }
+
+        &:not(:has(.modal-footer:not(:empty))) {
+          .modal-cont {
+            // padding-bottom: 40px;
+          }
+        }
+
+        .modal-footer {
+          flex-shrink: 0;
+          width: 100%;
+          background: var(--colorMain);
+
+          &:empty {
+            display: none;
+          }
+
+          .btn-group {
+            display: flex;
+            width: 100%;
+
+            .btn-wrap {
+              margin-top: 0;
+            }
+          }
+        }
+      }
+    }
+
+    &.layer-popup {
+      z-index: 102;
+      &:not(:has(.has-dimmed)) {
+        background: transparent;
+
+        &::v-deep(.modal-container) {
+          border: 2px solid var(--colorMain);
+        }
+      }
+
+      &::v-deep(.modal-container) {
+        box-shadow: none;
+        padding: 0;
+        overflow: hidden;
+        max-width: 100%;
+        max-height: 100%;
+
+        &:has(.reporting-viewer) {
+          min-width: 910px;
+        }
+
+        &:has(.reporting-viewer) {
+          &:has(.horizontal) {
+            min-width: 1230px;
+          }
+        }
+
+        .modal-header {
+          margin: 40px 0 0 0;
+          padding: 0 40px;
+        }
+
+        .modal-cont {
+          padding: 0 40px;
+          text-align: center;
+          overflow-y: auto;
+          overflow-x: hidden;
+        }
+
+        .modal-footer {
+          background: var(--colorMain);
+
+          .btn-group {
+            display: flex;
+            width: 100%;
+
+            .btn-wrap {
+              margin-top: 0;
+            }
+          }
+        }
+
+        &.task-detail {
+          width: 500px !important;
+          max-width: 500px !important;
+        }
+
+        &.course-kst {
+          width: 500px !important;
+          max-width: 500px !important;
+        }
+
+        &.writing-plan-approval-request {
+          width: 910px !important;
+          max-width: 910px !important;
+        }
+
+        &.writing-plan-approval-progress {
+          width: 816px !important;
+          max-width: 816px !important;
+        }
+
+        &.execution-plan-approval-request {
+          width: 800px !important;
+          max-width: 800px !important;
+
+          .modal-cont {
+            margin: 0 0 40px 0;
+          }
+
+          .modal-personal-approval-line {
+            .modal-cont {
+              margin: 30px 0 40px 0;
+              padding: 2.5px 40px;
+            }
+          }
+        }
+
+        &.complete-survey-confirm {
+          width: 1120px !important;
+          max-width: 1120px !important;
+        }
+
+        &.certificate-issue-target-detail {
+          width: 960px !important;
+          max-width: 960px !important;
+
+          // 강의확인서일 때만 1080px로 설정
+          &:has(.certificate-issue-lecture) {
+            width: 1010px !important;
+            max-width: 1010px !important;
+
+            .education-period {
+              width: 90% !important;
+            }
+          }
+        }
+
+        &.certificate-issue-target-add {
+          width: 1317px !important;
+          max-width: 1317px !important;
+        }
+
+        &.payment-inquiry {
+          width: 816px !important;
+          max-width: 816px !important;
+        }
+
+        &.objection-reason {
+          width: 750px !important;
+          max-width: 750px !important;
+        }
+
+        &.personal-info-access {
+          width: 779px !important;
+          max-width: 779px !important;
+        }
+
+        &.evaluation-date-input {
+          width: 650px !important;
+          max-width: 650px !important;
+
+          .modal-cont {
+            overflow: visible !important;
+          }
+        }
+
+        &.change-history-approval {
+          width: 904px !important;
+          max-width: 904px !important;
+        }
+
+        &.information-change-history {
+          width: 919px !important;
+          max-width: 919px !important;
+        }
+
+        &.add-round {
+          width: 920px !important;
+          max-width: 920px !important;
+
+          .modal-cont {
+            margin: 0 0 40px 0;
+          }
+
+          .modal-personal-approval-line {
+            .modal-cont {
+              margin: 30px 0 40px 0;
+              padding: 2.5px 40px;
+            }
+          }
+        }
+
+        &.cancel-course-request {
+          width: 899px !important;
+          max-width: 899px !important;
+
+          .modal-cont {
+            margin: 0 0 40px 0;
+          }
+
+          .modal-personal-approval-line {
+            .modal-cont {
+              margin: 30px 0 40px 0;
+              padding: 2.5px 40px;
+            }
+          }
+        }
+
+        &.schedule-change-request {
+          width: 950px !important;
+          max-width: 950px !important;
+
+          .modal-cont {
+            margin: 0 0 40px 0;
+          }
+
+          .modal-personal-approval-line {
+            .modal-cont {
+              margin: 30px 0 40px 0;
+              padding: 2.5px 40px;
+            }
+          }
+        }
+
+        &.execution-plan-change-approval-request {
+          width: 800px !important;
+          max-width: 800px !important;
+
+          .modal-personal-approval-line {
+            .modal-cont {
+              margin: 30px 0 40px 0;
+              padding: 2.5px 40px;
+            }
+          }
+        }
+
+        &.change-approval-status {
+          width: 873px !important;
+          max-width: 873px !important;
+        }
+
+        &.evaluation-classroom-simple-assignment {
+          width: 1053px !important;
+          max-width: 1053px !important;
+        }
+
+        &.schedule-view {
+          width: 1253px !important;
+          max-width: 1253px !important;
+        }
+
+        &.enrollment-guidance {
+          width: 1250px !important;
+          max-width: 1250px !important;
+        }
+
+        &.subject-survey {
+          width: 1527px !important;
+          max-width: 1527px !important;
+        }
+
+        &.subject-survey-descriptive-all-view {
+          width: 1523px !important;
+          max-width: 1523px !important;
+        }
+
+        &.free-form-comments-process {
+          width: 1222px !important;
+          max-width: 1222px !important;
+        }
+
+        &.free-comments {
+          width: 1523px !important;
+          max-width: 1523px !important;
+        }
+
+        &.upload-mobile-server {
+          width: 750px !important;
+          max-width: 750px !important;
+        }
+
+        &.survey-period-change {
+          width: 729px !important;
+          max-width: 729px !important;
+        }
+
+        &.course-grade-registration {
+          width: 1200px !important;
+          max-width: 1200px !important;
+        }
+
+        &.bonus-reason-popup {
+          width: 500px !important;
+          max-width: 500px !important;
+        }
+
+        &.completion-survey {
+          width: 1595px !important;
+          max-width: 1595px !important;
+        }
+
+        &.learner-improvement {
+          width: 900px !important;
+          max-width: 900px !important;
+        }
+
+        &.exam-supervisor-assignment {
+          width: 1470px !important;
+          max-width: 1470px !important;
+
+          .modal-cont {
+            margin: 20px 0 40px 0;
+          }
+        }
+
+        &.nameplate-print {
+          width: 1089px !important;
+          max-width: 1089px !important;
+        }
+
+        &.exam-seat-layout {
+          width: 1360px !important;
+          max-width: 1360px !important;
+        }
+
+        &.certificate-issue-process-add {
+          width: 1241px !important;
+          max-width: 1241px !important;
+        }
+
+        &.training-template {
+          width: 1200px !important;
+          max-width: 1200px !important;
+
+          .modal-cont {
+            margin: 20px 0 40px 0;
+            text-align: left;
+          }
+        }
+
+        &.process-status-detail {
+          width: 1000px !important;
+          max-width: 1000px !important;
+        }
+
+        &.sample-file-download {
+          width: 570px !important;
+          max-width: 570px !important;
+        }
+
+        // 2025.11.14[mhlim]: 훈련실시신고 > QR 등록 팝업
+        &.qr-code-registration {
+          width: 636px;
+        }
+
+        &.qr-code-view {
+          width: 606px;
+        }
+
+        // 2025.11.14[mhlim]: 훈련실시신고 > QR 등록 팝업
+        &.training-report-change-reason {
+          max-width: 918px;
+        }
+
+        // 2025.11.19[ygpark]: 변경신고서류 조회 팝업
+        &.change-reason-document {
+          max-width: 1180px;
+        }
+
+        &.excluded-course-setup {
+          width: 637px;
+        }
+
+        // 2025.11.18[shhan]: 운영과정준비관리 > 참가자 등록 팝업
+        &.participant-popup {
+          width: 1728px !important;
+          max-width: 1728px !important;
+        }
+
+        // 2025.12.22[hglee]: 운영과정준비관리 > 명찰출력 팝업
+        &.name-plate-popup {
+          width: 600px;
+
+          &:has(.report-viewer) {
+            width: 900px;
+          }
+        }
+
+        // 2025.12.23[hglee]: 운영과정준비관리 > 출석부 출력 팝업
+        &.attendance {
+          // width: 1000px;
+        }
+
+        // 2025.11.18[shhan]: 운영과정준비관리 > 출강요철메일발송 팝업
+        &.lecture-request-mail {
+          width: 1631px !important;
+          max-width: 1631px !important;
+        }
+
+        // 교육기준정보설계 목록 > 첨부문서 파일 등록 팝업
+        &.upload-file-register {
+          max-width: 920px;
+        }
+
+        // 2025.11.18[shhan]: 운영과정개설관리 > 교육과정목록 출력
+        &.education-list {
+          min-width: 1100px;
+          max-width: 1070px;
+        }
+
+        &.upload-file-viewer {
+          max-width: 600px;
+        }
+
+        &.annual-schedules {
+          min-width: 1700px;
+
+          .modal-cont {
+            height: 750px;
+          }
+        }
+
+        &.subject-add {
+          width: 1269px !important;
+          max-width: 1269px !important;
+        }
+
+        &.base-setting {
+          width: 570px;
+
+          .form {
+            &.write {
+              margin-bottom: 0;
+            }
+            &-box {
+              dd {
+                position: relative;
+
+                input {
+                  text-decoration: underline;
+                  text-underline-offset: 3px;
+                }
+
+                .unit {
+                  position: absolute;
+                  color: #999;
+                }
+              }
+            }
+          }
+        }
+
+        &.preparation-management-print {
+          min-width: 595px;
+
+          .form {
+            &.write {
+              margin-bottom: 0;
+            }
+          }
+
+          &:has(.report-viewer) {
+            min-width: 910px;
+          }
+        }
+
+        .power-plant-grid {
+          .pagination {
+            .btn-first,
+            .btn-prev,
+            .btn-next,
+            .btn-last {
+              min-width: 43px !important;
+            }
+          }
+        }
+
+        &.time-table-print-v2,
+        &.time-table-print-weekly,
+        &.single-time-table-print-v2 {
+          width: 1200px;
+        }
+
+        &.consolidated-approval {
+          min-width: 1200px;
+          height: 87vh;
+        }
+      }
+    }
+
+    .form {
+      &.write {
+        .form-item {
+          display: flex;
+
+          .form-box {
+            flex: 1;
+          }
+
+          & > span {
+            margin-left: 25px;
+            color: #ea3f41;
+            font-size: var(--font-sm);
+          }
+        }
+      }
+
+      &-head {
+        .form-item {
+          width: 300px;
+
+          &:has(.form-action) {
+            width: fit-content;
+          }
+
+          &.w-60 {
+            width: 620px;
+          }
+
+          &.w-40 {
+            width: 490px;
+          }
+
+          &.is-full {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  // 서체: 프리텐다드
+  .use-pretendard {
+    .modal {
+      &#modalSurveyLoad {
+        .check-list {
+          .check-list-item {
+            input + label {
+              .txt {
+                margin-top: 0;
+                line-height: 1.3;
+              }
+            }
+          }
+        }
+
+        .check-item {
+          input[type='radio'] + label {
+            .check-item {
+              &-txt {
+                padding-top: 0;
+                margin-top: -3px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // 서체: 노토산스
+  .use-notoSans {
+    .modal {
+      &#modalSurveyLoad {
+        .check-list {
+          .check-list-item {
+            input + label {
+              .txt {
+                margin-top: 0;
+                line-height: 1.2;
+              }
+            }
+          }
+        }
+
+        .check-item {
+          input[type='checkbox'] + label,
+          input[type='radio'] + label {
+            .check-item {
+              &-txt {
+                margin-top: -2px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // 서체: 엘리스
+  .use-elice {
+    .modal {
+      &#modalSurveyLoad {
+        .check-list {
+          .check-list-item {
+            input + label {
+              .txt {
+                margin-top: 0;
+                line-height: 1.15;
+              }
+            }
+          }
+        }
+      }
+    }
+  }

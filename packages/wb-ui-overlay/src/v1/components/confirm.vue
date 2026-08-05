@@ -21,8 +21,10 @@
                 : '20px',
           }"
         >
-          <button type="button" class="btn-close" @click="close" />
-          <i class="fi-bulb" />
+          <button type="button" class="btn-close" @click="close">
+            <svgo-chevron-close />
+          </button>
+          <SvgoETCBulb/>
           <template v-if="hasTitle">
             <div class="title-label" v-if="hasTitleLabel">
               <span class="label">
@@ -199,7 +201,7 @@
   </transition>
 </template>
 <script setup>
-import { useConfirm } from '~/modules/confirm/runtime/composables/useConfirm.js';
+import { useConfirm } from '../composables/useConfirm.js';
 
 const {
   confirmShow,
@@ -361,7 +363,7 @@ const getTextStyle = (item) => {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/lxp/components/modal.scss';
+@import '../assets/modal.scss';
 
 .modal {
   &-container {

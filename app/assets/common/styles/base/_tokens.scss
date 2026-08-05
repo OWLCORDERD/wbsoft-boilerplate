@@ -130,7 +130,7 @@ $text-muted:      #d5d5d5;
 $text-subtle:     #a7a7a7;
 
 $brand:           var(--colorMain);   // #8B5CF6
-$brand-hover:     var(--colorSub);   // #7C3AED
+$brand-hover:     var(--colorMainDark);   // #7C3AED
 
 $border-default:  color-mix(in srgb, var(--colorMain) 14%, transparent);
 $border-strong:   color-mix(in srgb, var(--colorMain) 25%, transparent);

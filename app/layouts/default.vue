@@ -1,8 +1,9 @@
 <template>
   <div class="docs"
-  :style="{ '--colorMain': '#' + code,
-    '--colorSub': codeDark,
-    '--colorClear': codeClear,
+  :style="{ '--colorMain': `#${code}`,
+          '--colorMainDark': `${codeDark}`,
+          '--colorMainLight': `${codeLight}`,
+          '--colorMainClear': `${codeClear}`,
     '--font': font,
    }">
 
@@ -55,14 +56,14 @@
           </div>
 
           <nav class="topbar__nav">
-            <a
+            <NuxtLink
+              @click.prevent="handleLinkPageExist(menu.href, menu.hasData)"
               v-for="menu in topbarMenu"
               :key="menu.id"
               class="topbar__nav-link"
-              :href="menu.href"
             >
               {{ menu.label }}
-            </a>
+            </NuxtLink>
           </nav>
         </header>
 
@@ -85,10 +86,15 @@
     </div>
 
     <V1Toast />
+    <V1Confirm />
   </div>
 </template>
 
 <script setup lang="ts">
+export type NavGroup = { group: string; icon: string; items: NavItem[]; baseUrl: string; }
+
+export type NavItem = { label: string; id: string }
+
 const mobileNavOpen = ref(false)
 const activeSection = ref('introduction')
 const expandedGroups = reactive<Record<string, boolean>>({
@@ -99,39 +105,53 @@ const expandedGroups = reactive<Record<string, boolean>>({
   '아이콘': true,
 })
 
+const router = useRouter();
+
+const handleLinkPageExist = async (targetPath: string, hasData: boolean) => {
+  if (!hasData) {
+    await useConfirm().show({
+      message: '존재하지 않는 페이지입니다.',
+      subMsg: '메인 홈으로 이동합니다.',
+      hasCancel: false,
+      confirm: '확인',
+    });
+    if (confirm) {
+      return await navigateTo('/');
+    }
+  } else {
+    router.push(targetPath);
+  }
+}
+
 const topbarMenu = [
   {
     id: 1,
     label: '홈',
     href: '/',
+    hasData: true,
   },
   {
     id: 2,
-    label: '아이콘 디렉토리',
-    href: '/icon',
+    label: '아이콘 도구',
+    href: '/icons-tool',
+    hasData: true,
   },
   {
     id: 3,
-    label: '공통 UI 패키지',
-    href: '/ui-package',
+    label: '공통 컴포넌트',
+    href: '/common-ui',
+    hasData: false,
   },
   {
     id: 4,
     label: 'FSD 구조',
     href: '/fsd-structure',
-  },
-  {
-    id: 5,
-    label: '협업 워크스페이스',
-    href: 'https://app.notion.com/p/owlcoderd/24dd88bad98180bdae77faaa622abc9c',
+    hasData: false,
   },
 ]
 
-export type NavGroup = { group: string; icon: string; items: NavItem[]; baseUrl: string; }
-
-export type NavItem = { label: string; id: string }
-
-const NAV: NavGroup[] = [
+// 좌측 네비게이션 목록
+const sideNavMenu: NavGroup[] = [
   {
     group: '시작하기',
     icon: '📖',
@@ -193,14 +213,14 @@ const NAV: NavGroup[] = [
       { label: '테이블 하위데이터 아이콘', id: '테이블 하위데이터 아이콘' },
       { label: '텍스트필드 아이콘', id: '텍스트필드 아이콘' },
     ],
-    baseUrl: '/icon',
+    baseUrl: '/icons-tool',
   }
 ]
 
 const path = useRoute();
 
 const currentPathNavMenuList = computed(() => {
-  return NAV.filter((item) => item.baseUrl === path.fullPath);
+  return sideNavMenu.filter((item) => item.baseUrl === path.fullPath);
 });
 
 const scrollTo = (id: string) => {
@@ -231,8 +251,9 @@ onUnmounted(() => {
 })
 
 
-// 2023.07.28[bnJung]: 색상테마 설정 - default: 4a509f
+// ----- 홈페이지 설정 플러그인 조회------------------
 const { $homepage } = useNuxtApp();
+
 const {
   colorCode: code,
   font,
@@ -241,6 +262,10 @@ const {
   themeColorSelector,
 } = $homepage;
 
+//------------------------------------------------
+
+// ----- 메인 테마 색상 코드 조회/강도별 hex 코드 변환------------------
+// --colorMain, --colorMainDark, --colorMainLight, --colorMainClear
 const codeRgb = computed(() => {
   const codeHex = code.value.match(/.{1,2}/g);
 
@@ -249,7 +274,7 @@ const codeRgb = computed(() => {
   });
 });
 
-// 2025.10.14[mhlim]: 기본 테마 선택 컬러 코드가 포함된 테마 객체 반환
+// 기본 테마 선택 컬러 코드가 포함된 테마 객체 반환
 const selectDefaultTheme = computed(() => {
   if (type.value === 'theme') {
     return defaultColorSet.filter((theme) => {
@@ -365,7 +390,7 @@ const rgbToHsl = (r: number, g: number, b: number, type?: string) => {
 
   return `hsl(${h}, ${s}%, ${l}%)`;
 };
-
+//------------------------------------------------
 </script>
 
 <style lang="scss" scoped>

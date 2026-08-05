@@ -115,6 +115,7 @@ watch(currentSvgList, (list) => {
     if (!(folder in svgOpenStates.value)) {
       svgOpenStates.value[folder] = false;
     }
+    svgOpenStates.value['버튼 아이콘'] = true;
   });
 }, { immediate: true });
 </script>

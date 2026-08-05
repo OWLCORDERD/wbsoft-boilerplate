@@ -26,6 +26,11 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  &:has(.error) {
+    background-color: #fff;
+    color: t.$colorText1;
+  }
 }
 
 a {

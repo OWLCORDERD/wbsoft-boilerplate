@@ -35,7 +35,35 @@
     </template>
 
     <template #content>
-      <DOCSGettingStartedTerminal :commands="QUICK_START_CMDS" />
+      <DOCSGettingStartedTerminal :commands="QUICK_START_CMDS">
+        <template #tab_name>
+          <SvgoETCCmdTerminal />
+          <div class="code-block__tab-name">
+            패키지 설치/시작 커맨드
+          </div>
+        </template>
+      </DOCSGettingStartedTerminal>
+    </template>
+  </DOCSSection>
+
+  <DOCSSection sectionId="quick-start">
+    <template #heading>
+      <h2 class="section-heading">
+        <span class="section-heading__icon">👨‍💻</span>
+        코드 컨밴션
+      </h2>
+      <p class="section__lead">해당 보일러 플레이트를 기반으로 프로젝트를 개발할때 참고할 수 있는 코드 컨밴션 가이드 입니다.</p>
+    </template>
+
+    <template #content>
+      <DOCSGettingStartedTerminal :convention="CODE_CONVENTION_GUIDE">
+        <template #tab_name>
+          <SvgoETCGitlab />
+          <div class="code-block__tab-name">
+            커밋 메시지 유형별 규격
+          </div>
+        </template>
+      </DOCSGettingStartedTerminal>
     </template>
   </DOCSSection>
 
@@ -117,12 +145,6 @@
         <span class="spacing-scale__values">{{ s.px }} / {{ s.rem }}</span>
       </div>
     </div>
-
-    <div class="palette-section__label" style="margin-bottom: 12px">폼 요소 시스템</div>
-    <div class="grid-demo">
-      <div v-for="i in 12" :key="i" class="grid-demo__col">{{ i }}</div>
-    </div>
-    <div class="grid-caption">폼 요소 기본 gap: 20px ($space-6)</div>
   </section>
 
   <!-- ── CSS Variables ──────────────────────────────────────────────────── -->
@@ -327,6 +349,7 @@ const docCalloutList = ref<calloutType[]>([
   }
 ]);
 
+
 // ── Static data ──────────────────────────────────────────────────────────────
 const BUTTON_TABS = ['primary', 'secondary', 'outline', 'ghost', 'danger'] as const
 
@@ -336,7 +359,18 @@ const FEATURE_CARDS = [
   { icon: '🎨', label: '디자인 토큰', desc: 'CSS 변수 기반의 일관된 스타일 시스템' },
 ]
 
-const QUICK_START_CMDS = ['pnpm install', 'pnpm run local']
+const QUICK_START_CMDS = ['pnpm install', 'pnpm run local'];
+
+const CODE_CONVENTION_GUIDE = [
+  { label: '# feat', desc: '기능 추가', command: '#feat: 로그인 기능 추가' },
+  { label: '# fix', desc: '버그 수정', command: '#fix: 로그인 오류 수정' },
+  { label: '# docs', desc: '문서 수정/업데이트', command: '#docs: 로그인 가이드 문서 추가' },
+  { label: '# refactor', desc: '코드 리팩토링', command: '#refactor: 로그인 인증 플러그인 개선' },
+  // { label: '# test', desc: '테스트 코드 작성 및 수정 -> 테스트 라이브러리 적용 필요' },
+  { label: '# chore', desc: '기타 변경사항', command: '#chore: 프로젝트 구조 변경' },
+  { label: '# perf', desc: '코드 성능 최적화', command: '#perf: d3 런타임 노드 최적화 성능 개선' },
+  { label: '# setting', desc: '프레임워크 설정 파일 or 패키지 관리자 설정 수정', command: '#setting: nuxt 설정 파일 수정' },
+]
 
 const CSS_VARS = [
   { token: '--bg',           value: '#0C0D18',             usage: '페이지 전체 배경',   hex: '#0C0D18' },

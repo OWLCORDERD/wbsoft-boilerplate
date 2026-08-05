@@ -303,7 +303,7 @@ const DASHBOARD_ROWS = [
 
   &--active {
     border-color: var(--colorMain);
-    box-shadow: 0 0 0 2px rgba(var(--colorMain), 0.12);
+    box-shadow: 0 0 0 2px rgba(var(--colorMainDark), 0.12);
   }
 
   &__header {
@@ -336,9 +336,14 @@ const DASHBOARD_ROWS = [
     }
 
     &--applied {
-      background: var(--colorMain);
+      background: var(--colorMainDark);
       border-color: var(--colorMain);
       color: #fff;
+
+      &:hover {
+        border-color: var(--colorMain);
+        color: var(--colorMainClear);
+      }
     }
   }
 }

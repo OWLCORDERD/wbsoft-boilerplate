@@ -81,19 +81,22 @@
   padding: 2px 8px;
   border-radius: t.$radius-sm;
   background: t.$bg-secondary;
-  color: var(--colorMain);
+  color: var(--colorMainClear);
   font-size: 12px;
   cursor: pointer;
   transition: background t.$transition-fast;
   user-select: all;
+  opacity: 0.6;
+  border: 1px solid t.$border-subtle;
 
-  &:hover { background: lighten(t.$bg-secondary, 3%); }
+  &:hover { background: lighten(t.$bg-secondary, 10%); opacity: 1; border-color: t.$border-subtle; }
 
   &__icon {
     opacity: 0.4;
     flex-shrink: 0;
     transition: opacity t.$transition-fast;
   }
+
 
   &:hover &__icon { opacity: 0.7; }
 

@@ -37,7 +37,7 @@
     width: 28px;
     height: 28px;
     border-radius: t.$radius-md;
-    background: linear-gradient(135deg, var(--colorMain), var(--colorSub));
+    background: linear-gradient(135deg, var(--colorMain), var(--colorMainDark));
     @include m.flex-center;
     font-size: 11px;
     font-weight: 700;
@@ -53,7 +53,7 @@
 
   &__logo-version {
     @include m.mono(11px, var(--colorMain));
-    background: color-mix(in srgb, var(--colorSub) 15%, transparent);
+    background: color-mix(in srgb, var(--colorMainDark) 15%, transparent);
     padding: 2px 6px;
     border-radius: t.$radius-sm;
   }
@@ -74,6 +74,7 @@
     font-size: 14px;
     color: t.$text-muted;
     transition: color t.$transition-fast;
+    cursor: pointer;
 
     &:hover { color: var(--colorMain); }
   }
@@ -197,7 +198,7 @@
   top: 0;
   bottom: 0;
   width: t.$sidebar-width;
-  background: var(--colorSub);
+  background: var(--colorMain);
   // @include m.glass-bg;
   border-right: 1px solid t.$border-default;
   flex-direction: column;

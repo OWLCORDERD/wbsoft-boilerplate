@@ -90,10 +90,10 @@
     }
 
     &-accent {
-      color: var(--colorSub);
-      border-color: rgba(var(--colorSub), 0.5);
+      color: var(--colorMainDark);
+      border-color: rgba(var(--colorMainDark), 0.5);
 
-      &:hover { background: rgba(var(--colorSub), 0.15); }
+      &:hover { background: rgba(var(--colorMainDark), 0.15); }
     }
   }
 
@@ -365,7 +365,7 @@
   min-height: 43px;
   min-width: 300px;
   border-radius: 8px;
-  background: var(--colorClear);
+  background: var(--colorMainClear);
   border: 1px solid var(--colorMain);
   color: #fff;
   padding: 10px 30px;
