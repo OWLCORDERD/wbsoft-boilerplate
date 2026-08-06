@@ -2,5 +2,12 @@
     "name": "@wbsoft/ui-overlay",
     "version": "1.0.0",
     "description": "오버레이 런타임 모듈 컴포넌트 패키지",
-    "main": "./src/module.ts"
+    "main": "./src/module.ts",
+    "dependencies": {
+        "@vueuse/core": "^14.4.0"
+    },
+    "peerDependencies": {
+        "vue3-draggable-resizable": "^1.6.5",
+        "vue3-lottie": "^3.3.1"
+    }
 }

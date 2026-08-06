@@ -88,9 +88,10 @@ import {
   type Component,
   type FunctionalComponent,
 } from 'vue';
-import { popupRegistry } from '../registry';
+import { popupRegistry } from '../model/registry';
 import type { PluginOptions } from 'vue3-lottie';
 import { useWindowSize } from '@vueuse/core';
+import { usePopup } from '../model/composables/usePopup';
 
 interface InitialPositionSizeType {
   x: number; // 초기 렌더링 x 배치 좌표
@@ -115,7 +116,7 @@ const {
   contBtn,
   contTitle,
   close,
-} = usePopupV2();
+} = usePopup();
 const currentRoute = useRoute();
 
 const { width, height } = useWindowSize();

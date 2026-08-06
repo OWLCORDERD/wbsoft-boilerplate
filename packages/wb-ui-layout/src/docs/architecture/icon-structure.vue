@@ -8,7 +8,7 @@
           class="box"
           @click="copyImageUrl(icon.fullPath)"
       >
-      <component :is="icon.path" filled class="item" />
+      <component :is="icon.path" class="item" />
       <p class="name">{{ icon.name }}</p>
       </button>
     </div>
@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { imageListItem } from '~/pages/icon/index.vue';
+import type { imageListItem } from '~/pages/icons-tool/index.vue';
 
 const svgOpenStates = ref<Record<string, boolean>>({});
 
@@ -48,7 +48,6 @@ const copyImageUrl = (data: string) => {
       flex-wrap: wrap;
       gap: 20px;
       padding: 20px 10px;
-      background-color: #fff;
       font-family: $font-pretendard;
 
       .box {
@@ -69,6 +68,7 @@ const copyImageUrl = (data: string) => {
           display: flex;
           align-items: center;
           justify-content: center;
+          color: #fff;
         }
 
         &:hover {
@@ -82,6 +82,7 @@ const copyImageUrl = (data: string) => {
           word-wrap: break-word;
           font-weight: bold;
           text-align: center;
+          color: #fff;
         }
       }
     }

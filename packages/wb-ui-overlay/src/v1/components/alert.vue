@@ -3,8 +3,10 @@
     <div class="modal" v-if="alertShow" :class="{'is-show': alertShow}">
       <div class="modal-container type02 is-alert">
         <div class="modal-header">
-          <button type="button" class="btn-close" @click="close"><i class="icon" /></button>
-          <i class="fi-bulb" />
+          <button type="button" class="btn-close" @click="close">
+            <SvgoChevronClose/>
+          </button>
+          <SvgoETCBulb/>
           <!-- 2025.09.08[njlee]: 제목이 없는 경우 렌더링 하지 않도록 수정 -->
           <p class="title" v-html="alertTitle" v-if="hasTitle"></p>
           <!-- <p class="title">{{ alertTitle }}</p> -->
